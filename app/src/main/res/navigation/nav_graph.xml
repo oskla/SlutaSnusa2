@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/dateFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.antisnusbolaget.slutasnusa2.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/dateFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.DateFragment"
+        android:label="fragment_date"
+        tools:layout="@layout/fragment_date">
+        <action
+            android:id="@+id/action_dateFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
