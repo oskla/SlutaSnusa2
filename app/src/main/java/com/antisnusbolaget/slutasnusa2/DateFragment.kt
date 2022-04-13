@@ -18,8 +18,6 @@ class DateFragment : Fragment() {
     private var binding: FragmentDateBinding? = null
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,9 +37,6 @@ class DateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
 
         binding?.apply {
