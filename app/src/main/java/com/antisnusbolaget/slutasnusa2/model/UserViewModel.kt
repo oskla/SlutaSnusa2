@@ -1,20 +1,14 @@
 package com.antisnusbolaget.slutasnusa2.model
 
 import android.widget.Toast
-import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.R
+import androidx.lifecycle.ViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
-import java.time.Period
 import java.util.*
-import kotlin.coroutines.coroutineContext
+import java.util.concurrent.TimeUnit
 
 
 class UserViewModel : ViewModel() {
@@ -54,11 +48,14 @@ class UserViewModel : ViewModel() {
     // Functions
     fun calenderSelection(manager: FragmentManager) {
         datePicker.show(manager, "tag")
+
+
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
             userDate = date
-            println(userDate)
+            dateSinceQuit()
         }
+
     }
 
     fun dateSinceQuit(){
@@ -66,9 +63,17 @@ class UserViewModel : ViewModel() {
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(userDate) as Date
 
-        val dateDiff = date2.compareTo(date1)
 
-        println(dateDiff)
+            val diffInMillies: Long = Math.abs(date1.time - date2.time)
+            val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
+
+            println("the difference is: $diff")
+            setDaysWithout(diff.toString())
+        
+
+        }
+
+
+
 
     }
-}
