@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dateFragment">
+    app:startDestination="@id/costFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -20,5 +20,14 @@
             android:id="@+id/action_dateFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             />
+    </fragment>
+    <fragment
+        android:id="@+id/costFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.CostFragment"
+        android:label="fragment_cost"
+        tools:layout="@layout/fragment_cost" >
+        <action
+            android:id="@+id/action_costFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
     </fragment>
 </navigation>

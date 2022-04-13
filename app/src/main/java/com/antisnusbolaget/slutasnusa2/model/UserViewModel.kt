@@ -62,8 +62,14 @@ class UserViewModel : ViewModel() {
         val date2: Date = dateFormatter.parse(userDate) as Date
             val diffInMillies: Long = Math.abs(date1.time - date2.time)
             val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
-            // Add reset.
 
             setDaysWithout(diff.toString())
+
         }
+
+
+
+
     }
+
+

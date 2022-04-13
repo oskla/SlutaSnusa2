@@ -9,15 +9,15 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 
-class DateFragment : Fragment() {
+class CostFragment : Fragment() {
 
 
     private val sharedViewModel: UserViewModel by activityViewModels()
-    private var binding: FragmentDateBinding? = null
+    private var binding: FragmentCostBinding? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class DateFragment : Fragment() {
     ): View {
 
         // Inflate the layout for this fragment
-        val fragmentBinding = FragmentDateBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentCostBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
 
@@ -48,15 +48,12 @@ class DateFragment : Fragment() {
 
         binding?.apply {
 
-            btnTest.setOnClickListener {
-                val manager = childFragmentManager
-                sharedViewModel.calenderSelection(manager)
-                sharedViewModel.datePicker.addOnPositiveButtonClickListener {
-                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
-                }
-                }
-
+            btnGoToNext.setOnClickListener{
+                findNavController().navigate(R.id.action_costFragment_to_dateFragment)
             }
+
+
         }
     }
+}
 
