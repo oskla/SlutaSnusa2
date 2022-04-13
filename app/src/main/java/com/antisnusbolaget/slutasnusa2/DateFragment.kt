@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
@@ -40,19 +41,26 @@ class DateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Prevents multiple navController calls
-        fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+
+
+
+      /*  fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
             try { navigate(resId, args) }
             catch (e: Exception) { (e) }
-
+*/
 
         binding?.apply {
 
             btnTest.setOnClickListener {
                 val manager = childFragmentManager
                 sharedViewModel.calenderSelection(manager)
+
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
-                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+
+                    // Prevents multiple navController calls
+                    lifecycleScope.launchWhenResumed {
+                        findNavController().navigate(R.id.action_dateFragment_to_homeFragment)
+                    }
                 }
                 }
 
