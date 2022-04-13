@@ -36,8 +36,8 @@ class UserViewModel : ViewModel() {
     private val _costPerUnit = MutableLiveData<Int>(0)
     var costPerUnit: LiveData<Int> = _costPerUnit
 
-    private val _quitDate = MutableLiveData<Any>("Today")
-    val quitDate: LiveData<Any> = _quitDate
+    private val _daysWithout = MutableLiveData<String>("10")
+    val daysWithout: LiveData<String> = _daysWithout
 
 
     // Setters for variables
@@ -47,8 +47,8 @@ class UserViewModel : ViewModel() {
     fun setCostPerUnit(costPerUnit: Int) {
         _costPerUnit.value = costPerUnit
     }
-    fun setDate(quitDate: Any) {
-        _quitDate.value = quitDate
+    fun setDaysWithout(daysWithout: String) {
+        _daysWithout.value = daysWithout
     }
 
     // Functions
@@ -56,10 +56,9 @@ class UserViewModel : ViewModel() {
         datePicker.show(manager, "tag")
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
-            println(date)
             userDate = date
+            println(userDate)
         }
-        dateSinceQuit()
     }
 
     fun dateSinceQuit(){
@@ -70,7 +69,6 @@ class UserViewModel : ViewModel() {
         val dateDiff = date2.compareTo(date1)
 
         println(dateDiff)
-
 
     }
 }

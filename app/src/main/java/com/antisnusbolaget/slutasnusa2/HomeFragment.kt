@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         binding?.apply {
 
 
-            twDaysWithout.text = sharedViewModel.quitDate.value.toString()
+            twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
 
         }
     }
