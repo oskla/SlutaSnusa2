@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
 
 
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
+            twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
 
         }
     }

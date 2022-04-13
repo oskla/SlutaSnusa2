@@ -24,14 +24,17 @@ class UserViewModel : ViewModel() {
 
     private var userDate = ""
 
-    private val _unitPerWeek = MutableLiveData<Int>(10)
+    private val _unitPerWeek = MutableLiveData<Int>(7)
     val unitPerWeek: LiveData<Int> = _unitPerWeek
 
-    private val _costPerUnit = MutableLiveData<Int>(0)
+    private val _costPerUnit = MutableLiveData<Int>(35)
     var costPerUnit: LiveData<Int> = _costPerUnit
 
-    private val _daysWithout = MutableLiveData<String>("10")
-    val daysWithout: LiveData<String> = _daysWithout
+    private val _daysWithout = MutableLiveData<Int>(10)
+    val daysWithout: LiveData<Int> = _daysWithout
+
+    private val _totalMoneySaved = MutableLiveData<Int>(10)
+    val totalMoneySaved: LiveData<Int> = _totalMoneySaved
 
 
     // Setters for variables
@@ -41,8 +44,12 @@ class UserViewModel : ViewModel() {
     fun setCostPerUnit(costPerUnit: Int) {
         _costPerUnit.value = costPerUnit
     }
-    fun setDaysWithout(daysWithout: String) {
+    fun setDaysWithout(daysWithout: Int) {
         _daysWithout.value = daysWithout
+    }
+
+    fun setTotalMoneySaved(totalMoneySaved: Int) {
+        _totalMoneySaved.value = totalMoneySaved
     }
 
     // Functions
@@ -63,10 +70,29 @@ class UserViewModel : ViewModel() {
             val diffInMillies: Long = Math.abs(date1.time - date2.time)
             val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
 
-            setDaysWithout(diff.toString())
+            setDaysWithout(diff.toInt())
 
+            moneySaved()
         }
+fun moneySaved() {
 
+    // Local variables
+    var costPerUnit = costPerUnit.value
+    var unitPerWeek = unitPerWeek.value
+    var daysWithout = daysWithout.value
+
+    // Algorithm
+    var unitsXcost = unitPerWeek?.times(costPerUnit!!)
+    var costPerDay = unitsXcost?.div(7)
+    var moneySaved = costPerDay?.times(daysWithout!!)
+
+    if (moneySaved != null) {
+        setTotalMoneySaved(moneySaved)
+    }
+
+    println(daysWithout)
+   //var moneySaved =
+}
 
 
 

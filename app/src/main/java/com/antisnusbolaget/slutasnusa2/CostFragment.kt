@@ -38,6 +38,10 @@ class CostFragment : Fragment() {
 
     }
 
+    fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+        try { navigate(resId, args) }
+        catch (e: Exception) { (e) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,7 +50,7 @@ class CostFragment : Fragment() {
 
             btnGoToNext.setOnClickListener{
                 lifecycleScope.launchWhenResumed {
-                    findNavController().navigate(R.id.action_costFragment_to_dateFragment)
+                    findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
                 }
             }
 

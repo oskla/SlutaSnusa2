@@ -44,10 +44,10 @@ class DateFragment : Fragment() {
 
 
 
-      /*  fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+       fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
             try { navigate(resId, args) }
             catch (e: Exception) { (e) }
-*/
+
 
         binding?.apply {
 
@@ -59,7 +59,7 @@ class DateFragment : Fragment() {
 
                     // Prevents multiple navController calls
                     lifecycleScope.launchWhenResumed {
-                        findNavController().navigate(R.id.action_dateFragment_to_homeFragment)
+                        findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                     }
                 }
                 }
