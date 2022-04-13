@@ -30,10 +30,10 @@ class UserViewModel : ViewModel() {
     private val _costPerUnit = MutableLiveData<Int>(0)
     var costPerUnit: LiveData<Int> = _costPerUnit
 
-    private val _daysWithout = MutableLiveData<Int>(10)
+    private val _daysWithout = MutableLiveData<Int>(0)
     val daysWithout: LiveData<Int> = _daysWithout
 
-    private val _totalMoneySaved = MutableLiveData<Int>(10)
+    private val _totalMoneySaved = MutableLiveData<Int>(0)
     val totalMoneySaved: LiveData<Int> = _totalMoneySaved
 
 
@@ -63,6 +63,8 @@ class UserViewModel : ViewModel() {
         }
     }
 
+
+
     fun dateSinceQuit(){
         val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
@@ -74,25 +76,28 @@ class UserViewModel : ViewModel() {
 
             moneySaved()
         }
-fun moneySaved() {
 
-    // Local variables
-    var costPerUnit = costPerUnit.value
-    var unitPerWeek = unitPerWeek.value
-    var daysWithout = daysWithout.value
+    fun moneySaved() {
 
-    // Algorithm
-    var unitsXcost = unitPerWeek?.times(costPerUnit!!)
-    var costPerDay = unitsXcost?.div(7)
-    var moneySaved = costPerDay?.times(daysWithout!!)
+        // Local variables
+        var costPerUnit = costPerUnit.value
+        var unitPerWeek = unitPerWeek.value
+        var daysWithout = daysWithout.value
 
-    if (moneySaved != null) {
-        setTotalMoneySaved(moneySaved)
+        // Algorithm
+        var unitsXcost = unitPerWeek?.times(costPerUnit!!)
+        var costPerDay = unitsXcost?.div(7)
+        var moneySaved = costPerDay?.times(daysWithout!!)
+
+        if (moneySaved != null) {
+            setTotalMoneySaved(moneySaved)
+        }
+
+        println(daysWithout)
+       //var moneySaved =
     }
 
-    println(daysWithout)
-   //var moneySaved =
-}
+
 
 
 

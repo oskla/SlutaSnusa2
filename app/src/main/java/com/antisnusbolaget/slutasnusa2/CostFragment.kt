@@ -52,21 +52,6 @@ class CostFragment : Fragment() {
 
         binding?.apply {
 
-          /*  sliderCost.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
-                override fun onStartTrackingTouch(slider: Slider) {
-                    println("Start")
-                }
-
-                override fun onStopTrackingTouch(slider: Slider) {
-                    println("stop")
-
-
-
-                }
-
-            }) */
-
-
             sliderCost.addOnChangeListener { slider, value, fromUser ->
                 sliderCost.setLabelFormatter {
                 val format = NumberFormat.getCurrencyInstance()

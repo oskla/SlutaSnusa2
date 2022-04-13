@@ -51,10 +51,9 @@ class DateFragment : Fragment() {
 
         binding?.apply {
 
-            btnTest.setOnClickListener {
+            twNo.setOnClickListener {
                 val manager = childFragmentManager
                 sharedViewModel.calenderSelection(manager)
-
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
 
                     // Prevents multiple navController calls
@@ -63,6 +62,12 @@ class DateFragment : Fragment() {
                     }
                 }
                 }
+            twYes.setOnClickListener {
+
+                lifecycleScope.launchWhenResumed {
+                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+                }
+            }
 
             }
         }
