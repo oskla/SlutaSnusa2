@@ -27,7 +27,7 @@ class UserViewModel : ViewModel() {
     private val _unitPerWeek = MutableLiveData<Int>(7)
     val unitPerWeek: LiveData<Int> = _unitPerWeek
 
-    private val _costPerUnit = MutableLiveData<Int>(35)
+    private val _costPerUnit = MutableLiveData<Int>(0)
     var costPerUnit: LiveData<Int> = _costPerUnit
 
     private val _daysWithout = MutableLiveData<Int>(10)

@@ -12,6 +12,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.google.android.material.slider.Slider
+import java.text.NumberFormat
+import java.util.*
 
 
 class CostFragment : Fragment() {
@@ -19,6 +22,7 @@ class CostFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentCostBinding? = null
+    private var sliderValue: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +52,46 @@ class CostFragment : Fragment() {
 
         binding?.apply {
 
+          /*  sliderCost.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+                override fun onStartTrackingTouch(slider: Slider) {
+                    println("Start")
+                }
+
+                override fun onStopTrackingTouch(slider: Slider) {
+                    println("stop")
+
+
+
+                }
+
+            }) */
+
+
+            sliderCost.addOnChangeListener { slider, value, fromUser ->
+                sliderCost.setLabelFormatter {
+                val format = NumberFormat.getCurrencyInstance()
+                format.maximumFractionDigits = 0
+                format.currency = Currency.getInstance("SEK")
+                format.format(value.toInt())
+
+
+            }
+
+                println(value.toInt())
+                sliderValue = value.toInt()
+                twCostPerUnit.text = ("${sliderValue} kr")
+
+            }
+
+
             btnGoToNext.setOnClickListener{
                 lifecycleScope.launchWhenResumed {
+
+                    sharedViewModel.setCostPerUnit(sliderValue)
+
+                    println(sliderValue)
                     findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
+
                 }
             }
 
