@@ -49,7 +49,7 @@ class CostFragment : Fragment() {
         binding?.apply {
 
             btnGoToNext.setOnClickListener{
-                findNavController().navigate(R.id.action_costFragment_to_dateFragment)
+                findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
             }
 
 
