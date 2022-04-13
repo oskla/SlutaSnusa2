@@ -16,14 +16,16 @@ import com.google.android.material.slider.Slider
 import java.text.NumberFormat
 import java.util.*
 
-
 class CostFragment : Fragment() {
-
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentCostBinding? = null
     private var sliderValue: Int = 0
 
+    // Prevents multiple navController calls
+    private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+        try { navigate(resId, args) }
+        catch (e: Exception) { (e) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,17 +36,12 @@ class CostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentCostBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
-
     }
 
-    fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
-        try { navigate(resId, args) }
-        catch (e: Exception) { (e) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,11 +55,8 @@ class CostFragment : Fragment() {
                 format.maximumFractionDigits = 0
                 format.currency = Currency.getInstance("SEK")
                 format.format(value.toInt())
+                }
 
-
-            }
-
-                println(value.toInt())
                 sliderValue = value.toInt()
                 twCostPerUnit.text = ("${sliderValue} kr")
 
@@ -70,18 +64,16 @@ class CostFragment : Fragment() {
 
 
             btnGoToNext.setOnClickListener{
-                lifecycleScope.launchWhenResumed {
+                lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
 
                     sharedViewModel.setCostPerUnit(sliderValue)
-
-                    println(sliderValue)
                     findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
 
                 }
             }
 
-
         }
     }
+
 }
 

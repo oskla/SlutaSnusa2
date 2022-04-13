@@ -20,6 +20,11 @@ class DateFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentDateBinding? = null
 
+    // Prevents multiple navController calls
+    private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+        try { navigate(resId, args) }
+        catch (e: Exception) { (e) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +47,6 @@ class DateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-       fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
-            try { navigate(resId, args) }
-            catch (e: Exception) { (e) }
-
-
         binding?.apply {
 
             twNo.setOnClickListener {
@@ -56,20 +54,19 @@ class DateFragment : Fragment() {
                 sharedViewModel.calenderSelection(manager)
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
 
-                    // Prevents multiple navController calls
-                    lifecycleScope.launchWhenResumed {
-                        findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+
+                lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
+                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                     }
                 }
-                }
-            twYes.setOnClickListener {
+            }
 
-                lifecycleScope.launchWhenResumed {
+            twYes.setOnClickListener {
+                lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                     findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                 }
             }
-
-            }
         }
     }
+}
 
