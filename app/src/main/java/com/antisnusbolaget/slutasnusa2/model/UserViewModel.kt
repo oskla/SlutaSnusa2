@@ -49,31 +49,21 @@ class UserViewModel : ViewModel() {
     fun calenderSelection(manager: FragmentManager) {
         datePicker.show(manager, "tag")
 
-
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
             userDate = date
             dateSinceQuit()
         }
-
     }
 
     fun dateSinceQuit(){
         val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(userDate) as Date
-
-
             val diffInMillies: Long = Math.abs(date1.time - date2.time)
             val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
+            // Add reset.
 
-            println("the difference is: $diff")
             setDaysWithout(diff.toString())
-        
-
         }
-
-
-
-
     }

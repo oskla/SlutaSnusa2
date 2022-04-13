@@ -9,7 +9,8 @@
         android:id="@+id/homeFragment"
         android:name="com.antisnusbolaget.slutasnusa2.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home"/>
+    
     <fragment
         android:id="@+id/dateFragment"
         android:name="com.antisnusbolaget.slutasnusa2.DateFragment"
@@ -17,6 +18,7 @@
         tools:layout="@layout/fragment_date">
         <action
             android:id="@+id/action_dateFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            />
     </fragment>
 </navigation>
