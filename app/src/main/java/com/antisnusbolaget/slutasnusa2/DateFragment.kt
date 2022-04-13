@@ -49,9 +49,11 @@ class DateFragment : Fragment() {
             btnTest.setOnClickListener {
                 val manager = childFragmentManager
                 sharedViewModel.calenderSelection(manager)
-
-                    //findNavController().navigate(R.id.action_dateFragment_to_homeFragment)
+                sharedViewModel.datePicker.addOnPositiveButtonClickListener {
+                    findNavController().navigate(R.id.action_dateFragment_to_homeFragment)
                 }
+                }
+
             }
         }
     }

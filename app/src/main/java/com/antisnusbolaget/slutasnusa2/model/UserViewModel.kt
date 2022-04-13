@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.antisnusbolaget.slutasnusa2.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,7 +19,7 @@ import kotlin.coroutines.coroutineContext
 class UserViewModel : ViewModel() {
 
     // CalenderBuilder
-    private val datePicker = MaterialDatePicker.Builder.datePicker()
+    val datePicker = MaterialDatePicker.Builder.datePicker()
         .setTitleText("Start date")
         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
         .build()
@@ -48,12 +51,9 @@ class UserViewModel : ViewModel() {
         datePicker.addOnPositiveButtonClickListener {
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
             val date = dateFormatter.format(Date(it))
-
             println(date)
             setDate(date)
         }
     }
-
-
-
+    
 }
