@@ -30,7 +30,7 @@ class UserViewModel : ViewModel() {
     private val _costPerUnit = MutableLiveData<Int>(0)
     var costPerUnit: LiveData<Int> = _costPerUnit
 
-    private val _daysWithout = MutableLiveData<Int>(0)
+    private val _daysWithout = MutableLiveData<Int>(20)
     val daysWithout: LiveData<Int> = _daysWithout
 
     private val _totalMoneySaved = MutableLiveData<Int>(0)
@@ -63,7 +63,14 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    //TODO Denna funktion körs om man trycker på "NEJ" i datefragment.
+    //TODO noSelection blir dagens datum, userDate som används i dateSinceQuit() blir till dagens datum.
 
+    fun noCalenderSelection(){
+        val noSelection = dateFormatter.format(Date())
+        userDate = noSelection
+        dateSinceQuit()
+    }
 
     fun dateSinceQuit(){
         val currentDate = dateFormatter.format(Date())
@@ -80,27 +87,20 @@ class UserViewModel : ViewModel() {
     fun moneySaved() {
 
         // Local variables
-        var costPerUnit = costPerUnit.value
-        var unitPerWeek = unitPerWeek.value
-        var daysWithout = daysWithout.value
+        val costPerUnit = costPerUnit.value
+        val unitPerWeek = unitPerWeek.value
+        val daysWithout = daysWithout.value
 
         // Algorithm
-        var unitsXcost = unitPerWeek?.times(costPerUnit!!)
-        var costPerDay = unitsXcost?.div(7)
-        var moneySaved = costPerDay?.times(daysWithout!!)
+        val unitsCost = unitPerWeek?.times(costPerUnit!!)
+        val costPerDay = unitsCost?.div(7)
+        val moneySaved = costPerDay?.times(daysWithout!!)
 
         if (moneySaved != null) {
             setTotalMoneySaved(moneySaved)
         }
-
-        println(daysWithout)
-       //var moneySaved =
     }
-
-
-
-
-
+    
     }
 
 

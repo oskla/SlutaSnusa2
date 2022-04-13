@@ -62,6 +62,7 @@ class DateFragment : Fragment() {
             }
 
             twYes.setOnClickListener {
+                sharedViewModel.noCalenderSelection()
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                     findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                 }
