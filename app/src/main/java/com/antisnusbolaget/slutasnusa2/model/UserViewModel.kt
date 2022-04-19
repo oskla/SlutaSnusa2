@@ -1,13 +1,17 @@
 package com.antisnusbolaget.slutasnusa2.model
 
+import android.app.PendingIntent.getActivity
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.antisnusbolaget.slutasnusa2.MainActivity
+import com.antisnusbolaget.slutasnusa2.UserData
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -15,7 +19,6 @@ import java.util.concurrent.TimeUnit
 
 class UserViewModel : ViewModel() {
 
-    private lateinit var myDb: DatabaseReference
 
     // CalenderBuilder
     val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -78,7 +81,7 @@ class UserViewModel : ViewModel() {
     }
 
     fun dateSinceQuit(){
-       // val currentDate = dateFormatter.format(Date())
+        val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
             val diffInMillies: Long = Math.abs(date1.time - date2.time)
@@ -106,9 +109,21 @@ class UserViewModel : ViewModel() {
         }
     }
 
-   /* fun dbInit(context) {
-       FirebaseApp.initializeApp(context)
-    } */
+ fun dbWrite(myDb: DatabaseReference) {
+
+     val userData = UserData(quitDate,costPerUnit.value.toString(), unitPerWeek.value.toString())
+
+     myDb.child("User1")
+         .push()
+         .setValue(userData)
+         .addOnSuccessListener {
+             println("success")
+         }.addOnFailureListener{
+             println("bad")
+         }
+
+
+    }
 
     }
 
