@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.google.firebase.FirebaseApp
 
 
 class HomeFragment : Fragment() {
@@ -36,6 +37,8 @@ class HomeFragment : Fragment() {
 
         binding?.apply {
 
+           // sharedViewModel.dbInit(context)
+            
 
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()

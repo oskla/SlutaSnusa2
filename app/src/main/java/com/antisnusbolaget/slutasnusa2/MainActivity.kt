@@ -2,6 +2,7 @@ package com.antisnusbolaget.slutasnusa2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.FirebaseApp
 
 
 class MainActivity : AppCompatActivity() {

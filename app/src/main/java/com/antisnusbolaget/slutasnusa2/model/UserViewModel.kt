@@ -1,17 +1,21 @@
 package com.antisnusbolaget.slutasnusa2.model
 
-import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.antisnusbolaget.slutasnusa2.MainActivity
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DatabaseReference
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 
 class UserViewModel : ViewModel() {
+
+    private lateinit var myDb: DatabaseReference
 
     // CalenderBuilder
     val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -20,17 +24,18 @@ class UserViewModel : ViewModel() {
         .build()
 
     // Variables
+
     private val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
 
-    private var userDate = ""
+    private var quitDate = ""
 
-    private val _unitPerWeek = MutableLiveData<Int>(7)
+    private val _unitPerWeek = MutableLiveData<Int>(0)
     val unitPerWeek: LiveData<Int> = _unitPerWeek
 
     private val _costPerUnit = MutableLiveData<Int>(0)
-    var costPerUnit: LiveData<Int> = _costPerUnit
+    private var costPerUnit: LiveData<Int> = _costPerUnit
 
-    private val _daysWithout = MutableLiveData<Int>(20)
+    private val _daysWithout = MutableLiveData<Int>(0)
     val daysWithout: LiveData<Int> = _daysWithout
 
     private val _totalMoneySaved = MutableLiveData<Int>(0)
@@ -58,7 +63,7 @@ class UserViewModel : ViewModel() {
 
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
-            userDate = date
+            quitDate = date
             dateSinceQuit()
         }
     }
@@ -68,14 +73,14 @@ class UserViewModel : ViewModel() {
 
     fun noCalenderSelection(){
         val noSelection = dateFormatter.format(Date())
-        userDate = noSelection
+        quitDate = noSelection
         dateSinceQuit()
     }
 
     fun dateSinceQuit(){
-        val currentDate = dateFormatter.format(Date())
+       // val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
-        val date2: Date = dateFormatter.parse(userDate) as Date
+        val date2: Date = dateFormatter.parse(quitDate) as Date
             val diffInMillies: Long = Math.abs(date1.time - date2.time)
             val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
 
@@ -100,7 +105,11 @@ class UserViewModel : ViewModel() {
             setTotalMoneySaved(moneySaved)
         }
     }
-    
+
+   /* fun dbInit(context) {
+       FirebaseApp.initializeApp(context)
+    } */
+
     }
 
 
