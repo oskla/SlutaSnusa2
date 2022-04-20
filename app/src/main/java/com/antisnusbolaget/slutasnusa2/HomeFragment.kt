@@ -22,7 +22,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -54,5 +53,11 @@ class HomeFragment : Fragment() {
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
 
         }
+    }
+
+    override fun onResume(view: View, savedInstanceState: Bundle?) {
+        super.onResume()
+        println("tjena")
+
     }
 }

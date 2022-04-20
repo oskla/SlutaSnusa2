@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.slider.Slider
 import java.text.NumberFormat
 import java.util.*
 

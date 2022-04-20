@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -18,8 +16,6 @@ import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 class DateFragment : Fragment() {
 
-
-    val vm: UserViewModel by viewModels()
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentDateBinding? = null
 

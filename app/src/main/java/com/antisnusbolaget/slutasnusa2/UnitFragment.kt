@@ -10,12 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.slider.Slider
-import java.text.NumberFormat
-import java.util.*
 
 class UnitFragment : Fragment() {
 
@@ -53,8 +49,6 @@ class UnitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println(sharedViewModel.getUnit.value)
-
         binding?.apply {
             twUnits.text = sharedViewModel.unitPerWeek.value.toString()
 
@@ -71,7 +65,6 @@ class UnitFragment : Fragment() {
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
                     sharedViewModel.setUnitQuantity(tempUnit)
-                    sharedViewModel.setterUnitPWeek()
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
                 }
 

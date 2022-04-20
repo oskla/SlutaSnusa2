@@ -26,13 +26,8 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     // Variables
     private var quitDate = ""
 
-    // Saved State getters
-    private val getDate: MutableLiveData<String> = savedStateHandle.getLiveData("date")
-    val getUnit: MutableLiveData<Int> = savedStateHandle.getLiveData("unit", 0)
-    private val getCost: MutableLiveData<Int> = savedStateHandle.getLiveData("cost")
-
     // LiveData variables
-    private val _unitPerWeek = MutableLiveData<Int>(getUnit.value)
+    private val _unitPerWeek = MutableLiveData<Int>(0)
     val unitPerWeek: LiveData<Int> = _unitPerWeek
     private val _costPerUnit = MutableLiveData<Int>(0)
     val costPerUnit: LiveData<Int> = _costPerUnit
@@ -50,9 +45,6 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     //____________________________________________________________________________________________
 
     // Functions
-    fun setterDate(){ savedStateHandle.set("date", quitDate) }
-    fun setterCost(){ savedStateHandle.set("cost",costPerUnit.value) }
-    fun setterUnitPWeek(){ savedStateHandle.set("unit", unitPerWeek.value) }
 
     fun calenderSelection(manager: FragmentManager) {
         datePicker.show(manager, "tag")
