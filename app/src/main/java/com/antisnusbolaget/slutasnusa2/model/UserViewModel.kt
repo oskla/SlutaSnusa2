@@ -21,14 +21,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
         .build()
 
-    // DateFormatter
+    // DateFormatter & Empty variable for user pick
     private val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
-
-    //___________________________________________________________________________________________
-
-    // Variables
     private var quitDate = ""
-
+    //___________________________________________________________________________________________
 
     // LiveData variables
     private val _unitPerWeek = MutableLiveData<Int>(0)
@@ -49,8 +45,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     //____________________________________________________________________________________________
 
     // Functions
-
-    fun calenderSelection(manager: FragmentManager) {
+    fun calenderSelection(manager: FragmentManager) { // If user press NO = calender opens
         datePicker.show(manager, "tag")
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
@@ -60,24 +55,24 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun noCalenderSelection(){
+    fun noCalenderSelection(){ // If user press YES = calender wont open, quitDate = today
         val noSelection = dateFormatter.format(Date())
         quitDate = noSelection
         saveLocal("date",quitDate)
         dateSinceQuit()
     }
 
-    fun dateSinceQuit(){ //Calculating the diff in time from two dates
+    private fun dateSinceQuit(){ //Calculating the diff in time from two dates
         val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
-        val diffInMillies: Long = Math.abs(date1.time - date2.time)
-        val diff: Long = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)
+        val diffBetween: Long = Math.abs(date1.time - date2.time)
+        val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
         setDaysWithout(diff.toInt())
         moneySaved()
     }
 
-    fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
+    private fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
         val costPerUnit = costPerUnit.value //Local value
         val unitPerWeek = unitPerWeek.value // -||-
         val daysWithout = daysWithout.value // -||-
@@ -134,7 +129,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             Toast.makeText(context, stringBuilder, Toast.LENGTH_SHORT).show()
         }
     }
-
 }
 
 
