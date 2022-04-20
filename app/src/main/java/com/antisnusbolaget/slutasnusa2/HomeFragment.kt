@@ -1,6 +1,5 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,17 +11,12 @@ import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: UserViewModel
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentHomeBinding? = null
     private lateinit var myDb: DatabaseReference
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +25,12 @@ class HomeFragment : Fragment() {
         sharedViewModel.readLocal("cost")
         binding.apply{
         }
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -46,7 +39,6 @@ class HomeFragment : Fragment() {
 
         myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
         sharedViewModel.dbWrite(myDb)
-
 
         return fragmentBinding.root
     }
@@ -57,28 +49,7 @@ class HomeFragment : Fragment() {
         binding?.apply {
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
-
         }
     }
-
-    private fun saveData(unitQuantity: String): Boolean {
-        val fileOutputStream:FileOutputStream
-
-        return try {
-            fileOutputStream = activity?.openFileOutput(unitQuantity, MODE_PRIVATE)!!
-            fileOutputStream.write(unitQuantity.toByteArray())
-            true
-        } catch(e: IOException) {
-            e.printStackTrace()
-            false
-        }
-    }
-
-    private fun getData(unitQuantity: String){
-        var fileInputStream: FileInputStream? = null
-        fileInputStream = activity?.openFileInput(unitQuantity)
-
-    }
-
 }
 

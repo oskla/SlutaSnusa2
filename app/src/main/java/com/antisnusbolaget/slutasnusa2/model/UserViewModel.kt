@@ -12,8 +12,6 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.coroutineContext
-
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -65,7 +63,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun noCalenderSelection(){
         val noSelection = dateFormatter.format(Date())
         quitDate = noSelection
-        saveLocal("date",quitDate)//TODO parse as string on-read.
+        saveLocal("date",quitDate)
         dateSinceQuit()
     }
 
@@ -99,14 +97,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             .addOnSuccessListener { println("DB success") }
             .addOnFailureListener{ println("DB bad") }
     }
-    fun saveLocal(key: String, value: String){
+
+    fun saveLocal(key: String, value: String){ //saving data locally
         val context = getApplication<Application>().applicationContext
         val file = key
         val data: String = value
         val fileOutputStream: FileOutputStream
         try {
             fileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
-            fileOutputStream.write(data.toString().toByteArray())
+            fileOutputStream.write(data.toByteArray())
         } catch (e: FileNotFoundException){
             e.printStackTrace()
         }catch (e: NumberFormatException){
@@ -119,7 +118,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         Toast.makeText(context,"data save", Toast.LENGTH_SHORT).show()
     }
 
-    fun readLocal(key: String){
+    fun readLocal(key: String){ // reading saved data
         val context = getApplication<Application>().applicationContext
         val filename = key
         if(filename.trim()!=""){
@@ -132,10 +131,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             while ({ text = bufferedReader.readLine(); text }() != null) {
                 stringBuilder.append(text)
             }
-            //Displaying data on EditText
             Toast.makeText(context, stringBuilder, Toast.LENGTH_SHORT).show()
-        }else{
-            println(   "fail")
         }
     }
 

@@ -18,8 +18,7 @@
         tools:layout="@layout/fragment_date">
         <action
             android:id="@+id/action_dateFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/costFragment"
@@ -28,7 +27,10 @@
         tools:layout="@layout/fragment_cost" >
         <action
             android:id="@+id/action_costFragment_to_dateFragment"
-            app:destination="@id/dateFragment" />
+            app:destination="@id/dateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/unitFragment"
@@ -37,6 +39,8 @@
         tools:layout="@layout/fragment_unit" >
         <action
             android:id="@+id/action_unitFragment_to_costFragment"
-            app:destination="@id/costFragment" />
+            app:destination="@id/costFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
     </fragment>
 </navigation>
