@@ -48,16 +48,15 @@ class CostFragment : Fragment() {
 
         binding?.apply {
 
-            sliderCost.addOnChangeListener { slider, value, fromUser ->
+            sliderCost.addOnChangeListener { _, value, _ ->
                 sliderCost.setLabelFormatter {
                 val format = NumberFormat.getCurrencyInstance()
                 format.maximumFractionDigits = 0
                 format.currency = Currency.getInstance("SEK")
                 format.format(value.toInt())
                 }
-
                 sliderValue = value.toInt()
-                twCostPerUnit.text = ("${sliderValue} kr")
+                twCostPerUnit.text = "$sliderValue kr"
 
             }
 
