@@ -1,10 +1,12 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import java.io.*
 
 class UnitFragment : Fragment() {
 
@@ -28,7 +31,7 @@ class UnitFragment : Fragment() {
 
         if (savedInstanceState == null) {
             super.onCreate(savedInstanceState)
-            println("Saved instance state: $savedInstanceState")
+            sharedViewModel.readLocal("unit")
         }
 
 
@@ -60,10 +63,12 @@ class UnitFragment : Fragment() {
             btnPlus.setOnClickListener {
                 tempUnit += 1
                 twUnits.text = tempUnit.toString()
+
             }
 
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
+                    sharedViewModel.saveLocal("unit", tempUnit.toString())
                     sharedViewModel.setUnitQuantity(tempUnit)
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
                 }

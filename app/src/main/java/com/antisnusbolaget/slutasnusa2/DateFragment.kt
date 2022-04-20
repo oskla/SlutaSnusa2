@@ -53,7 +53,6 @@ class DateFragment : Fragment() {
                 sharedViewModel.calenderSelection(manager)
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
 
-
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                     findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                     }

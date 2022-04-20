@@ -1,16 +1,21 @@
 package com.antisnusbolaget.slutasnusa2.model
 
+import android.app.Application
+import android.content.Context
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.*
 import com.antisnusbolaget.slutasnusa2.UserData
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.DatabaseReference
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.coroutineContext
 
 
-class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     // CalenderBuilder
     val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -25,6 +30,7 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
 
     // Variables
     private var quitDate = ""
+
 
     // LiveData variables
     private val _unitPerWeek = MutableLiveData<Int>(0)
@@ -51,6 +57,7 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
             quitDate = date
+            saveLocal("date", quitDate)
             dateSinceQuit()
         }
     }
@@ -58,6 +65,7 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     fun noCalenderSelection(){
         val noSelection = dateFormatter.format(Date())
         quitDate = noSelection
+        saveLocal("date",quitDate)//TODO parse as string on-read.
         dateSinceQuit()
     }
 
@@ -90,6 +98,45 @@ class UserViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
             .setValue(userData)
             .addOnSuccessListener { println("DB success") }
             .addOnFailureListener{ println("DB bad") }
+    }
+    fun saveLocal(key: String, value: String){
+        val context = getApplication<Application>().applicationContext
+        val file = key
+        val data: String = value
+        val fileOutputStream: FileOutputStream
+        try {
+            fileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
+            fileOutputStream.write(data.toString().toByteArray())
+        } catch (e: FileNotFoundException){
+            e.printStackTrace()
+        }catch (e: NumberFormatException){
+            e.printStackTrace()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+        Toast.makeText(context,"data save", Toast.LENGTH_SHORT).show()
+    }
+
+    fun readLocal(key: String){
+        val context = getApplication<Application>().applicationContext
+        val filename = key
+        if(filename.trim()!=""){
+            var fileInputStream: FileInputStream? = null
+            fileInputStream = context.openFileInput(filename)
+            val inputStreamReader = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+            val stringBuilder: StringBuilder = StringBuilder()
+            var text: String? = null
+            while ({ text = bufferedReader.readLine(); text }() != null) {
+                stringBuilder.append(text)
+            }
+            //Displaying data on EditText
+            Toast.makeText(context, stringBuilder, Toast.LENGTH_SHORT).show()
+        }else{
+            println(   "fail")
+        }
     }
 
 }
