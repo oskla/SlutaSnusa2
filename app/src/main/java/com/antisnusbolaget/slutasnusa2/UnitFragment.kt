@@ -53,6 +53,7 @@ class UnitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        println(sharedViewModel.getUnit.value)
 
         binding?.apply {
             twUnits.text = sharedViewModel.unitPerWeek.value.toString()
@@ -70,6 +71,7 @@ class UnitFragment : Fragment() {
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
                     sharedViewModel.setUnitQuantity(tempUnit)
+                    sharedViewModel.setterUnitPWeek()
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
                 }
 
