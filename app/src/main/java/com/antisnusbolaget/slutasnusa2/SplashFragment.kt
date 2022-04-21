@@ -39,6 +39,7 @@ class SplashFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 
+
     }
 
     override fun onCreateView(
@@ -54,7 +55,9 @@ class SplashFragment : Fragment() {
 
         splashIcon.visibility = View.GONE
 
+
         fade()
+
 
         fragmentBinding.root.setOnClickListener {
             lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
@@ -100,12 +103,27 @@ private fun fade() {
             override fun onAnimationEnd(animation: Animator) {
                 println("animation ended")
 
+                sharedViewModel.readLocal("unit")
+                sharedViewModel.readLocal("cost")
+                sharedViewModel.readLocal("date")
+
+                // Call the algorithms
+                sharedViewModel.dateSinceQuit()
+                sharedViewModel.moneySaved()
 
 
+                    if (sharedViewModel.unitPerWeek.value == 0) {
+                        lifecycleScope.launchWhenResumed {
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
+                        }
+                    } else {
+                        lifecycleScope.launchWhenResumed {
 
-                    lifecycleScope.launchWhenResumed {
-                        findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
+                            sharedViewModel.moneySaved()
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                        }
                     }
+
 
 
 

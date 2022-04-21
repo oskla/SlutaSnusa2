@@ -41,10 +41,10 @@ class HomeFragment : Fragment() {
         sharedViewModel.dbWrite(myDb)
 
         binding?.apply {
-            sharedViewModel.readLocal("unit")
-            sharedViewModel.readLocal("date")
-            sharedViewModel.readLocal("cost")
-            sharedViewModel.moneySaved()
+           // sharedViewModel.readLocal("unit")
+           // sharedViewModel.readLocal("date")
+           // sharedViewModel.readLocal("cost")
+
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
         }

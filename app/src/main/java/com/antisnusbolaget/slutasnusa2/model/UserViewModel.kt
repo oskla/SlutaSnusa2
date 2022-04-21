@@ -64,7 +64,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         dateSinceQuit()
     }
 
-    private fun dateSinceQuit(){ //Calculating the diff in time from two dates
+    fun dateSinceQuit(){ //Calculating the diff in time from two dates
         val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
@@ -83,6 +83,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         if (moneySaved != null) {
             setTotalMoneySaved(moneySaved)
         }
+       // dateSinceQuit()
     }
 
     fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
@@ -132,6 +133,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
                     "date" -> quitDate = stringBuilder.toString()
                 }
+
             }
         }
 
