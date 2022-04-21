@@ -63,8 +63,7 @@ class CostFragment : Fragment() {
 
             btnGoToNext.setOnClickListener{
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                    sharedViewModel.saveLocal("cost", sliderValue.toString()) //TODO parse as toInt() when read.
-                    sharedViewModel.setCostPerUnit(sliderValue)
+                    sharedViewModel.saveLocal("cost", sliderValue.toString())
                     findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
 
                 }

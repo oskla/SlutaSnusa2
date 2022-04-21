@@ -39,10 +39,6 @@ class SplashFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 
-
-
-
-
     }
 
     override fun onCreateView(
@@ -104,9 +100,19 @@ private fun fade() {
             override fun onAnimationEnd(animation: Animator) {
                 println("animation ended")
 
-                lifecycleScope.launchWhenResumed {
-                    findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
+                sharedViewModel.storageCheck()
+
+
+                if(sharedViewModel.storageIsFull){
+                    lifecycleScope.launchWhenResumed {
+                        findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                    }
+                }else{
+                    lifecycleScope.launchWhenResumed { findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment) }
+
                 }
+
+
             }
         }
 

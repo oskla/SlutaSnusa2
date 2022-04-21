@@ -23,7 +23,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     // DateFormatter & Empty variable for user pick
     private val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
-    private var quitDate = ""
+    var quitDate = ""
+    var storageIsFull = false
+
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -38,10 +40,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     //___________________________________________________________________________________________
 
     // Setters for LiveData variables
-    fun setUnitQuantity(unitPerWeek: Int){ _unitPerWeek.value = unitPerWeek }
-    fun setCostPerUnit(costPerUnit: Int) { _costPerUnit.value = costPerUnit }
-    fun setDaysWithout(daysWithout: Int) { _daysWithout.value = daysWithout }
-    fun setTotalMoneySaved(totalMoneySaved: Int) { _totalMoneySaved.value = totalMoneySaved }
+    private fun setUnitQuantity(unitPerWeek: Int){ _unitPerWeek.value = unitPerWeek }
+    private fun setCostPerUnit(costPerUnit: Int) { _costPerUnit.value = costPerUnit }
+    private fun setDaysWithout(daysWithout: Int) { _daysWithout.value = daysWithout }
+    private fun setTotalMoneySaved(totalMoneySaved: Int) { _totalMoneySaved.value = totalMoneySaved }
     //____________________________________________________________________________________________
 
     // Functions
@@ -69,10 +71,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val diffBetween: Long = Math.abs(date1.time - date2.time)
         val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
         setDaysWithout(diff.toInt())
-        moneySaved()
     }
 
-    private fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
+    fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
         val costPerUnit = costPerUnit.value //Local value
         val unitPerWeek = unitPerWeek.value // -||-
         val daysWithout = daysWithout.value // -||-
@@ -101,6 +102,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         try {
             fileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
             fileOutputStream.write(data.toByteArray())
+
         } catch (e: FileNotFoundException){
             e.printStackTrace()
         }catch (e: NumberFormatException){
@@ -125,8 +127,20 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             var text: String? = null
             while ({ text = bufferedReader.readLine(); text }() != null) {
                 stringBuilder.append(text)
+                when (filename){
+                    "unit" -> setUnitQuantity(stringBuilder.toString().toInt())
+                    "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
+                    "date" -> quitDate = stringBuilder.toString()
+                }
             }
-            Toast.makeText(context, stringBuilder, Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    fun storageCheck(){
+        if (quitDate != null){//om quit-date inte är tom
+            storageIsFull = true
+        }else{
+            null
         }
     }
 }

@@ -20,10 +20,10 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel.readLocal("unit")
-        sharedViewModel.readLocal("date")
-        sharedViewModel.readLocal("cost")
-        binding.apply{
+
+        binding?.apply{
+
+
         }
     }
 
@@ -40,6 +40,16 @@ class HomeFragment : Fragment() {
         myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
         sharedViewModel.dbWrite(myDb)
 
+        binding?.apply {
+            sharedViewModel.readLocal("unit")
+            sharedViewModel.readLocal("date")
+            sharedViewModel.readLocal("cost")
+            sharedViewModel.moneySaved()
+            twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
+            twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
+        }
+
+
         return fragmentBinding.root
     }
 
@@ -47,8 +57,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
-            twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
+
         }
     }
 }
