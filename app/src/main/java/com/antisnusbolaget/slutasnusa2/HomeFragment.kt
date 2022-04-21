@@ -21,8 +21,12 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding?.apply{
 
+        sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
+        sharedViewModel.saveLocal("cost",sharedViewModel.costPerUnit.value.toString())
+        sharedViewModel.saveLocal("date",sharedViewModel.quitDate)
+        println(sharedViewModel.quitDate)
+        binding?.apply{
 
         }
     }
@@ -41,10 +45,12 @@ class HomeFragment : Fragment() {
         sharedViewModel.dbWrite(myDb)
 
         binding?.apply {
-           // sharedViewModel.readLocal("unit")
-           // sharedViewModel.readLocal("date")
-           // sharedViewModel.readLocal("cost")
 
+            // Calculate daysSinceQuit and moneySaved
+            sharedViewModel.dateSinceQuit()
+            sharedViewModel.moneySaved()
+
+            // Set textViews
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
         }
@@ -61,4 +67,5 @@ class HomeFragment : Fragment() {
         }
     }
 }
+
 

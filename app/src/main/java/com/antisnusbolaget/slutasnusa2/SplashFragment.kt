@@ -37,9 +37,9 @@ class SplashFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
+        sharedViewModel.readLocal("unit")
+        sharedViewModel.readLocal("cost")
+        sharedViewModel.readLocal("date")
     }
 
     override fun onCreateView(
@@ -54,6 +54,11 @@ class SplashFragment : Fragment() {
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
         splashIcon.visibility = View.GONE
+
+        // This will print at app-start (remove later)
+        println("Units: ${sharedViewModel.unitPerWeek.value}")
+        println("Cost: ${sharedViewModel.costPerUnit.value}")
+        println("Quit date: ${sharedViewModel.quitDate}")
 
 
         fade()
@@ -71,69 +76,47 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         binding?.apply {
 
-
-         /*   splashIcon.visibility = View.VISIBLE
-            //loading our custom made animations
-            val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-            //starting the animation
-            splashIcon.startAnimation(animation)
-*/
         }
     }
 
-private fun fade() {
+    private fun fade() {
 
-    splashIcon.animate()
-        .alpha(1f)
-        .setDuration(2000)
-        .setListener(object: AnimatorListenerAdapter(){
-            override fun onAnimationStart(animation: Animator?) {
-                super.onAnimationStart(animation)
-                splashIcon.visibility = View.VISIBLE
-                //loading our custom made animations
-                val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-                //starting the animation
-                splashIcon.startAnimation(animation)
+        splashIcon.animate()
+            .alpha(1f)
+            .setDuration(2000)
+            .setListener(object: AnimatorListenerAdapter(){
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    splashIcon.visibility = View.VISIBLE
+                    //loading our custom made animations
+                    val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                    //starting the animation
+                    splashIcon.startAnimation(animation)
 
-            }
-            override fun onAnimationEnd(animation: Animator) {
-                println("animation ended")
+                }
+                override fun onAnimationEnd(animation: Animator) {
+                    println("animation ended")
 
-                sharedViewModel.readLocal("unit")
-                sharedViewModel.readLocal("cost")
-                sharedViewModel.readLocal("date")
-
-                // Call the algorithms
-                sharedViewModel.dateSinceQuit()
-                sharedViewModel.moneySaved()
-
-
-                    if (sharedViewModel.unitPerWeek.value == 0) {
+                    // Is this the first time starting app?
+                        //NO
+                    if (sharedViewModel.unitPerWeek.value != 0) {
+                        lifecycleScope.launchWhenResumed {
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                        }
+                         // YES
+                    } else {
                         lifecycleScope.launchWhenResumed {
                             findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
                         }
-                    } else {
-                        lifecycleScope.launchWhenResumed {
-
-                            sharedViewModel.moneySaved()
-                            findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
-                        }
                     }
-
-
-
-
-
+                }
             }
-        }
-
         )
+    }
 }
-}
+
 
 
 
