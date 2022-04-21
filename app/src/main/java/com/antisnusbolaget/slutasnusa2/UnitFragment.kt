@@ -28,7 +28,7 @@ class UnitFragment : Fragment() {
 
         if (savedInstanceState == null) {
             super.onCreate(savedInstanceState)
-            sharedViewModel.readLocal("unit")
+
         }
     }
 
