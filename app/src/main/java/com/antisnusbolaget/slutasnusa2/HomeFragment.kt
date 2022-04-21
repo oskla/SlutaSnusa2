@@ -12,37 +12,29 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-
 class HomeFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentHomeBinding? = null
     private lateinit var myDb: DatabaseReference
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-<<<<<<< Updated upstream
-=======
-        println(sharedViewModel.unitPerWeek.value.toString())
-        println(sharedViewModel.costPerUnit.value.toString())
+
         sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
         sharedViewModel.saveLocal("cost",sharedViewModel.costPerUnit.value.toString())
         sharedViewModel.saveLocal("date",sharedViewModel.quitDate)
+        println(sharedViewModel.quitDate)
         binding?.apply{
 
-
-
-
         }
->>>>>>> Stashed changes
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -52,21 +44,17 @@ class HomeFragment : Fragment() {
         myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
         sharedViewModel.dbWrite(myDb)
 
-<<<<<<< Updated upstream
-=======
         binding?.apply {
-           // sharedViewModel.readLocal("unit")
-           // sharedViewModel.readLocal("date")
-           // sharedViewModel.readLocal("cost")
 
+            // Calculate daysSinceQuit and moneySaved
             sharedViewModel.dateSinceQuit()
             sharedViewModel.moneySaved()
 
+            // Set textViews
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
             twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
         }
 
->>>>>>> Stashed changes
 
         return fragmentBinding.root
     }
@@ -76,12 +64,8 @@ class HomeFragment : Fragment() {
 
         binding?.apply {
 
-           // sharedViewModel.dbInit(context)
-
-
-            twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
-            twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
-
         }
     }
 }
+
+

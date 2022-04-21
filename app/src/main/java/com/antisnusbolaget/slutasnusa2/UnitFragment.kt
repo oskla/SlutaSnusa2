@@ -10,18 +10,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.slider.Slider
-import java.text.NumberFormat
-import java.util.*
 
 class UnitFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentUnitBinding? = null
-    var tempUnit: Int = 0
+    private var tempUnit: Int = 0
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -32,11 +28,8 @@ class UnitFragment : Fragment() {
 
         if (savedInstanceState == null) {
             super.onCreate(savedInstanceState)
-            println("Saved instance state: $savedInstanceState")
+
         }
-
-
-
     }
 
     override fun onCreateView(
@@ -53,7 +46,6 @@ class UnitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding?.apply {
             twUnits.text = sharedViewModel.unitPerWeek.value.toString()
 
@@ -69,19 +61,16 @@ class UnitFragment : Fragment() {
 
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
+
+                    // Set UnitQuantity liveData
                     sharedViewModel.setUnitQuantity(tempUnit)
-<<<<<<< Updated upstream
-=======
-                    //sharedViewModel.saveLocal("unit", tempUnit.toString()) //TODO parse as toInt() when read.
->>>>>>> Stashed changes
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
                 }
-
             }
         }
-
     }
 }
+
 
 
 

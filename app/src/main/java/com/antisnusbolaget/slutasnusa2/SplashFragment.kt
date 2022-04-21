@@ -55,27 +55,10 @@ class SplashFragment : Fragment() {
 
         splashIcon.visibility = View.GONE
 
-
-
-
-       // sharedViewModel.readLocal("cost")
-       // sharedViewModel.readLocal("date")
+        // This will print at app-start (remove later)
         println("Units: ${sharedViewModel.unitPerWeek.value}")
         println("Cost: ${sharedViewModel.costPerUnit.value}")
-        println("Days without: ${sharedViewModel.daysWithout.value}")
-        println("Money saved: ${sharedViewModel.totalMoneySaved.value}")
-
-        if (sharedViewModel.unitPerWeek.value != 0) {
-            sharedViewModel.readLocal("unit")
-            println("reading local unit")
-
-        } else {
-            println("doesnt read locally")
-            sharedViewModel.readLocal("unit")
-
-        }
-
-        //sharedViewModel.readLocal("unit")
+        println("Quit date: ${sharedViewModel.quitDate}")
 
 
         fade()
@@ -93,63 +76,47 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         binding?.apply {
 
-
-         /*   splashIcon.visibility = View.VISIBLE
-            //loading our custom made animations
-            val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-            //starting the animation
-            splashIcon.startAnimation(animation)
-*/
         }
     }
 
-private fun fade() {
+    private fun fade() {
 
-    splashIcon.animate()
-        .alpha(1f)
-        .setDuration(2000)
-        .setListener(object: AnimatorListenerAdapter(){
-            override fun onAnimationStart(animation: Animator?) {
-                super.onAnimationStart(animation)
-                splashIcon.visibility = View.VISIBLE
-                //loading our custom made animations
-                val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-                //starting the animation
-                splashIcon.startAnimation(animation)
+        splashIcon.animate()
+            .alpha(1f)
+            .setDuration(2000)
+            .setListener(object: AnimatorListenerAdapter(){
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    splashIcon.visibility = View.VISIBLE
+                    //loading our custom made animations
+                    val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                    //starting the animation
+                    splashIcon.startAnimation(animation)
 
+                }
+                override fun onAnimationEnd(animation: Animator) {
+                    println("animation ended")
+
+                    // Is this the first time starting app?
+                        //NO
+                    if (sharedViewModel.unitPerWeek.value != 0) {
+                        lifecycleScope.launchWhenResumed {
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                        }
+                         // YES
+                    } else {
+                        lifecycleScope.launchWhenResumed {
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
+                        }
+                    }
+                }
             }
-            override fun onAnimationEnd(animation: Animator) {
-                println("animation ended")
-
-if (sharedViewModel.unitPerWeek.value != 0) {
-    lifecycleScope.launchWhenResumed {
-        findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
-    }
-} else {
-    lifecycleScope.launchWhenResumed {
-        findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-            }
-        }
-
         )
+    }
 }
-}
+
 
 
 

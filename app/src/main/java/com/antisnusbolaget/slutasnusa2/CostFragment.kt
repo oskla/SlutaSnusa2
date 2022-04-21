@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.slider.Slider
 import java.text.NumberFormat
 import java.util.*
 
@@ -49,29 +48,24 @@ class CostFragment : Fragment() {
 
         binding?.apply {
 
-            sliderCost.addOnChangeListener { slider, value, fromUser ->
+            sliderCost.addOnChangeListener { _, value, _ ->
                 sliderCost.setLabelFormatter {
                 val format = NumberFormat.getCurrencyInstance()
                 format.maximumFractionDigits = 0
                 format.currency = Currency.getInstance("SEK")
                 format.format(value.toInt())
                 }
-
                 sliderValue = value.toInt()
-                twCostPerUnit.text = ("${sliderValue} kr")
+                twCostPerUnit.text = "$sliderValue kr"
 
             }
 
 
             btnGoToNext.setOnClickListener{
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-<<<<<<< Updated upstream
 
+                    // Set Cost liveData
                     sharedViewModel.setCostPerUnit(sliderValue)
-=======
-                    sharedViewModel.setCostPerUnit(sliderValue)
-                   // sharedViewModel.saveLocal("cost", sliderValue.toString())
->>>>>>> Stashed changes
                     findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
 
                 }
