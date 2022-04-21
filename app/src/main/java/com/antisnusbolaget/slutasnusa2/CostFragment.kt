@@ -70,9 +70,7 @@ class CostFragment : Fragment() {
 
                 }
             }
-
         }
     }
-
 }
 
