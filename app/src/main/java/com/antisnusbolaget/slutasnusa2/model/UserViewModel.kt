@@ -136,13 +136,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
 
     }
-    fun storageCheck(){
-        if (quitDate != null){//om quit-date inte är tom
-            storageIsFull = true
-        }else{
-            null
-        }
-    }
 }
 
 

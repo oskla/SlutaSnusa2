@@ -100,17 +100,14 @@ private fun fade() {
             override fun onAnimationEnd(animation: Animator) {
                 println("animation ended")
 
-                sharedViewModel.storageCheck()
 
 
-                if(sharedViewModel.storageIsFull){
+
                     lifecycleScope.launchWhenResumed {
-                        findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                        findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
                     }
-                }else{
-                    lifecycleScope.launchWhenResumed { findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment) }
 
-                }
+
 
 
             }
