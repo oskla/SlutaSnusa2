@@ -23,6 +23,20 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+<<<<<<< Updated upstream
+=======
+        println(sharedViewModel.unitPerWeek.value.toString())
+        println(sharedViewModel.costPerUnit.value.toString())
+        sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
+        sharedViewModel.saveLocal("cost",sharedViewModel.costPerUnit.value.toString())
+        sharedViewModel.saveLocal("date",sharedViewModel.quitDate)
+        binding?.apply{
+
+
+
+
+        }
+>>>>>>> Stashed changes
     }
 
     override fun onCreateView(
@@ -38,6 +52,21 @@ class HomeFragment : Fragment() {
         myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
         sharedViewModel.dbWrite(myDb)
 
+<<<<<<< Updated upstream
+=======
+        binding?.apply {
+           // sharedViewModel.readLocal("unit")
+           // sharedViewModel.readLocal("date")
+           // sharedViewModel.readLocal("cost")
+
+            sharedViewModel.dateSinceQuit()
+            sharedViewModel.moneySaved()
+
+            twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
+            twMoneySaved.text = sharedViewModel.totalMoneySaved.value.toString()
+        }
+
+>>>>>>> Stashed changes
 
         return fragmentBinding.root
     }

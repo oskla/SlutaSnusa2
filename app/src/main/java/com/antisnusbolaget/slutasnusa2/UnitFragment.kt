@@ -70,6 +70,10 @@ class UnitFragment : Fragment() {
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
                     sharedViewModel.setUnitQuantity(tempUnit)
+<<<<<<< Updated upstream
+=======
+                    //sharedViewModel.saveLocal("unit", tempUnit.toString()) //TODO parse as toInt() when read.
+>>>>>>> Stashed changes
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
                 }
 
