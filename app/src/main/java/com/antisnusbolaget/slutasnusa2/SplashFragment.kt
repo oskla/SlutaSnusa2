@@ -23,6 +23,8 @@ import java.util.*
 
 class SplashFragment : Fragment() {
 
+    //Cooler fragment
+
     private var shortAnimationDuration: Int = 0
     private lateinit var splashIcon: ImageView
 
