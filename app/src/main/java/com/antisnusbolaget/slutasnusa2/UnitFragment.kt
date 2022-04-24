@@ -28,7 +28,6 @@ class UnitFragment : Fragment() {
 
         if (savedInstanceState == null) {
             super.onCreate(savedInstanceState)
-
         }
     }
 
@@ -50,7 +49,13 @@ class UnitFragment : Fragment() {
             twUnits.text = sharedViewModel.unitPerWeek.value.toString()
 
             btnMinus.setOnClickListener {
-                tempUnit -= 1
+                if(tempUnit > 0){
+                    tempUnit -= 1
+                }
+                else{
+                    println("smting WRONG")
+                }
+
                 twUnits.text = tempUnit.toString()
             }
 
