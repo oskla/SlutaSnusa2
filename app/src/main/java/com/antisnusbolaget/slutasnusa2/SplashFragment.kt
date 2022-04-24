@@ -64,12 +64,6 @@ class SplashFragment : Fragment() {
         fade()
 
 
-        fragmentBinding.root.setOnClickListener {
-            lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
-            }
-        }
-
         return fragmentBinding.root
     }
 
