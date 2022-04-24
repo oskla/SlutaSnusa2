@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/unitFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -18,7 +18,8 @@
         tools:layout="@layout/fragment_date">
         <action
             android:id="@+id/action_dateFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/costFragment"
@@ -27,10 +28,7 @@
         tools:layout="@layout/fragment_cost" >
         <action
             android:id="@+id/action_costFragment_to_dateFragment"
-            app:destination="@id/dateFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popUpToInclusive="false" />
+            app:destination="@id/dateFragment" />
     </fragment>
     <fragment
         android:id="@+id/unitFragment"
@@ -39,22 +37,6 @@
         tools:layout="@layout/fragment_unit" >
         <action
             android:id="@+id/action_unitFragment_to_costFragment"
-            app:destination="@id/costFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_unitFragment"
-            app:destination="@id/unitFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/costFragment" />
     </fragment>
 </navigation>
