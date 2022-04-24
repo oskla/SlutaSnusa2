@@ -21,7 +21,6 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
         sharedViewModel.saveLocal("cost",sharedViewModel.costPerUnit.value.toString())
         sharedViewModel.saveLocal("date",sharedViewModel.quitDate)
