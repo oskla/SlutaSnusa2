@@ -16,7 +16,6 @@ import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 class DateFragment : Fragment() {
 
-
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentDateBinding? = null
 
@@ -51,10 +50,16 @@ class DateFragment : Fragment() {
 
             twNo.setOnClickListener {
                 val manager = childFragmentManager
-                sharedViewModel.calenderSelection(manager)
+
+                // Prevents multiple functions-calls / app crash
+                if (sharedViewModel.datePicker.isAdded) {
+                    null
+                }else
+                {
+                    sharedViewModel.calenderSelection(manager)
+                }
+
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
-
-
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                     findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                     }
