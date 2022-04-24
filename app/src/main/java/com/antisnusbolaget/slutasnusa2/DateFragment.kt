@@ -35,7 +35,7 @@ class DateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this cool fragment
         val fragmentBinding = FragmentDateBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
