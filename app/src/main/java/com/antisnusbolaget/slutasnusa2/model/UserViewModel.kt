@@ -1,8 +1,10 @@
 package com.antisnusbolaget.slutasnusa2.model
 
+import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
@@ -28,9 +30,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // DateFormatter & Empty variable for user pick
     val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
     var quitDate = ""
-    var storageIsFull = false
-    val currentDate = dateFormatter.format(Date())
-
+    val currentDate: String? = dateFormatter.format(Date())
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -45,21 +45,18 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     //___________________________________________________________________________________________
 
     // Setters for LiveData variables
-    fun setUnitQuantity(unitPerWeek: Int) {
-        _unitPerWeek.value = unitPerWeek
-    }
-
-   fun setCostPerUnit(costPerUnit: Int) {
-        _costPerUnit.value = costPerUnit
-    }
-
-   private fun setDaysWithout(daysWithout: Int) {
-        _daysWithout.value = daysWithout
-    }
-
-   private fun setTotalMoneySaved(totalMoneySaved: Int) {
-        _totalMoneySaved.value = totalMoneySaved
-    }
+        fun setUnitQuantity(unitPerWeek: Int) {
+            _unitPerWeek.value = unitPerWeek
+        }
+        fun setCostPerUnit(costPerUnit: Int) {
+            _costPerUnit.value = costPerUnit
+        }
+        private fun setDaysWithout(daysWithout: Int) {
+            _daysWithout.value = daysWithout
+        }
+        private fun setTotalMoneySaved(totalMoneySaved: Int) {
+            _totalMoneySaved.value = totalMoneySaved
+        }
     //____________________________________________________________________________________________
 
     // Functions
@@ -68,7 +65,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
             quitDate = date
-            //saveLocal("date", quitDate)
             dateSinceQuit()
         }
     }
@@ -76,18 +72,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun noCalenderSelection() { // If user press YES = calender wont open, quitDate = today
         val noSelection = dateFormatter.format(Date())
         quitDate = noSelection
-        //saveLocal("date",quitDate)
         dateSinceQuit()
     }
 
     fun dateSinceQuit() { //Calculating the diff in time from two dates
-        //val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
         val diffBetween: Long = Math.abs(date1.time - date2.time)
         val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
         setDaysWithout(diff.toInt())
-
     }
 
     fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
@@ -100,7 +93,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         if (moneySaved != null) {
             setTotalMoneySaved(moneySaved)
         }
-        // dateSinceQuit()
     }
 
     fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
@@ -134,16 +126,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         Toast.makeText(context, "data save", Toast.LENGTH_SHORT).show()
     }
 
-    fun readLocal(key: String) {
-        // reading saved data
+    fun readLocal(key: String) { // reading saved data
         val context = getApplication<Application>().applicationContext
         val filename = key
         if (filename.trim() != "") {
             var fileInputStream: FileInputStream? = null
-
-            // If fileList=empty - don't run function
             val dir = context.fileList()
-            if (dir.isEmpty()) {
+
+            if (dir.isEmpty()) { // If fileList=empty - don't run function
                 return
             } else {
                 fileInputStream = context.openFileInput(filename)
@@ -158,23 +148,19 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                         "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
                         "date" -> quitDate = stringBuilder.toString()
                     }
-
-
                 }
             }
-
-
-
-
-
-
-
         }
-
     }
 
-
-
+    fun totalValuesAnimator(textView: TextView, value: Int) { // Animates numbers on homeScreen
+        val animator = ValueAnimator.ofInt(0, value)
+        animator.duration = 2000 //
+        animator.addUpdateListener { animation ->
+            textView.text = animation.animatedValue.toString()
+        }
+        animator.start()
+    }
 }
 
 

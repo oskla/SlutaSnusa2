@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.annotation.IdRes
@@ -15,22 +14,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentCostBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSplashBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import java.text.NumberFormat
-import java.util.*
+
 
 class SplashFragment : Fragment() {
-
-    //TJENATJENAAA
 
     private var shortAnimationDuration: Int = 0
     private lateinit var splashIcon: ImageView
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSplashBinding? = null
-
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -48,7 +42,6 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         val fragmentBinding = FragmentSplashBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
@@ -67,24 +60,18 @@ class SplashFragment : Fragment() {
                 findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
             }
         }
-
-
-        fade()
-
+        fadeAnimationSplash()
 
         return fragmentBinding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
-
         }
     }
 
-    private fun fade() {
-
+    private fun fadeAnimationSplash() {
         splashIcon.animate()
             .alpha(1f)
             .setDuration(2000)
@@ -99,16 +86,13 @@ class SplashFragment : Fragment() {
 
                 }
                 override fun onAnimationEnd(animation: Animator) {
-                    println("animation ended")
 
                     // Is this the first time starting app?
-                        //NO
-                    if (sharedViewModel.unitPerWeek.value != 0) {
+                    if (sharedViewModel.unitPerWeek.value != 0) { //NO
                         lifecycleScope.launchWhenResumed {
                             findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
                         }
-                         // YES
-                    } else {
+                    } else { // YES
                         lifecycleScope.launchWhenResumed {
                             findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
                         }
