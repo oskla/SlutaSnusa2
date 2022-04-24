@@ -62,6 +62,12 @@ class SplashFragment : Fragment() {
         println("Cost: ${sharedViewModel.costPerUnit.value}")
         println("Quit date: ${sharedViewModel.quitDate}")
 
+        fragmentBinding.root.setOnClickListener{
+            lifecycleScope.launchWhenResumed {
+                findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
+            }
+        }
+
 
         fade()
 

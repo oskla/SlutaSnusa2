@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import java.util.*
 
 
 class DateFragment : Fragment() {
@@ -60,8 +61,15 @@ class DateFragment : Fragment() {
                 }
 
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
-                lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+
+                    //TODO Add some code if future date is picked
+                    if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate))
+                    {
+                        println("You cant quit ahead in time")
+                    }else{
+                        lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
+                            findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+                        }
                     }
                 }
             }

@@ -26,9 +26,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         .build()
 
     // DateFormatter & Empty variable for user pick
-    private val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
+    val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
     var quitDate = ""
     var storageIsFull = false
+    val currentDate = dateFormatter.format(Date())
 
     //___________________________________________________________________________________________
 
@@ -80,7 +81,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun dateSinceQuit() { //Calculating the diff in time from two dates
-        val currentDate = dateFormatter.format(Date())
+        //val currentDate = dateFormatter.format(Date())
         val date1: Date = dateFormatter.parse(currentDate) as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
         val diffBetween: Long = Math.abs(date1.time - date2.time)
