@@ -28,6 +28,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // DateFormatter & Empty variable for user pick
     private val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
     var quitDate = ""
+    var storageIsFull = false
+
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -46,15 +48,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _unitPerWeek.value = unitPerWeek
     }
 
-    fun setCostPerUnit(costPerUnit: Int) {
+   fun setCostPerUnit(costPerUnit: Int) {
         _costPerUnit.value = costPerUnit
     }
 
-    private fun setDaysWithout(daysWithout: Int) {
+   private fun setDaysWithout(daysWithout: Int) {
         _daysWithout.value = daysWithout
     }
 
-    private fun setTotalMoneySaved(totalMoneySaved: Int) {
+   private fun setTotalMoneySaved(totalMoneySaved: Int) {
         _totalMoneySaved.value = totalMoneySaved
     }
     //____________________________________________________________________________________________
@@ -84,6 +86,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val diffBetween: Long = Math.abs(date1.time - date2.time)
         val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
         setDaysWithout(diff.toInt())
+
     }
 
     fun moneySaved() { //Calculating the total money saved based on how many units, cost etc
@@ -130,7 +133,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         Toast.makeText(context, "data save", Toast.LENGTH_SHORT).show()
     }
 
-    fun readLocal(key: String) { // reading saved data
+    fun readLocal(key: String) {
+        // reading saved data
         val context = getApplication<Application>().applicationContext
         val filename = key
         if (filename.trim() != "") {
@@ -153,10 +157,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                         "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
                         "date" -> quitDate = stringBuilder.toString()
                     }
+
+
                 }
             }
+
+
+
+
+
+
+
         }
+
     }
+
+
+
 }
 
 
