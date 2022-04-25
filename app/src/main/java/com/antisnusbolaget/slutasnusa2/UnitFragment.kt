@@ -1,17 +1,22 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import java.util.*
+
 
 class UnitFragment : Fragment() {
 
@@ -62,6 +67,7 @@ class UnitFragment : Fragment() {
             btnPlus.setOnClickListener {
                 tempUnit += 1
                 twUnits.text = tempUnit.toString()
+                openLocalCal()
             }
 
             lifecycleScope.launchWhenResumed {
@@ -74,6 +80,17 @@ class UnitFragment : Fragment() {
             }
         }
     }
+        fun openLocalCal(){
+            val cal: Calendar = GregorianCalendar()
+            cal.setTime(Date())
+            cal.add(Calendar.MONTH, 2)
+            val time: Long = cal.getTime().getTime()
+            val builder: Uri.Builder = CalendarContract.CONTENT_URI.buildUpon()
+            builder.appendPath("time")
+            builder.appendPath(java.lang.Long.toString(time))
+            val intent = Intent(Intent.ACTION_VIEW, builder.build())
+            startActivity(intent)
+        }
 }
 
 
