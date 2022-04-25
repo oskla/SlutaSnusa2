@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.UserData
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.DatabaseReference
@@ -25,6 +26,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val datePicker = MaterialDatePicker.Builder.datePicker()
         .setTitleText("Start date")
         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+        .setTheme(R.style.ThemeOverlay)
         .build()
 
     // DateFormatter & Empty variable for user pick
