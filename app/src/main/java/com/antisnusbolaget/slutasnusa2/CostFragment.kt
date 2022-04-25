@@ -61,7 +61,7 @@ class CostFragment : Fragment() {
             }
 
 
-            btnGoToNext.setOnClickListener{
+            btnGoToCost.setOnClickListener{
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
 
                     // Set Cost liveData

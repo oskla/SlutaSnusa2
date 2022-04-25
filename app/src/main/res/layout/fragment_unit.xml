@@ -13,11 +13,12 @@
         android:id="@+id/tw_units"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="100sp"
-        android:textStyle="bold"
 
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -29,16 +30,14 @@
         android:id="@+id/btn_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-17dp"
         android:layout_marginTop="-30dp"
+        android:layout_marginEnd="128dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="+"
         android:textColor="@color/black"
         android:textSize="115sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tw_units"
         app:layout_constraintTop_toBottomOf="@+id/tw_units" />
 
     <TextView
@@ -52,8 +51,8 @@
         android:textColor="@color/black"
         android:textSize="115sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tw_units"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/btn_plus"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_units" />
 
@@ -69,7 +68,7 @@
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/img_lineSquirly"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
@@ -84,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/img_lineSquirly"
         android:layout_width="700dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
