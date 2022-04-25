@@ -78,14 +78,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/btn_test"
-        android:layout_width="42dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:src="@drawable/arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
