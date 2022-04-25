@@ -68,8 +68,6 @@ class UnitFragment : Fragment() {
             btnPlus.setOnClickListener {
                 tempUnit += 1
                 twUnits.text = tempUnit.toString()
-                //openLocalCal()
-                writeToCal()
             }
 
             lifecycleScope.launchWhenResumed {
@@ -82,40 +80,7 @@ class UnitFragment : Fragment() {
             }
         }
     }
-        fun openLocalCal(){
-            val cal: Calendar = GregorianCalendar()
-            cal.setTime(Date())
-            cal.add(Calendar.MONTH, 2)
-            val time: Long = cal.getTime().getTime()
-            val builder: Uri.Builder = CalendarContract.CONTENT_URI.buildUpon()
-            builder.appendPath("time")
-            builder.appendPath(java.lang.Long.toString(time))
-            val intent = Intent(Intent.ACTION_VIEW, builder.build())
-            startActivity(intent)
-        }
 
-    fun writeToCal(){
-        val cal: Calendar = GregorianCalendar()
-        cal.time = Date()
-        cal.add(Calendar.MONTH, 2)
-        val intent = Intent(Intent.ACTION_INSERT)
-        intent.data = Events.CONTENT_URI
-        intent.putExtra(Events.TITLE, "Some Test Event")
-        intent.putExtra(Events.ALL_DAY, true)
-        intent.putExtra(
-            CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-            cal.time.time
-        )
-        intent.putExtra(
-            CalendarContract.EXTRA_EVENT_END_TIME,
-            cal.time.time + 600000
-        )
-        intent.putExtra(
-            Intent.EXTRA_EMAIL,
-            "johan@gmail.com, oskar@gmail.com"
-        )
-        startActivity(intent)
-    }
 }
 
 

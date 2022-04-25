@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_date.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.203125" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_splash.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_unit.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16168478260869565" />
-        <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.24951895008916453" />
+        <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.2605632616126019" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.2958099365234375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.23369565217391305" />
-        <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.5068603515625" />
+        <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.28031768798828127" />
       </map>
     </option>
   </component>
