@@ -1,7 +1,9 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
@@ -32,9 +34,9 @@ class DateFragment : Fragment() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Log.i("Permission: ", "Granted")
+                println("RequestLauncher Granted")
             } else {
-                Log.i("Permission: ", "Denied")
+                println("RequestLauncher Denied")
             }
         }
     private lateinit var layout: View
@@ -78,16 +80,18 @@ class DateFragment : Fragment() {
 
             twNo.setOnClickListener {
                 val manager = childFragmentManager
-                // Prevents multiple functions-calls / app crash
-                if (sharedViewModel.datePicker.isAdded) { null }else { sharedViewModel.calenderSelection(manager)}
-                sharedViewModel.datePicker.addOnPositiveButtonClickListener {
+                if (sharedViewModel.datePicker.isAdded) { null }else { sharedViewModel.calenderSelection(manager)} // Prevents multiple functions-calls / app crash
 
-                    //TODO Add some code if future date is picked
+
+                sharedViewModel.datePicker.addOnPositiveButtonClickListener {
                     if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate))
-                    {
-                        println("You cant quit ahead in time")
+                    { println("You cant quit ahead in time")
                     }else{
-                        lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
+                        if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_CALENDAR) == PERMISSION_GRANTED){
+                            writeToCal()
+
+                        }
+                            lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                             findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
                         }
                     }
@@ -101,50 +105,28 @@ class DateFragment : Fragment() {
                 }
             }
             btnPermission.setOnClickListener{
-                onClickRequestPermission(view)
+                onClickRequestPermission()
             }
         }
     }
 
-    fun onClickRequestPermission(view: View) {
+    fun onClickRequestPermission() {
 
-        when (PackageManager.PERMISSION_GRANTED) {
+        when (PackageManager.PERMISSION_GRANTED ) {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.WRITE_CALENDAR
             ) -> {
-                layout.showSnackbar(
-                    view,
-                    getString(R.string.permission_granted),
-                    Snackbar.LENGTH_SHORT,
-                    null
-                ) {}
+                println("Permission already granted")
             }
             else -> {
-                requestPermissionLauncher.launch(
-                    android.Manifest.permission.WRITE_CALENDAR
-                )
+                requestPermissionLauncher.launch(android.Manifest.permission.WRITE_CALENDAR)
+                println("Do you wish to grant permission?")
             }
         }
     }
 
 
-    fun View.showSnackbar(
-        view: View,
-        msg: String,
-        length: Int,
-        actionMessage: CharSequence?,
-        action: (View) -> Unit
-    ) {
-        val snackbar = Snackbar.make(view, msg, length)
-        if (actionMessage != null) {
-            snackbar.setAction(actionMessage) {
-                action(this)
-            }.show()
-        } else {
-            snackbar.show()
-        }
-    }
 
 
     fun openLocalCal(){
@@ -160,9 +142,6 @@ class DateFragment : Fragment() {
     }
 
     fun writeToCal(){
-        //TODO permissions.
-
-
         val cal: Calendar = GregorianCalendar()
         cal.time = Date()
         cal.add(Calendar.MONTH, 2)
