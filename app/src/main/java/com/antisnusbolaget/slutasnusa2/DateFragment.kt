@@ -84,12 +84,13 @@ class DateFragment : Fragment() {
 
 
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
+                    // IF-condition to check if the date is ahead in time
                     if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate))
                     { println("You cant quit ahead in time")
                     }else{
+                        // IF-condition to check if permission is granted or not.
                         if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_CALENDAR) == PERMISSION_GRANTED){
                             writeToCal()
-
                         }
                             lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                             findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
