@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.annotation.IdRes
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -68,6 +69,10 @@ class SplashFragment : Fragment() {
 
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
+
+        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
+        navBar?.isVisible=false
+
 
         splashIcon.visibility = View.GONE
 
