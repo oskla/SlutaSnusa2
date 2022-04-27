@@ -16,6 +16,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSplashBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 
 class SplashFragment : Fragment() {
@@ -25,6 +28,8 @@ class SplashFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSplashBinding? = null
+
+    
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -45,7 +50,21 @@ class SplashFragment : Fragment() {
         val fragmentBinding = FragmentSplashBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-
+        NavigationBarView.OnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeNav -> {
+                    // Respond to navigation item 1 click
+                    println("sag")
+                    true
+                }
+                R.id.economyNav -> {
+                    // Respond to navigation item 2 click
+                    println("asg")
+                    true
+                }
+                else -> false
+            }
+        }
 
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
