@@ -45,15 +45,14 @@ class SplashFragment : Fragment() {
         val fragmentBinding = FragmentSplashBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
+
+
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
         splashIcon.visibility = View.GONE
 
-        // This will print at app-start (remove later)
-        println("Units: ${sharedViewModel.unitPerWeek.value}")
-        println("Cost: ${sharedViewModel.costPerUnit.value}")
-        println("Quit date: ${sharedViewModel.quitDate}")
+
 
         fragmentBinding.root.setOnClickListener{
             lifecycleScope.launchWhenResumed {
@@ -68,6 +67,8 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
+
+
         }
     }
 
