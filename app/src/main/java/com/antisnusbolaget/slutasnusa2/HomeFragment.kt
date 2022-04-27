@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
@@ -23,7 +25,9 @@ class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private lateinit var myDb: DatabaseReference
 
-
+    private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+        try { navigate(resId, args) }
+        catch (e: Exception) { (e) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,27 +46,11 @@ class HomeFragment : Fragment() {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
+
         activity?.let { FirebaseApp.initializeApp(it) }
 
         myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
         sharedViewModel.dbWrite(myDb)
-
-        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
-        navBar?.isVisible=true
-        NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.homeNav -> {
-                    // Respond to navigation item 1 click
-                    true
-                }
-                R.id.economyNav -> {
-                    // Respond to navigation item 2 click
-                    R.id.achievmentsFragment4
-                    true
-                }
-                else -> false
-            }
-        }
 
 
         binding?.apply {
@@ -82,6 +70,8 @@ class HomeFragment : Fragment() {
             sharedViewModel.totalMoneySaved.value?.let { sharedViewModel.totalValuesAnimator(twMoneySaved,
                 it
             ) }
+
+
         }
 
         return fragmentBinding.root
@@ -90,13 +80,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
         binding?.apply {
+
+
 
         }
     }
+
 
 }
 

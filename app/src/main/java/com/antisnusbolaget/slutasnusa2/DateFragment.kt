@@ -1,20 +1,17 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.IdRes
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,9 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
-
 
 class DateFragment : Fragment() {
 
@@ -93,7 +88,7 @@ class DateFragment : Fragment() {
                             writeToCal()
                         }
                             lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                            findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+                            findNavController().safelyNavigate(R.id.action_dateFragment_to_tabFragment)
                         }
                     }
                 }
@@ -102,7 +97,7 @@ class DateFragment : Fragment() {
             twYes.setOnClickListener {
                 sharedViewModel.noCalenderSelection()
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                    findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
+                    findNavController().safelyNavigate(R.id.action_dateFragment_to_tabFragment)
                 }
             }
             btnPermission.setOnClickListener{

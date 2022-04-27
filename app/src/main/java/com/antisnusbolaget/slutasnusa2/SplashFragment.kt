@@ -30,8 +30,6 @@ class SplashFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSplashBinding? = null
 
-    
-
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -51,28 +49,9 @@ class SplashFragment : Fragment() {
         val fragmentBinding = FragmentSplashBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-        NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.homeNav -> {
-                    // Respond to navigation item 1 click
-                    println("sag")
-                    true
-                }
-                R.id.economyNav -> {
-                    // Respond to navigation item 2 click
-                    println("asg")
-                    true
-                }
-                else -> false
-            }
-        }
 
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
-
-        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
-        navBar?.isVisible=false
-
 
         splashIcon.visibility = View.GONE
 
@@ -115,7 +94,7 @@ class SplashFragment : Fragment() {
                     // Is this the first time starting app?
                     if (sharedViewModel.unitPerWeek.value != 0) { //NO
                         lifecycleScope.launchWhenResumed {
-                            findNavController().safelyNavigate(R.id.action_splashFragment_to_homeFragment)
+                            findNavController().safelyNavigate(R.id.action_splashFragment_to_tabFragment)
                         }
                     } else { // YES
                         lifecycleScope.launchWhenResumed {
