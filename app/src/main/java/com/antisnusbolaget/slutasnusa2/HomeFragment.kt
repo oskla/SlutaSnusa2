@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +22,8 @@ class HomeFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentHomeBinding? = null
     private lateinit var myDb: DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,21 @@ class HomeFragment : Fragment() {
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
         navBar?.isVisible=true
+        NavigationBarView.OnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeNav -> {
+                    // Respond to navigation item 1 click
+                    true
+                }
+                R.id.economyNav -> {
+                    // Respond to navigation item 2 click
+                    R.id.achievmentsFragment4
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         binding?.apply {
 
@@ -69,6 +89,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
 
         binding?.apply {
 
