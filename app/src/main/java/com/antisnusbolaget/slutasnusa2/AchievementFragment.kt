@@ -9,7 +9,6 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentTabBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 class AchievementFragment : Fragment() {
