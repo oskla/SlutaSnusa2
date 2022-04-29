@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="14 dagar"
+            android:text="45 dagar"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -57,7 +57,7 @@
             >
 
             <TextView
-                android:id="@+id/tw_daysLeftAchievement14"
+                android:id="@+id/tw_daysLeftAchievement2"
                 style="?android:textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tw_moneySavedAchievement14"
+                android:id="@+id/tw_moneySavedAchievement2"
                 style="?android:textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

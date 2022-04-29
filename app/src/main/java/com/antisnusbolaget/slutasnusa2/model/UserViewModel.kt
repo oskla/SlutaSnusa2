@@ -35,6 +35,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val currentDate: String? = dateFormatter.format(Date())
     var daysLeftAchievement = 0
     var moneySavedAchievement = 0
+
+    var daysLeftAchievement7 = 0
+    var daysLeftAchievement14 = 0
+    var daysLeftAchievement30 = 0
+    var daysLeftAchievement45 = 0
     //___________________________________________________________________________________________
 
     // LiveData variables

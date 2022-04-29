@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ScreenSlideFragment">
+    tools:context=".ScreenSlide30Fragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="45 dagar"
+            android:text="7 dagar"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -57,7 +57,7 @@
             >
 
             <TextView
-                android:id="@+id/tw_daysLeftAchievement2"
+                android:id="@+id/tw_daysLeftAchievement7"
                 style="?android:textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tw_moneySavedAchievement2"
+                android:id="@+id/tw_moneySavedAchievement7"
                 style="?android:textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

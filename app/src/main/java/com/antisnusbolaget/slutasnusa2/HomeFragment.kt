@@ -49,20 +49,6 @@ class HomeFragment : Fragment() {
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
         navBar?.isVisible=true
-        NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.homeNav -> {
-                    // Respond to navigation item 1 click
-                    true
-                }
-                R.id.economyNav -> {
-                    // Respond to navigation item 2 click
-                    R.id.achievmentsFragment4
-                    true
-                }
-                else -> false
-            }
-        }
 
 
         binding?.apply {

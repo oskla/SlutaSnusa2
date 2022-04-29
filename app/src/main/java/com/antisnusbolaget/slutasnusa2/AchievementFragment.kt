@@ -18,7 +18,12 @@ class AchievementFragment : Fragment() {
     private var binding: FragmentAchievementBinding? = null
     private lateinit var viewPager: ViewPager2
 
-    var fragmentsList = listOf<Fragment>(ScreenSlide14Fragment(),ScreenSlideFragment(), ScreenSlide2Fragment())
+    var fragmentsList = listOf<Fragment>(
+        ScreenSlide7Fragment(),
+        ScreenSlide14Fragment(),
+        ScreenSlide30Fragment(),
+        ScreenSlide45Fragment()
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,24 +49,32 @@ class AchievementFragment : Fragment() {
 
 binding.apply {
 
+    val days7 = sharedViewModel.daysLeftAchievement(7)
     val days14 = sharedViewModel.daysLeftAchievement(14)
     val days30 = sharedViewModel.daysLeftAchievement(30)
     val days45 = sharedViewModel.daysLeftAchievement(45)
-    
 
-    if (days14 == 0) {
-        viewPager.post {
-            viewPager.setCurrentItem(1, true)
-        }
-    } else if (days30 == 0) {
-        viewPager.post {
-            viewPager.setCurrentItem(2, true)
-        }
-    } else if (days45 == 0) {
-        viewPager.post {
-            viewPager.setCurrentItem(3, true)
-        }
+
+
+
+
+if (days7 == 0) {
+    viewPager.post {
+        viewPager.setCurrentItem(2, true)
     }
+}  else if (days14 == 0) {
+    viewPager.post {
+        viewPager.setCurrentItem(3, true)
+    }
+} else if (days30 == 0) {
+    viewPager.post {
+        viewPager.setCurrentItem(4, true)
+    }
+} else if (days45 == 0) {
+    viewPager.post {
+        viewPager.setCurrentItem(5, true)
+    }
+}
 
 
 }
