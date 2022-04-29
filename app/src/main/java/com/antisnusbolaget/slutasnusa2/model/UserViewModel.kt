@@ -104,7 +104,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val daysLeftAchievement2 = (achievementdays - daysWithout.value!!)
         println(daysLeftAchievement)
 
-        return daysLeftAchievement2
+        if (daysLeftAchievement2 > 0) {
+            return daysLeftAchievement2
+        } else {
+            return 0
+        }
+
+
 
     }
     fun moneySavedAchievment(achievementdays: Int): Int {
@@ -113,7 +119,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val moneySavedAchievement2 = costPerDay?.times(achievementdays)!!
 
         println(moneySavedAchievement)
-        return moneySavedAchievement2
+
+        if (moneySavedAchievement2 > 0) {
+            return moneySavedAchievement2
+        } else {
+            return 0
+        }
+
 
     }
 
