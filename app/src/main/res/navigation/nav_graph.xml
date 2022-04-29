@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_achievmentsFragment4"
+            app:destination="@id/achievmentsFragment4" />
+    </fragment>
     
     <fragment
         android:id="@+id/dateFragment"
@@ -11,10 +21,10 @@
         android:label="fragment_date"
         tools:layout="@layout/fragment_date">
         <action
-            android:id="@+id/action_dateFragment_to_tabFragment"
-            app:destination="@id/tabFragment"
-            app:popUpTo="@id/dateFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_dateFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/dateFragment"/>
     </fragment>
     <fragment
         android:id="@+id/costFragment"
@@ -55,18 +65,14 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_splashFragment_to_tabFragment"
-            app:destination="@id/tabFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/tabFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.TabFragment"
-        android:label="fragment_tab"
-        tools:layout="@layout/fragment_tab" >
-        <action
-            android:id="@+id/action_tabFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        android:id="@+id/achievmentsFragment4"
+        android:name="com.antisnusbolaget.slutasnusa2.AchievementFragment"
+        android:label="fragment_achievments"
+        tools:layout="@layout/fragment_achievement" />
 </navigation>
