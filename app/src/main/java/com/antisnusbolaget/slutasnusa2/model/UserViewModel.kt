@@ -3,7 +3,6 @@ package com.antisnusbolaget.slutasnusa2.model
 import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
@@ -44,6 +43,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val daysWithout: LiveData<Int> = _daysWithout
     private val _totalMoneySaved = MutableLiveData<Int>(0)
     val totalMoneySaved: LiveData<Int> = _totalMoneySaved
+
+
     //___________________________________________________________________________________________
 
     // Setters for LiveData variables
@@ -96,6 +97,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             setTotalMoneySaved(moneySaved)
         }
     }
+
+
+    fun daysLeftAchievment(achievmentdays: Int) {
+
+        val daysLeftAchievment = (achievmentdays - daysWithout.value!!)
+        println(daysLeftAchievment)
+        moneySavedAchievment(achievmentdays)
+
+    }
+    fun moneySavedAchievment(achievmentdays: Int){
+        val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
+        val costPerDay = costPerWeek?.div(7)
+        val moneySavedAchievment = costPerDay?.times(achievmentdays)
+
+        println(moneySavedAchievment)
+
+}
 
     fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
         val userData =

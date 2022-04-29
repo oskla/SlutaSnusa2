@@ -6,15 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -58,6 +53,8 @@ class HomeFragment : Fragment() {
             // Calculate daysSinceQuit and moneySaved
             sharedViewModel.dateSinceQuit()
             sharedViewModel.moneySaved()
+
+            sharedViewModel.daysLeftAchievment(31)
 
             // Set textViews
             twDaysWithout.text = sharedViewModel.daysWithout.value.toString()
