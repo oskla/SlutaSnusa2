@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat_bold"
-        android:text="12 dagar"
+        android:text="30 dagar"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -116,7 +116,7 @@
     </LinearLayout>
 
     <TextView
-            android:id="@+id/tw_moneySavedAchievment"
+            android:id="@+id/tw_moneySavedAchievement"
             style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

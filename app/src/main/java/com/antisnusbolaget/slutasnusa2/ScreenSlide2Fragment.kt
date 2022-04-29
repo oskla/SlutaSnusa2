@@ -5,9 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide2Binding
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlideBinding
+import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 
 class ScreenSlide2Fragment : Fragment() {
+    private val sharedViewModel: UserViewModel by activityViewModels()
+    private var binding: FragmentScreenSlide2Binding? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +28,22 @@ class ScreenSlide2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_screen_slide2, container, false)
+        val fragmentBinding = FragmentScreenSlide2Binding.inflate(inflater, container, false)
+        binding = fragmentBinding
+
+        binding?.apply {
+
+            // Run method calculating days left to achievement
+
+            twDaysLeftAchievement2.text = sharedViewModel.daysLeftAchievement(45).toString()
+            twMoneySavedAchievement2.text = sharedViewModel.moneySavedAchievment(45).toString()
+
+
+        }
+
+        return fragmentBinding.root
     }
+
+
 
 }

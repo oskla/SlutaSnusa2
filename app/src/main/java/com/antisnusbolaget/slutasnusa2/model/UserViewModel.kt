@@ -99,19 +99,21 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun daysLeftAchievement(achievementdays: Int) {
+    fun daysLeftAchievement(achievementdays: Int): Int {
 
-        daysLeftAchievement = (achievementdays - daysWithout.value!!)
+        val daysLeftAchievement2 = (achievementdays - daysWithout.value!!)
         println(daysLeftAchievement)
-        moneySavedAchievment(achievementdays)
+
+        return daysLeftAchievement2
 
     }
-    fun moneySavedAchievment(achievementdays: Int){
+    fun moneySavedAchievment(achievementdays: Int): Int {
         val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
         val costPerDay = costPerWeek?.div(7)
-        moneySavedAchievement = costPerDay?.times(achievementdays)!!
+        val moneySavedAchievement2 = costPerDay?.times(achievementdays)!!
 
         println(moneySavedAchievement)
+        return moneySavedAchievement2
 
     }
 
