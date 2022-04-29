@@ -3,25 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_whiteachievementicon_background.xml" value="0.2595" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_whiteachievementicon_foreground.xml" value="0.2595" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_achievement.xml" value="0.536" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_date.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.203125" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide_page1.xml" value="0.203125" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_splash.xml" value="0.14427083333333332" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_tab.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_unit.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_economy_foreground.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/ic_home_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11" />
-        <entry key="app/src/main/res/layout/activity_screen_slide.xml" value="0.16077898550724637" />
-        <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.2605632616126019" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.2958099365234375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_screen_slide.xml" value="1.0" />
-        <entry key="app/src/main/res/layout/fragment_screen_slide2.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.23369565217391305" />
-        <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.28031768798828127" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.125" />
