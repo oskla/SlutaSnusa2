@@ -50,7 +50,7 @@ class TabFragment : Fragment() {
                         true
                     }
                     R.id.achievementFragment -> {
-                        findNavController().safelyNavigate(R.id.action_homeFragment_to_achievementFragment)
+
                         println("Achievement tab pushed")
                         true
                     }
