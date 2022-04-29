@@ -36,8 +36,19 @@
 
 
     </style>
+    <style name="Widget.Material3.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@style/Widget.Material3.BottomNavigationView.ActiveIndicator</item>
+    </style>
 
-
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width">120dp</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
+        <item name="android:color">@color/darkYellow</item>
+        <item name="itemIconTint">@color/lightYellow</item>
+    </style>
+    
     <style name="Theme.App" parent="Theme.Material3.Light">
         ...
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
