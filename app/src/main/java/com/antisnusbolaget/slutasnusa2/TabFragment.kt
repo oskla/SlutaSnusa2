@@ -41,23 +41,16 @@ class TabFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fun loadFragment(fragment: Fragment){
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainerView,fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-
         binding?.apply {
             bottomNavigation.setOnItemSelectedListener {item ->
                 when(item.itemId) {
                     R.id.homeFragment -> {
-                        loadFragment(HomeFragment())
+
                         println("Home tab pushed")
                         true
                     }
                     R.id.achievementFragment -> {
-                        loadFragment(AchievementFragment())
+
                         println("Achievement tab pushed")
                         true
                     }
