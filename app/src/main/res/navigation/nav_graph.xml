@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/achievmentsFragment4"
-        android:name="com.antisnusbolaget.slutasnusa2.AchievmentsFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.AchievementFragment"
         android:label="fragment_achievments"
-        tools:layout="@layout/fragment_achievments" />
+        tools:layout="@layout/fragment_achievement" />
 </navigation>
