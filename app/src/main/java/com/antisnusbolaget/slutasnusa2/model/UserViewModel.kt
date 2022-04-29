@@ -33,6 +33,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
+    var daysLeftAchievement = 0
+    var moneySavedAchievement = 0
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -96,6 +98,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             setTotalMoneySaved(moneySaved)
         }
     }
+
+    fun daysLeftAchievement(achievementdays: Int) {
+
+        daysLeftAchievement = (achievementdays - daysWithout.value!!)
+        println(daysLeftAchievement)
+        moneySavedAchievment(achievementdays)
+
+    }
+    fun moneySavedAchievment(achievementdays: Int){
+        val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
+        val costPerDay = costPerWeek?.div(7)
+        moneySavedAchievement = costPerDay?.times(achievementdays)!!
+
+        println(moneySavedAchievement)
+
+    }
+
 
     fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
         val userData =

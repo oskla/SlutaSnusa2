@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
+import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 
 class AchievementFragment : Fragment() {
+    private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentAchievementBinding? = null
     private lateinit var viewPager: ViewPager2
 
@@ -35,6 +38,8 @@ class AchievementFragment : Fragment() {
         viewPager = binding!!.root.findViewById(R.id.viewPager)
         val pagerAdapter = ScreenSlideAdapter(this)
         viewPager.adapter = pagerAdapter
+
+
 
         return fragmentBinding.root
     }
