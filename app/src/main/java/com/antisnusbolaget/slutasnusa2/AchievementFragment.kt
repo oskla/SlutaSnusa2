@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
 class AchievementFragment : Fragment() {
@@ -17,7 +18,7 @@ class AchievementFragment : Fragment() {
     private var binding: FragmentAchievementBinding? = null
     private lateinit var viewPager: ViewPager2
 
-    var fragmentsList = listOf<Fragment>(ScreenSlideFragment(),ScreenSlide2Fragment())
+    var fragmentsList = listOf<Fragment>(ScreenSlide14Fragment(),ScreenSlideFragment(), ScreenSlide2Fragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class AchievementFragment : Fragment() {
 
     }
 
+    @OptIn(InternalCoroutinesApi::class)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +42,29 @@ class AchievementFragment : Fragment() {
         viewPager.adapter = pagerAdapter
 
 
+binding.apply {
 
+    val days14 = sharedViewModel.daysLeftAchievement(14)
+    val days30 = sharedViewModel.daysLeftAchievement(30)
+    val days45 = sharedViewModel.daysLeftAchievement(45)
+    
+
+    if (days14 == 0) {
+        viewPager.post {
+            viewPager.setCurrentItem(1, true)
+        }
+    } else if (days30 == 0) {
+        viewPager.post {
+            viewPager.setCurrentItem(2, true)
+        }
+    } else if (days45 == 0) {
+        viewPager.post {
+            viewPager.setCurrentItem(3, true)
+        }
+    }
+
+
+}
         return fragmentBinding.root
     }
 
