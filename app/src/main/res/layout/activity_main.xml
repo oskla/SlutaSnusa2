@@ -26,9 +26,12 @@
         android:background="@color/yellow"
         app:elevation="0dp"
         app:itemIconSize="60dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"
+        app:itemRippleColor="@color/yellow"
+
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
