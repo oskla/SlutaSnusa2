@@ -12,18 +12,18 @@
         android:id="@+id/imageView7"
         android:layout_width="700dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/path"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
         android:id="@+id/tw_daysWithout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="10"
         android:textAlignment="center"
@@ -31,40 +31,22 @@
         android:textSize="90sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/imageView9" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tw_dagarSnusfri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationY="-35dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="dagar snusfri"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:translationY="-35dp"
         app:layout_constraintEnd_toEndOf="@+id/tw_daysWithout"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="@+id/tw_daysWithout"
         app:layout_constraintTop_toBottomOf="@+id/tw_daysWithout" />
-
-    <TextView
-        android:id="@+id/tw_moneySaved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:fontFamily="@font/montserrat_bold"
-        android:text="321"
-        android:textAlignment="gravity"
-        android:textColor="@color/black"
-        android:textSize="90sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        tools:targetApi="28" />
 
     <TextView
         android:id="@+id/tw_krSparat"
@@ -77,31 +59,47 @@
         android:textStyle="bold"
         android:translationY="-35dp"
         app:layout_constraintEnd_toEndOf="@+id/tw_moneySaved"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/tw_moneySaved"
         app:layout_constraintTop_toBottomOf="@+id/tw_moneySaved" />
+
+    <TextView
+        android:id="@+id/tw_moneySaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/montserrat_bold"
+        android:text="321"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="90sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        tools:targetApi="28" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="200dp"
         android:layout_height="10dp"
-        android:layout_marginTop="175dp"
         android:src="@drawable/line"
         app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_line"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintTop_toBottomOf="@+id/img_line" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="199dp"
         android:layout_height="122dp"
 
-        android:layout_marginTop="16dp"
         android:src="@drawable/ss_logo"
+        app:layout_constraintBottom_toTopOf="@+id/img_line"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,11 +107,11 @@
         android:id="@+id/img_line"
         android:layout_width="700dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
 
         android:src="@drawable/path"
+        app:layout_constraintBottom_toTopOf="@+id/tw_daysWithout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
