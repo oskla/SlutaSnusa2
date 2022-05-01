@@ -75,11 +75,12 @@ class DateFragment : Fragment() {
 
         binding?.apply {
 
+            // NO
             twNo.setOnClickListener {
                 val manager = childFragmentManager
                 if (sharedViewModel.datePicker.isAdded) { null }else { sharedViewModel.calenderSelection(manager)} // Prevents multiple functions-calls / app crash
 
-
+                //ClickListener on date-popup
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
                     // IF-condition to check if the date is ahead in time
                     if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate)) {
@@ -97,6 +98,9 @@ class DateFragment : Fragment() {
                 }
             }
 
+            //______________________________________________________________
+
+            // YES
             twYes.setOnClickListener {
                 if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_CALENDAR) == PERMISSION_GRANTED){
                     val date = Date()
