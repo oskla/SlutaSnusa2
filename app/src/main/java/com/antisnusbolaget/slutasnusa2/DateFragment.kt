@@ -1,20 +1,17 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.IdRes
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,8 +19,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import kotlin.time.Duration.Companion.days
 
 
 class DateFragment : Fragment() {
@@ -85,21 +82,26 @@ class DateFragment : Fragment() {
 
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
                     // IF-condition to check if the date is ahead in time
-                    if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate))
-                    { println("You cant quit ahead in time")
-                    }else{
+                    if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate)) {
+                        println("You cant quit ahead in time")
+                    }
+                    else {
                         // IF-condition to check if permission is granted or not.
                         if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_CALENDAR) == PERMISSION_GRANTED){
-                            writeToCal()
+                            val date = Date(it)
+                            writeToCal(date)
                         }
-                            lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
-                            findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
-                        }
+                        //Will launch in any case
+                        lifecycleScope.launchWhenResumed { findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment) }
                     }
                 }
             }
 
             twYes.setOnClickListener {
+                if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_CALENDAR) == PERMISSION_GRANTED){
+                    val date = Date()
+                    writeToCal(date)
+                }
                 sharedViewModel.noCalenderSelection()
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
                     findNavController().safelyNavigate(R.id.action_dateFragment_to_homeFragment)
@@ -111,7 +113,7 @@ class DateFragment : Fragment() {
         }
     }
 
-    fun onClickRequestPermission() {
+    private fun onClickRequestPermission() {
 
         when (PackageManager.PERMISSION_GRANTED ) {
             ContextCompat.checkSelfPermission(
@@ -128,28 +130,15 @@ class DateFragment : Fragment() {
     }
 
 
-
-
-    fun openLocalCal(){
+    private fun writeToCal(date: Date) {
         val cal: Calendar = GregorianCalendar()
-        cal.setTime(Date())
-        cal.add(Calendar.MONTH, 2)
-        val time: Long = cal.getTime().getTime()
-        val builder: Uri.Builder = CalendarContract.CONTENT_URI.buildUpon()
-        builder.appendPath("time")
-        builder.appendPath(java.lang.Long.toString(time))
-        val intent = Intent(Intent.ACTION_VIEW, builder.build())
-        startActivity(intent)
-    }
-
-    fun writeToCal(){
-        val cal: Calendar = GregorianCalendar()
-        cal.time = Date()
-        cal.add(Calendar.MONTH, 2)
+        cal.time = date
+        val formatted = cal.get(Calendar.YEAR)
         val intent = Intent(Intent.ACTION_INSERT)
         intent.data = CalendarContract.Events.CONTENT_URI
-        intent.putExtra(CalendarContract.Events.TITLE, "Idag slutade jag snusa!!")
+        intent.putExtra(CalendarContract.Events.TITLE, "Idag $formatted slutade jag snusa")
         intent.putExtra(CalendarContract.Events.ALL_DAY, true)
+        intent.putExtra(CalendarContract.Events.RRULE, "FREQ=YEARLY" )
         intent.putExtra(
             CalendarContract.EXTRA_EVENT_BEGIN_TIME,
             cal.time.time
