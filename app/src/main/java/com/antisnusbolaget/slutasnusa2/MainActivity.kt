@@ -14,13 +14,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         fun loadFragment(fragment: Fragment){
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragmentContainerView,fragment)
-            transaction.addToBackStack(null)
+            transaction.disallowAddToBackStack()
             transaction.commit()
         }
 
