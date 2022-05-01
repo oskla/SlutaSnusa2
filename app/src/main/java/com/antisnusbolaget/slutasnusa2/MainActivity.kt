@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnItemReselectedListener() {item ->
             when(item.itemId){
                 R.id.homeNav -> {
-                    println("Home reselected")
+                    return@setOnItemReselectedListener
                 }
                 R.id.economyNav -> {
-                    println("Achievement reselected")
+                    return@setOnItemReselectedListener
                 }
             }
         }
