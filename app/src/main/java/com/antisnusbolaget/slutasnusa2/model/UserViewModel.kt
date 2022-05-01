@@ -195,7 +195,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun totalValuesAnimator(textView: TextView, value: Int) { // Animates numbers on homeScreen
         val animator = ValueAnimator.ofInt(0, value)
-        animator.duration = 2000 //
+        animator.duration = 1500 //
         animator.addUpdateListener { animation ->
             textView.text = animation.animatedValue.toString()
         }

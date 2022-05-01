@@ -28,20 +28,25 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId){
                 R.id.homeNav -> {
                     loadFragment(HomeFragment())
-                    println("tjena")
-
-
                     true
                 }
                 R.id.economyNav -> {
                     loadFragment(AchievementFragment())
-                    println("tjena")
-
                     true
                 }
                 else -> false
             }
+        }
 
+        bottomNav.setOnItemReselectedListener() {item ->
+            when(item.itemId){
+                R.id.homeNav -> {
+                    println("Home reselected")
+                }
+                R.id.economyNav -> {
+                    println("Achievement reselected")
+                }
+            }
         }
 
 
