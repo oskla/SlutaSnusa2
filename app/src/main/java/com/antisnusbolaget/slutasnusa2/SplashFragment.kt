@@ -17,10 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSplashBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
-
 
 class SplashFragment : Fragment() {
 
@@ -30,8 +27,6 @@ class SplashFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSplashBinding? = null
 
-    
-
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -39,6 +34,7 @@ class SplashFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Function call to read data
         sharedViewModel.readLocal("unit")
         sharedViewModel.readLocal("cost")
         sharedViewModel.readLocal("date")
@@ -51,49 +47,25 @@ class SplashFragment : Fragment() {
         val fragmentBinding = FragmentSplashBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-        NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.homeNav -> {
-                    // Respond to navigation item 1 click
-                    println("sag")
-                    true
-                }
-                R.id.economyNav -> {
-                    // Respond to navigation item 2 click
-                    println("asg")
-                    true
-                }
-                else -> false
-            }
-        }
-
+        // Splash animation
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
         navBar?.isVisible=false
 
-
         splashIcon.visibility = View.GONE
 
-
-
+        //Onclick view remove later
         fragmentBinding.root.setOnClickListener{
             lifecycleScope.launchWhenResumed {
                 findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
             }
         }
+
         fadeAnimationSplash()
 
         return fragmentBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
-
-
-        }
     }
 
     private fun fadeAnimationSplash() {
@@ -101,17 +73,19 @@ class SplashFragment : Fragment() {
             .alpha(1f)
             .setDuration(2000)
             .setListener(object: AnimatorListenerAdapter(){
+
+                // On start
                 override fun onAnimationStart(animation: Animator?) {
                     super.onAnimationStart(animation)
                     splashIcon.visibility = View.VISIBLE
                     //loading our custom made animations
-                    val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                    val animationFade = AnimationUtils.loadAnimation(context, R.anim.fade_in)
                     //starting the animation
-                    splashIcon.startAnimation(animation)
-
+                    splashIcon.startAnimation(animationFade)
                 }
-                override fun onAnimationEnd(animation: Animator) {
 
+                // On end
+                override fun onAnimationEnd(animation: Animator) {
                     // Is this the first time starting app?
                     if (sharedViewModel.unitPerWeek.value != 0) { //NO
                         lifecycleScope.launchWhenResumed {
