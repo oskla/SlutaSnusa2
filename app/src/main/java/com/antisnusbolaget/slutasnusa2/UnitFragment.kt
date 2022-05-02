@@ -1,10 +1,6 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.CalendarContract
-import android.provider.CalendarContract.Events
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +19,7 @@ class UnitFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentUnitBinding? = null
-    private var tempUnit: Int = 0
+    private var tempUnit: Int = 1
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -31,7 +27,6 @@ class UnitFragment : Fragment() {
         catch (e: Exception) { (e) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         if (savedInstanceState == null) {
             super.onCreate(savedInstanceState)
         }
@@ -51,11 +46,12 @@ class UnitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding?.apply {
-            twUnits.text = sharedViewModel.unitPerWeek.value.toString()
+            twUnits.text = tempUnit.toString()
 
             btnMinus.setOnClickListener {
-                if(tempUnit > 0){
+                if(tempUnit > 1){
                     tempUnit -= 1
                 }
                 else{
