@@ -19,11 +19,13 @@
         <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.2605632616126019" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.2958099365234375" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5542028808593751" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_screen_slide.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_screen_slide14.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_screen_slide2.xml" value="0.16077898550724637" />
-        <entry key="app/src/main/res/layout/fragment_screen_slide7.xml" value="0.13958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_screen_slide30.xml" value="0.6892583120204604" />
+        <entry key="app/src/main/res/layout/fragment_screen_slide45.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_screen_slide7.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.23369565217391305" />
         <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.28031768798828127" />
