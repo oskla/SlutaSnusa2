@@ -5,8 +5,12 @@ import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.util.TypedValue
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.ViewGroupCompat
+import androidx.core.view.marginBottom
+import androidx.core.view.setMargins
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -35,7 +39,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
     var daysLeftAchievement = 0
-    var moneySavedAchievement = 0
 
     var daysLeftAchievement7 = 0
     var daysLeftAchievement14 = 0
@@ -108,7 +111,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun daysLeftAchievement(achievementdays: Int): Int {
 
         val daysLeftAchievement2 = (achievementdays - daysWithout.value!!)
-        println(daysLeftAchievement)
 
         if (daysLeftAchievement2 > 0) {
             return daysLeftAchievement2
@@ -119,15 +121,22 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
     }
-    fun moneySavedAchievment(achievementdays: Int,textView: TextView): Int {
+    fun moneySavedAchievment(
+        achievementdays: Int,
+        textView: TextView,
+        moneySavedAchievment: TextView
+    ): Int {
         val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
         val costPerDay = costPerWeek?.div(7)
         val moneySavedAchievement2 = costPerDay?.times(achievementdays)!!
 
-        println("moneysavedachievement: $moneySavedAchievement2")
         if (moneySavedAchievement2 > 9999) {
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 75F)
+            val param = textView.layoutParams as ViewGroup.MarginLayoutParams
 
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 75F)
+           /* param.setMargins(0,0,0,0)
+            moneySavedAchievment.layoutParams = param
+*/
         }
         println(moneySavedAchievement2)
 

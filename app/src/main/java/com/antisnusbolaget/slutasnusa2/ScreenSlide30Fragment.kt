@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide30Binding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
@@ -34,7 +32,11 @@ class ScreenSlide30Fragment : Fragment() {
 
             // Run method calculating days left to achievement
             twDaysLeftAchievement.text = sharedViewModel.daysLeftAchievement(30).toString()
-            twMoneySavedAchievement.text = sharedViewModel.moneySavedAchievment(30,twMoneySavedAchievement).toString()
+            twMoneySavedAchievement.text = sharedViewModel.moneySavedAchievment(
+                30,
+                twMoneySavedAchievement,
+                moneySavedAchievment
+            ).toString()
 
 
         }

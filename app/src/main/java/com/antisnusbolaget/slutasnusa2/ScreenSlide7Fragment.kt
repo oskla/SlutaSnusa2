@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide14Binding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide7Binding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
@@ -33,7 +32,11 @@ class ScreenSlide7Fragment : Fragment() {
 
 
             twDaysLeftAchievement7.text = sharedViewModel.daysLeftAchievement(7).toString()
-            twMoneySavedAchievement7.text = sharedViewModel.moneySavedAchievment(7,twMoneySavedAchievement7).toString()
+            twMoneySavedAchievement7.text = sharedViewModel.moneySavedAchievment(
+                7,
+                twMoneySavedAchievement7,
+                moneySavedAchievment
+            ).toString()
 
 
 
