@@ -12,8 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
-import java.util.*
-
 
 class UnitFragment : Fragment() {
 
@@ -36,28 +34,23 @@ class UnitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         val fragmentBinding = FragmentUnitBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding?.apply {
             twUnits.text = tempUnit.toString()
-
-            btnMinus.setOnClickListener {
+            btnMinus.setOnClickListener { // Units must be > 1, else return.
                 if(tempUnit > 1){
                     tempUnit -= 1
                 }
                 else{
-                    println("smting WRONG")
+                    return@setOnClickListener
                 }
-
                 twUnits.text = tempUnit.toString()
             }
 
@@ -68,7 +61,6 @@ class UnitFragment : Fragment() {
 
             lifecycleScope.launchWhenResumed {
                 btnGoToCost.setOnClickListener {
-
                     // Set UnitQuantity liveData
                     sharedViewModel.setUnitQuantity(tempUnit)
                     findNavController().safelyNavigate(R.id.action_unitFragment_to_costFragment)
@@ -76,7 +68,6 @@ class UnitFragment : Fragment() {
             }
         }
     }
-
 }
 
 
