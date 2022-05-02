@@ -16,10 +16,10 @@
         <entry key="app/src/main/res/drawable/ic_home_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20822296142578128" />
         <entry key="app/src/main/res/layout/activity_screen_slide.xml" value="0.16077898550724637" />
-        <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.9271209716796875" />
         <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.2605632616126019" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.2958099365234375" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_screen_slide.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_screen_slide14.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_screen_slide2.xml" value="0.16077898550724637" />

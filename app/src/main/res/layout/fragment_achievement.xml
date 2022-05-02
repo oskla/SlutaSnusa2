@@ -13,31 +13,32 @@
     >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="244dp"
-            android:layout_height="123dp"
+            android:layout_width="wrap_content"
+            android:layout_height="86dp"
             app:layout_constraintBottom_toTopOf="@+id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="33dp"
+                    android:layout_height="41dp"
                     android:layout_marginEnd="12dp"
                     android:src="@drawable/ic_achievement"
-                    app:layout_constraintBottom_toBottomOf="@+id/tw_goal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tw_goal"
-                    app:layout_constraintTop_toTopOf="@+id/tw_goal"
-                    app:layout_constraintVertical_bias="0.555" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tw_goal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="111dp"
+                    android:layout_height="69dp"
                     android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
                     android:text="Mål:"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="75sp"
+                    android:textSize="50sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.813"
