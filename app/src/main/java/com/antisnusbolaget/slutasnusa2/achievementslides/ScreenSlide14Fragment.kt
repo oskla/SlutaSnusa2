@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2
+package com.antisnusbolaget.slutasnusa2.achievementslides
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide45Binding
-
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide14Binding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
 
-class ScreenSlide45Fragment : Fragment() {
+class ScreenSlide14Fragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
-    private var binding: FragmentScreenSlide45Binding? = null
+    private var binding: FragmentScreenSlide14Binding? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,17 +25,16 @@ class ScreenSlide45Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val fragmentBinding = FragmentScreenSlide45Binding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentScreenSlide14Binding.inflate(inflater, container, false)
         binding = fragmentBinding
 
         binding?.apply {
 
-            // Run method calculating days left to achievement
 
-            twDaysLeftAchievement45.text = sharedViewModel.daysLeftAchievement(45).toString()
-            twMoneySavedAchievement45.text = sharedViewModel.moneySavedAchievment(
-                45,
-                twMoneySavedAchievement45,
+            twDaysLeftAchievement14.text = sharedViewModel.daysLeftAchievement(14).toString()
+            twMoneySavedAchievement14.text = sharedViewModel.moneySavedAchievment(
+                14,
+                twMoneySavedAchievement14,
                 moneySavedAchievment
             ).toString()
 
