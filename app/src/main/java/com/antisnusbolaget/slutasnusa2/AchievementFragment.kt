@@ -54,6 +54,12 @@ class AchievementFragment : Fragment() {
                 (sharedViewModel.daysWithout.value!! in 30..44) -> {viewPager.post{viewPager.setCurrentItem(3, true)}}
                 (sharedViewModel.daysWithout.value!! in 45..364) -> {viewPager.post{viewPager.setCurrentItem(4, true)}}
             }
+
+            if (sharedViewModel.moneySavedAchievement > 9999) {
+
+            }
+
+
         }
         return fragmentBinding.root
     }

@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.util.TypedValue
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
@@ -118,12 +119,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
     }
-    fun moneySavedAchievment(achievementdays: Int): Int {
+    fun moneySavedAchievment(achievementdays: Int,textView: TextView): Int {
         val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
         val costPerDay = costPerWeek?.div(7)
         val moneySavedAchievement2 = costPerDay?.times(achievementdays)!!
 
-        println(moneySavedAchievement)
+        println("moneysavedachievement: $moneySavedAchievement2")
+        if (moneySavedAchievement2 > 9999) {
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 75F)
+
+        }
+        println(moneySavedAchievement2)
 
         if (moneySavedAchievement2 > 0) {
             return moneySavedAchievement2
