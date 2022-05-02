@@ -23,8 +23,8 @@
         <action
             android:id="@+id/action_dateFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/dateFragment"/>
+            app:popUpTo="@id/unitFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/costFragment"
@@ -34,10 +34,9 @@
         <action
             android:id="@+id/action_costFragment_to_dateFragment"
             app:destination="@id/dateFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/costFragment"
             app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left" />
+            app:exitAnim="@anim/to_left"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/unitFragment"
@@ -47,10 +46,9 @@
         <action
             android:id="@+id/action_unitFragment_to_costFragment"
             app:destination="@id/costFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/unitFragment"
             app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left" />
+            app:exitAnim="@anim/to_left"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
