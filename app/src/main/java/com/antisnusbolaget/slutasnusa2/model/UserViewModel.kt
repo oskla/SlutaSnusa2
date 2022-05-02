@@ -3,14 +3,8 @@ package com.antisnusbolaget.slutasnusa2.model
 import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.util.TypedValue
-import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.ViewGroupCompat
-import androidx.core.view.marginBottom
-import androidx.core.view.setMargins
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -39,11 +33,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
     var daysLeftAchievement = 0
-
-    var daysLeftAchievement7 = 0
-    var daysLeftAchievement14 = 0
-    var daysLeftAchievement30 = 0
-    var daysLeftAchievement45 = 0
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -89,7 +78,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun dateSinceQuit() { //Calculating the diff in time from two dates
-        val date1: Date = dateFormatter.parse(currentDate) as Date
+        val date1: Date = currentDate?.let { dateFormatter.parse(it) } as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
         val diffBetween: Long = Math.abs(date1.time - date2.time)
         val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
@@ -108,45 +97,33 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun daysLeftAchievement(achievementdays: Int): Int {
-
-        val daysLeftAchievement2 = (achievementdays - daysWithout.value!!)
-
-        if (daysLeftAchievement2 > 0) {
-            return daysLeftAchievement2
+    fun daysLeftAchievement(achievementDays: Int): Int { // Calculating days until achievement is fulfilled
+        val daysLeftAchievement2 = (achievementDays - daysWithout.value!!)
+        return if (daysLeftAchievement2 > 0) {
+            daysLeftAchievement2
         } else {
-            return 0
+            0
         }
-
-
-
     }
-    fun moneySavedAchievment(
-        achievementdays: Int,
+
+    fun moneySavedAchievement( // Calculating amount of money saved upon reaching achievement
+        achievementDays: Int,
         textView: TextView,
-        moneySavedAchievment: TextView
     ): Int {
         val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
         val costPerDay = costPerWeek?.div(7)
-        val moneySavedAchievement2 = costPerDay?.times(achievementdays)!!
+        val moneySavedAchievement2 = costPerDay?.times(achievementDays)!!
 
         if (moneySavedAchievement2 > 9999) {
-            val param = textView.layoutParams as ViewGroup.MarginLayoutParams
-
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 75F)
-           /* param.setMargins(0,0,0,0)
-            moneySavedAchievment.layoutParams = param
-*/
         }
         println(moneySavedAchievement2)
 
-        if (moneySavedAchievement2 > 0) {
-            return moneySavedAchievement2
+        return if (moneySavedAchievement2 > 0) {
+            moneySavedAchievement2
         } else {
-            return 0
+            0
         }
-
-
     }
 
 
@@ -156,19 +133,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         myDb.child("User1")
             .push()
             .setValue(userData)
-            .addOnSuccessListener { println("DB success") }
-            .addOnFailureListener { println("DB bad") }
+            .addOnSuccessListener {/* not used */ }
+            .addOnFailureListener {/* not used */ }
     }
 
     fun saveLocal(key: String, value: String) { //saving data locally
         val context = getApplication<Application>().applicationContext
-        val file = key
         val data: String = value
         val fileOutputStream: FileOutputStream
         try {
-            fileOutputStream = context.openFileOutput(file, Context.MODE_PRIVATE)
+            fileOutputStream = context.openFileOutput(key, Context.MODE_PRIVATE)
             fileOutputStream.write(data.toByteArray())
-
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         } catch (e: NumberFormatException) {
@@ -178,27 +153,27 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Toast.makeText(context, "data save", Toast.LENGTH_SHORT).show()
     }
 
     fun readLocal(key: String) { // reading saved data
         val context = getApplication<Application>().applicationContext
-        val filename = key
-        if (filename.trim() != "") {
-            var fileInputStream: FileInputStream? = null
+        if (key.trim() != "") {
+            val fileInputStream: FileInputStream?
             val dir = context.fileList()
-
             if (dir.isEmpty()) { // If fileList=empty - don't run function
                 return
             } else {
-                fileInputStream = context.openFileInput(filename)
+                fileInputStream = context.openFileInput(key)
                 val inputStreamReader = InputStreamReader(fileInputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
                 val stringBuilder: StringBuilder = StringBuilder()
                 var text: String? = null
-                while ({ text = bufferedReader.readLine(); text }() != null) {
+                while (run {
+                        text = bufferedReader.readLine()
+                        text
+                    } != null) {
                     stringBuilder.append(text)
-                    when (filename){
+                    when (key) { // Looping through list of keys to set data
                         "unit" -> setUnitQuantity(stringBuilder.toString().toInt())
                         "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
                         "date" -> quitDate = stringBuilder.toString()

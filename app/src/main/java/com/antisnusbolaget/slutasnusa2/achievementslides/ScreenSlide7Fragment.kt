@@ -32,10 +32,10 @@ class ScreenSlide7Fragment : Fragment() {
 
 
             twDaysLeftAchievement7.text = sharedViewModel.daysLeftAchievement(7).toString()
-            twMoneySavedAchievement7.text = sharedViewModel.moneySavedAchievment(
+            twMoneySavedAchievement7.text = sharedViewModel.moneySavedAchievement(
                 7,
                 twMoneySavedAchievement7,
-                moneySavedAchievment
+
             ).toString()
 
 
