@@ -34,8 +34,8 @@ class ScreenSlide365Fragment : Fragment() {
 
             // Run method calculating days left to achievement
 
-            twDaysLeftAchievement365.text = sharedViewModel.daysLeftAchievement(45).toString()
-            twMoneySavedAchievement365.text = sharedViewModel.moneySavedAchievment(45).toString()
+            twDaysLeftAchievement365.text = sharedViewModel.daysLeftAchievement(365).toString()
+            twMoneySavedAchievement365.text = sharedViewModel.moneySavedAchievment(365).toString()
 
 
         }

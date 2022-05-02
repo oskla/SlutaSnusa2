@@ -22,7 +22,8 @@ class AchievementFragment : Fragment() {
         ScreenSlide7Fragment(),
         ScreenSlide14Fragment(),
         ScreenSlide30Fragment(),
-        ScreenSlide45Fragment()
+        ScreenSlide45Fragment(),
+        ScreenSlide365Fragment()
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +52,7 @@ class AchievementFragment : Fragment() {
                 (sharedViewModel.daysWithout.value!! in 7..13) -> {viewPager.post{viewPager.setCurrentItem(1, true)}}
                 (sharedViewModel.daysWithout.value!! in 14..29) -> {viewPager.post{viewPager.setCurrentItem(2, true)}}
                 (sharedViewModel.daysWithout.value!! in 30..44) -> {viewPager.post{viewPager.setCurrentItem(3, true)}}
+                (sharedViewModel.daysWithout.value!! in 45..364) -> {viewPager.post{viewPager.setCurrentItem(4, true)}}
             }
         }
         return fragmentBinding.root
