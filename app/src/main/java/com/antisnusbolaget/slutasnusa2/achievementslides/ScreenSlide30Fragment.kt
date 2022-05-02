@@ -9,41 +9,27 @@ import androidx.fragment.app.activityViewModels
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide30Binding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
-
 class ScreenSlide30Fragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentScreenSlide30Binding? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         val fragmentBinding = FragmentScreenSlide30Binding.inflate(inflater, container, false)
         binding = fragmentBinding
 
         binding?.apply {
 
-            // Run method calculating days left to achievement
+            // Setting values to textViews
             twDaysLeftAchievement.text = sharedViewModel.daysLeftAchievement(30).toString()
             twMoneySavedAchievement.text = sharedViewModel.moneySavedAchievement(
                 30,
                 twMoneySavedAchievement,
 
             ).toString()
-
-
         }
-
         return fragmentBinding.root
     }
-
-
-
 }

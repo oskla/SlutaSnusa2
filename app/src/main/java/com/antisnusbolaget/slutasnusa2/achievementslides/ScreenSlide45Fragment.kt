@@ -10,42 +10,27 @@ import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide45Binding
 
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 
-
 class ScreenSlide45Fragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentScreenSlide45Binding? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         val fragmentBinding = FragmentScreenSlide45Binding.inflate(inflater, container, false)
         binding = fragmentBinding
 
         binding?.apply {
 
-            // Run method calculating days left to achievement
-
+            // Setting values to textViews
             twDaysLeftAchievement45.text = sharedViewModel.daysLeftAchievement(45).toString()
             twMoneySavedAchievement45.text = sharedViewModel.moneySavedAchievement(
                 45,
                 twMoneySavedAchievement45,
 
             ).toString()
-
-
         }
-
         return fragmentBinding.root
     }
-
-
-
 }
