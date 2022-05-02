@@ -5,7 +5,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".achievementslides.ScreenSlide14Fragment">
+    tools:context=".ScreenSlide14Fragment"
+
+    >
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -48,6 +51,15 @@
         android:layout_marginBottom="20dp"
         style="@style/Widget.App.CardView"
         >
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/celebratee"
+            android:layout_gravity="top"
+            android:visibility="gone"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
