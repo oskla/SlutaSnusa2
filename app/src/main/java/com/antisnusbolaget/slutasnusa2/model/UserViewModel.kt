@@ -17,7 +17,7 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-
+import kotlin.math.abs
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -36,13 +36,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     //___________________________________________________________________________________________
 
     // LiveData variables
-    private val _unitPerWeek = MutableLiveData<Int>(0)
+    private val _unitPerWeek = MutableLiveData(0)
     val unitPerWeek: LiveData<Int> = _unitPerWeek
-    private val _costPerUnit = MutableLiveData<Int>(0)
+    private val _costPerUnit = MutableLiveData(0)
     val costPerUnit: LiveData<Int> = _costPerUnit
-    private val _daysWithout = MutableLiveData<Int>(0)
+    private val _daysWithout = MutableLiveData(0)
     val daysWithout: LiveData<Int> = _daysWithout
-    private val _totalMoneySaved = MutableLiveData<Int>(0)
+    private val _totalMoneySaved = MutableLiveData(0)
     val totalMoneySaved: LiveData<Int> = _totalMoneySaved
     //___________________________________________________________________________________________
 
@@ -80,7 +80,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun dateSinceQuit() { //Calculating the diff in time from two dates
         val date1: Date = currentDate?.let { dateFormatter.parse(it) } as Date
         val date2: Date = dateFormatter.parse(quitDate) as Date
-        val diffBetween: Long = Math.abs(date1.time - date2.time)
+        val diffBetween: Long = abs(date1.time - date2.time)
         val diff: Long = TimeUnit.DAYS.convert(diffBetween, TimeUnit.MILLISECONDS)
         setDaysWithout(diff.toInt())
     }
@@ -126,7 +126,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
     fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
         val userData =
             UserData(quitDate, costPerUnit.value.toString(), unitPerWeek.value.toString())
@@ -167,7 +166,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 val inputStreamReader = InputStreamReader(fileInputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
                 val stringBuilder: StringBuilder = StringBuilder()
-                var text: String? = null
+                var text: String?
                 while (run {
                         text = bufferedReader.readLine()
                         text
