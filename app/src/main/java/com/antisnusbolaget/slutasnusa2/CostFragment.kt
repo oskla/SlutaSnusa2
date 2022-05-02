@@ -19,7 +19,7 @@ class CostFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentCostBinding? = null
-    private var sliderValue: Int = 0
+    private var sliderValue: Int = 1
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -47,6 +47,7 @@ class CostFragment : Fragment() {
 
 
         binding?.apply {
+            twCostPerUnit.text = "$sliderValue kr"
 
             sliderCost.addOnChangeListener { _, value, _ ->
                 sliderCost.setLabelFormatter {
