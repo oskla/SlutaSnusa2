@@ -46,30 +46,12 @@ class AchievementFragment : Fragment() {
 
         binding.apply {
 
-            val days7 = sharedViewModel.daysLeftAchievement(7)
-            val days14 = sharedViewModel.daysLeftAchievement(14)
-            val days30 = sharedViewModel.daysLeftAchievement(30)
-            val days45 = sharedViewModel.daysLeftAchievement(45)
-
-
-            if (days7 == 0) {
-                viewPager.post {
-                viewPager.setCurrentItem(2, true)
+            when(true){
+                (sharedViewModel.daysWithout.value!! in 0..6) -> {viewPager.post{viewPager.setCurrentItem(0, false)}}
+                (sharedViewModel.daysWithout.value!! in 7..13) -> {viewPager.post{viewPager.setCurrentItem(1, true)}}
+                (sharedViewModel.daysWithout.value!! in 14..29) -> {viewPager.post{viewPager.setCurrentItem(2, true)}}
+                (sharedViewModel.daysWithout.value!! in 30..44) -> {viewPager.post{viewPager.setCurrentItem(3, true)}}
             }
-            }  else if (days14 == 0) {
-                viewPager.post {
-                viewPager.setCurrentItem(3, true)
-            }
-            } else if (days30 == 0) {
-                viewPager.post {
-                viewPager.setCurrentItem(4, true)
-            }
-            } else if (days45 == 0) {
-                viewPager.post {
-                viewPager.setCurrentItem(5, true)
-            }
-            }
-
         }
         return fragmentBinding.root
     }
@@ -79,7 +61,4 @@ class AchievementFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment = fragmentsList[position]
     }
-
-
-
 }
