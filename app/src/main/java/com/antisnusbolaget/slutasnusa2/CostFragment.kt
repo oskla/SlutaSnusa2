@@ -26,11 +26,6 @@ class CostFragment : Fragment() {
         try { navigate(resId, args) }
         catch (e: Exception) { (e) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,10 +36,8 @@ class CostFragment : Fragment() {
         return fragmentBinding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding?.apply {
             twCostPerUnit.text = "$sliderValue kr"
@@ -58,9 +51,7 @@ class CostFragment : Fragment() {
                 }
                 sliderValue = value.toInt()
                 twCostPerUnit.text = "$sliderValue kr"
-
             }
-
 
             btnGoToCost.setOnClickListener{
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
@@ -68,12 +59,9 @@ class CostFragment : Fragment() {
                     // Set Cost liveData
                     sharedViewModel.setCostPerUnit(sliderValue)
                     findNavController().safelyNavigate(R.id.action_costFragment_to_dateFragment)
-
                 }
             }
-
         }
     }
-
 }
 

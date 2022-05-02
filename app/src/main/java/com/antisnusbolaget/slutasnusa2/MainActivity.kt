@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
 
-        bottomNav.setOnItemSelectedListener(){item ->
+        bottomNav.setOnItemSelectedListener{item ->
             when(item.itemId){
                 R.id.homeNav -> {
                     loadFragment(HomeFragment())
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        bottomNav.setOnItemReselectedListener() {item ->
+        bottomNav.setOnItemReselectedListener {item ->
             when(item.itemId){
                 R.id.homeNav -> {
                     return@setOnItemReselectedListener

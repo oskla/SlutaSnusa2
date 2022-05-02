@@ -50,7 +50,7 @@ class AchievementFragment : Fragment() {
         return fragmentBinding.root
     }
 
-            //Class to create pages in viewpager based on fragments in fragmentslist-array
+            //Class to create pages in viewpager based on fragments in array
     private inner class ScreenSlideAdapter(fa: AchievementFragment) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = fragmentsList.size
         override fun createFragment(position: Int): Fragment = fragmentsList[position]

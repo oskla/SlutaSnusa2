@@ -1,9 +1,7 @@
 package com.antisnusbolaget.slutasnusa2
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
 import androidx.fragment.app.Fragment
@@ -20,8 +18,6 @@ import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import java.util.*
-import kotlin.time.Duration.Companion.days
-
 
 class DateFragment : Fragment() {
 
@@ -47,12 +43,6 @@ class DateFragment : Fragment() {
         try { navigate(resId, args) }
         catch (e: Exception) { (e) }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,9 +55,7 @@ class DateFragment : Fragment() {
         val view = binding!!.root
         layout = view.rootView
 
-
         return fragmentBinding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,20 +107,18 @@ class DateFragment : Fragment() {
 
     private fun onClickRequestPermission() {
 
-        when (PackageManager.PERMISSION_GRANTED ) {
+        when (PERMISSION_GRANTED ) {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.WRITE_CALENDAR
             ) -> {
-                println("Permission already granted")
+                return
             }
             else -> {
                 requestPermissionLauncher.launch(android.Manifest.permission.WRITE_CALENDAR)
-                println("Do you wish to grant permission?")
             }
         }
     }
-
 
     private fun writeToCal(date: Date) {
         val cal: Calendar = GregorianCalendar()
