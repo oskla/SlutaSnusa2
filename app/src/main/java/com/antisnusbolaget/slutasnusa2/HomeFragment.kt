@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase
 class HomeFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentHomeBinding? = null
-    private lateinit var myDb: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +33,6 @@ class HomeFragment : Fragment() {
     ): View {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-
-        // Initiate firebase-db
-        activity?.let { FirebaseApp.initializeApp(it) }
-        myDb = FirebaseDatabase.getInstance("https://slutasnusa-ad847-default-rtdb.europe-west1.firebasedatabase.app/").getReference("data")
-        sharedViewModel.dbWrite(myDb)
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
         navBar?.isVisible=true
