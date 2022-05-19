@@ -51,7 +51,7 @@ class SplashFragment : Fragment() {
         splashIcon = binding?.splashIcon ?: ImageView(context)
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
-        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
+        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=false
 
         splashIcon.visibility = View.GONE

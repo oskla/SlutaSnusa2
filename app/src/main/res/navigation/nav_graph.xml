@@ -11,8 +11,11 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_achievmentsFragment4"
-            app:destination="@id/achievmentsFragment4" />
+            android:id="@+id/action_homeFragment_to_achievementFragment"
+            app:destination="@id/achievementFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     
     <fragment
@@ -69,8 +72,13 @@
             app:popUpTo="@id/splashFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/achievmentsFragment4"
+        android:id="@+id/achievementFragment"
         android:name="com.antisnusbolaget.slutasnusa2.AchievementFragment"
-        android:label="fragment_achievments"
+        android:label="fragment_achievment"
         tools:layout="@layout/fragment_achievement" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

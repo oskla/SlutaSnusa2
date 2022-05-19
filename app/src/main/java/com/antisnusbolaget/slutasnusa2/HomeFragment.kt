@@ -5,18 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class HomeFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentHomeBinding? = null
+
+    private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
+        try { navigate(resId, args) }
+        catch (e: Exception) { (e) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +39,7 @@ class HomeFragment : Fragment() {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottom_navigation)
+        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=true
 
         binding?.apply {
@@ -51,6 +56,11 @@ class HomeFragment : Fragment() {
             sharedViewModel.totalMoneySaved.value?.let { sharedViewModel.totalValuesAnimator(twMoneySaved,
                 it
             ) }
+            btnSettings.setOnClickListener{
+                lifecycleScope.launchWhenResumed {
+                    findNavController().safelyNavigate(R.id.action_homeFragment_to_settingsFragment)
+                }
+            }
         }
         return fragmentBinding.root
     }
