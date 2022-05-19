@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeNav"
+        android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_home2_foreground"
         />
     <item
-        android:id="@+id/economyNav"
+        android:id="@+id/achievementFragment"
         android:enabled="true"
         android:icon="@drawable/ic_economy_foreground"
         />

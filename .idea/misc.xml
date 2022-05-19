@@ -5,13 +5,16 @@
       <map>
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_achievement.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_bottom_nav.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_date.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide45.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide7.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_splash.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_unit.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_economy_foreground.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/ic_home2_foreground.xml" value="0.1225" />

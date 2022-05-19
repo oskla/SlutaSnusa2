@@ -126,16 +126,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun dbWrite(myDb: DatabaseReference) { //Firebase -Database
-        val userData =
-            UserData(quitDate, costPerUnit.value.toString(), unitPerWeek.value.toString())
-        myDb.child("User1")
-            .push()
-            .setValue(userData)
-            .addOnSuccessListener {/* not used */ }
-            .addOnFailureListener {/* not used */ }
-    }
-
     fun saveLocal(key: String, value: String) { //saving data locally
         val context = getApplication<Application>().applicationContext
         val data: String = value
