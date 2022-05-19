@@ -1,15 +1,18 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
@@ -28,8 +31,6 @@ class HomeFragment : Fragment() {
         sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
         sharedViewModel.saveLocal("cost",sharedViewModel.costPerUnit.value.toString())
         sharedViewModel.saveLocal("date",sharedViewModel.quitDate)
-        binding?.apply{
-        }
     }
 
     override fun onCreateView(

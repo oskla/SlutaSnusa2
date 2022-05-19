@@ -11,11 +11,9 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_achievementFragment"
-            app:destination="@id/achievementFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     
     <fragment
