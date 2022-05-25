@@ -23,16 +23,17 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:src="@drawable/ic_baseline_close_24"
+            tools:ignore="TouchTargetSizeCheck"
+            android:contentDescription="@string/back_btn" />
 
         <TextView
             android:id="@+id/tw_settings"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Inställningar"
-
+            android:text="@string/settings"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -62,11 +63,12 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_calendar" />
+                android:src="@drawable/ic_calendar"
+                android:contentDescription="@string/calendericon" />
 
             <TextView
                 android:id="@+id/datumslutade"
@@ -74,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Du slutade snusa:"
+                android:text="@string/du_slutade_snusa"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
@@ -85,13 +87,13 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="@font/montserrat_bold"
-                android:hint="2022-05-11"
                 android:textColor="#000000"
                 android:textSize="46sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -122,11 +124,12 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_group" />
+                android:src="@drawable/ic_group"
+                android:contentDescription="@string/container_icon" />
 
     <TextView
         android:id="@+id/antaldosor"
@@ -134,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Antal dosor i veckan:"
+        android:text="@string/antal_dosor_i_veckan"
         android:textColor="#000000"
         android:textSize="20sp" />
 
@@ -149,25 +152,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:maxLength="2"
                 android:fontFamily="@font/montserrat_bold"
-                android:hint="7"
+                android:gravity="center"
+                android:hint="@string/_7"
                 android:imeOptions="actionDone"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:textSize="46sp"
+                android:maxLength="2"
 
-                />
+                android:textSize="40sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/st"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_gravity="start"
-                android:text=" st"
+                android:text="@string/st"
                 android:textColor="#000000"
-                android:textSize="46sp" />
+                android:textSize="40sp" />
         </LinearLayout>
         </LinearLayout>
 
@@ -200,12 +205,14 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_cost" />
+                android:src="@drawable/ic_cost"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="@string/cost_icon" />
 
             <TextView
                 android:id="@+id/kostnadperdosa"
@@ -213,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Kostnad per dosa:"
+                android:text="@string/kostnad_per_dosa"
                 android:textColor="#000000"
                 android:textSize="20sp"
 
@@ -230,26 +237,28 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:fontFamily="@font/montserrat_bold"
-        android:hint="87"
+        android:hint="@string/_87"
         android:imeOptions="actionDone"
         android:inputType="number"
-        android:textSize="46sp"
+        android:textSize="40sp"
         android:maxLength="3"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/kr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_gravity="start"
-        android:text=" kr"
+        android:text="@string/kr"
         android:textColor="#000000"
-        android:textSize="46sp" />
+        android:textSize="40sp" />
 </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

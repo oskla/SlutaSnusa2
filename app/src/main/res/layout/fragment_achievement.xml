@@ -24,10 +24,12 @@
                     android:layout_width="33dp"
                     android:layout_height="41dp"
                     android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/image"
                     android:src="@drawable/ic_achievement"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tw_goal"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tw_goal"
@@ -35,7 +37,7 @@
                     android:layout_height="69dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="Mål:"
+                    android:text="@string/m_l"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="50sp"
@@ -43,11 +45,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.813"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

@@ -22,13 +22,13 @@
         >
 
         <TextView
-            android:id="@+id/tw_achievment"
+            android:id="@+id/tw_achievement"
             style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="45 dagar"
+            android:text="@string/_45_dagar"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -65,7 +65,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:layout_marginBottom="28dp"
                 android:textAlignment="center"
-                android:text="12"
+                android:text="@string/_12"
                 android:textColor="@color/black"
                 android:textSize="90sp"
                 android:textStyle="bold"
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="dagar kvar till mål"
+                android:text="@string/dagar_kvar_till_m_l"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -109,7 +109,8 @@
                     android:id="@+id/arrowLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:src="@drawable/vector_arrow_left" />
+                    android:src="@drawable/vector_arrow_left"
+                    android:contentDescription="@string/image" />
 
                 <ImageView
                     android:id="@+id/line"
@@ -117,13 +118,15 @@
                     android:layout_height="8dp"
                     android:adjustViewBounds="true"
                     android:layout_marginHorizontal="30dp"
-                    android:src="@drawable/line" />
+                    android:src="@drawable/line"
+                    android:contentDescription="@string/image" />
 
                 <ImageView
                     android:id="@+id/arrowRight"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:src="@drawable/vector_arrow_right" />
+                    android:src="@drawable/vector_arrow_right"
+                    android:contentDescription="@string/image" />
 
 
             </LinearLayout>
@@ -134,7 +137,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="432"
                 android:textColor="@color/black"
                 android:textSize="90sp"
                 android:textStyle="bold"
@@ -144,11 +146,11 @@
                 />
 
             <TextView
-                android:id="@+id/moneySavedAchievment"
+                android:id="@+id/moneySavedAchievement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="kronor sparat vid mål"
+                android:text="@string/kronor_sparat_vid_m_l"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"

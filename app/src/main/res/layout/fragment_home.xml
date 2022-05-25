@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="10"
+        android:text="@string/_10"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="90sp"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="dagar snusfri"
+        android:text="@string/dagar_snusfri"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="kr sparat"
+        android:text="@string/kr_sparat"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -59,7 +59,6 @@
 
         android:layout_marginTop="0dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="321"
         android:textAlignment="gravity"
         android:textColor="@color/black"
         android:textSize="90sp"
@@ -79,7 +78,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_line"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.456"
+        android:contentDescription="@string/image" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -89,7 +89,8 @@
         app:layout_constraintBottom_toTopOf="@+id/img_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image" />
 
     <ImageView
         android:id="@+id/img_line"
@@ -102,16 +103,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        />
+        android:contentDescription="@string/image" />
 
     <ImageButton
         android:id="@+id/btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:contentDescription="@string/image"
         android:src="@drawable/ic_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,25 +37,14 @@ class SettingsFragment : Fragment() {
         val fragmentBinding = FragmentSettingsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-
-
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=false
 
         binding?.apply {
 
-            val unitPerWeek = sharedViewModel.unitPerWeek.value.toString()
-            val costPerUnit = sharedViewModel.costPerUnit.value.toString()
-            inputUnits.hint = unitPerWeek
-            inputCost.hint = costPerUnit
+            inputUnits.hint = sharedViewModel.unitPerWeek.value.toString()
+            inputCost.hint = sharedViewModel.costPerUnit.value.toString()
             inputDate.text = sharedViewModel.quitDate
-
-           /* inputUnits.setOnEditorActionListener { _, actionID, _ ->
-                if (actionID == EditorInfo.IME_ACTION_DONE) {
-                    inputUnits.isFocusable = false
-                }
-                false
-            } */
 
             inputDate.setOnClickListener{
             val manager = childFragmentManager
@@ -63,7 +52,11 @@ class SettingsFragment : Fragment() {
             //ClickListener on date-popup
             sharedViewModel.datePicker.addOnPositiveButtonClickListener {
                 // IF-condition to check if the date is ahead in time
-                if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate)) {
+                if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.currentDate?.let { it1 ->
+                        sharedViewModel.dateFormatter.parse(
+                            it1
+                        )
+                    }) {
                     return@addOnPositiveButtonClickListener
                 }
                 inputDate.text = sharedViewModel.quitDate

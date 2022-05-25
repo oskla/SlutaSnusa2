@@ -6,9 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SettingsFragment"
-
     >
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -18,20 +16,19 @@
         app:cardBackgroundColor="@color/yellow"
         app:cardElevation="10dp"
         android:layout_marginVertical="15dp"
-
         android:layout_marginHorizontal="25dp"
         style="@style/Widget.App.CardView"
         android:gravity="center"
         >
 
         <TextView
-            android:id="@+id/tw_achievment"
+            android:id="@+id/tw_achievement"
             style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="14 dagar"
+            android:text="@string/_14_dagar"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -52,14 +49,6 @@
         style="@style/Widget.App.CardView"
         >
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/celebratee"
-            android:layout_gravity="top"
-            android:visibility="gone"
-            />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +66,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:layout_marginBottom="28dp"
                 android:textAlignment="center"
-                android:text="12"
+                android:text="@string/_12"
                 android:textColor="@color/black"
                 android:textSize="90sp"
                 android:textStyle="bold"
@@ -92,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="dagar kvar till mål"
+                android:text="@string/dagar_kvar_till_m_l"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -115,13 +104,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
-
                 <ImageView
                     android:id="@+id/arrowLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:src="@drawable/vector_arrow_left" />
+                    android:src="@drawable/vector_arrow_left"
+                    android:contentDescription="@string/image" />
 
                 <ImageView
                     android:id="@+id/line"
@@ -129,14 +117,15 @@
                     android:layout_height="8dp"
                     android:adjustViewBounds="true"
                     android:layout_marginHorizontal="30dp"
-                    android:src="@drawable/line" />
+                    android:src="@drawable/line"
+                    android:contentDescription="@string/image" />
 
                 <ImageView
                     android:id="@+id/arrowRight"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:src="@drawable/vector_arrow_right" />
-
+                    android:src="@drawable/vector_arrow_right"
+                    android:contentDescription="@string/image" />
 
             </LinearLayout>
 
@@ -146,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="432"
+                android:text="@string/_432"
                 android:textColor="@color/black"
                 android:textSize="90sp"
                 android:textStyle="bold"
@@ -156,11 +145,11 @@
                 />
 
             <TextView
-                android:id="@+id/moneySavedAchievment"
+                android:id="@+id/moneySavedAchievement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="kronor sparat vid mål"
+                android:text="@string/kronor_sparat_vid_m_l"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -171,6 +160,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
 </LinearLayout>

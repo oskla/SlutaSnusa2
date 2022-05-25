@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="0"
+        android:text="@string/_0"
         android:textColor="@color/black"
         android:textSize="100sp"
 
@@ -33,7 +33,7 @@
         android:layout_marginTop="-30dp"
         android:layout_marginEnd="128dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="+"
+        android:text="@string/plus"
         android:textColor="@color/black"
         android:textSize="115sp"
         android:textStyle="bold"
@@ -45,9 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-30dp"
-        android:layout_marginRight="-17dp"
+        android:layout_marginEnd="-17dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="-"
+        android:text="@string/minus"
         android:textColor="@color/black"
         android:textSize="115sp"
         android:textStyle="bold"
@@ -63,7 +63,7 @@
         android:layout_marginTop="36dp"
         android:fontFamily="@font/montserrat_bold"
         android:paddingHorizontal="40dp"
-        android:text="Hur många dosor snusar du i veckan?"
+        android:text="@string/hur_m_nga_dosor_snusar_du_i_veckan"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="40sp"
@@ -80,7 +80,8 @@
         android:src="@drawable/logo_no_undertext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/image" />
 
     <ImageView
         android:id="@+id/img_lineSquirly"
@@ -91,7 +92,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image" />
 
     <ImageView
         android:id="@+id/btn_goToCost"
@@ -101,6 +103,7 @@
         android:layout_marginBottom="36dp"
         android:src="@drawable/arrow"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,5 +3,40 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="permission_granted">Permission already granted.</string>
+    <string name="back_btn">back btn</string>
+    <string name="settings">Inställningar</string>
+    <string name="calendericon">CalenderIcon</string>
+    <string name="du_slutade_snusa">Du slutade snusa:</string>
+    <string name="container_icon">container icon</string>
+    <string name="antal_dosor_i_veckan">Antal dosor i veckan:</string>
+    <string name="_7">7</string>
+    <string name="st">st</string>
+    <string name="cost_icon">Cost icon</string>
+    <string name="kostnad_per_dosa">Kostnad per dosa:</string>
+    <string name="_87">87</string>
+    <string name="kr">kr</string>
+    <string name="_10">10</string>
+    <string name="dagar_snusfri">dagar snusfri</string>
+    <string name="kr_sparat">kr sparat</string>
+    <string name="image">image</string>
+    <string name="nej">Nej</string>
+    <string name="slutade_du_idag">Slutade du idag?</string>
+    <string name="ja">Ja</string>
+    <string name="_0">0</string>
+    <string name="vad_kostar_en_dosa">Vad kostar en dosa?</string>
+    <string name="_432">432</string>
+    <string name="dagar_kvar_till_m_l">dagar kvar till mål</string>
+    <string name="_12">12</string>
+    <string name="_14_dagar">14 dagar</string>
+    <string name="kronor_sparat_vid_m_l">kronor sparat vid mål</string>
+    <string name="_30_dagar">30 dagar</string>
+    <string name="_12nr">12</string>
+    <string name="_365_dagar">365 dagar</string>
+    <string name="_45_dagar">45 dagar</string>
+    <string name="_7_dagar">7 dagar</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="hur_m_nga_dosor_snusar_du_i_veckan">Hur många dosor snusar du i veckan?</string>
+    <string name="m_l">Mål:</string>
 
 </resources>
