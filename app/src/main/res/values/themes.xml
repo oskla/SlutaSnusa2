@@ -14,6 +14,7 @@
         <item name="android:navigationBarColor">@color/yellow</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:textColorHint">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

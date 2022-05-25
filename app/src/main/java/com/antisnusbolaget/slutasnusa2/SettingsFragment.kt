@@ -42,49 +42,40 @@ class SettingsFragment : Fragment() {
         navBar?.isVisible=false
 
         binding?.apply {
-          //  sharedViewModel.unitPerWeek.value?.let { inputUnits.setHint(it) }
 
-            var unit = inputUnits.text
-            val unitToString = twInputUnits.text.toString()
+            inputUnits.hint = sharedViewModel.unitPerWeek.value.toString()
+            inputCost.hint = sharedViewModel.costPerUnit.value.toString()
+            inputDate.text = sharedViewModel.quitDate
 
-            twInputUnits.text = sharedViewModel.unitPerWeek.value.toString()
-
-
-                twInputUnits.setOnClickListener{
-                    viewSwitcher.showNext()
+            inputDate.setOnClickListener{
+            val manager = childFragmentManager
+            if (sharedViewModel.datePicker.isAdded) { null }else { sharedViewModel.calenderSelection(manager)} // Prevents multiple functions-calls / app crash
+            //ClickListener on date-popup
+            sharedViewModel.datePicker.addOnPositiveButtonClickListener {
+                // IF-condition to check if the date is ahead in time
+                if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate)) {
+                    return@addOnPositiveButtonClickListener
                 }
-
-            inputUnits.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    unit = inputUnits.text
-                    twInputUnits.text = unit
-                    viewSwitcher.showNext()
-
-                }
-                false
+                inputDate.text = sharedViewModel.quitDate
+            }
             }
 
-
             btnBack.setOnClickListener {
-
-
-                if (unit.toString() != "") {
-
-                    sharedViewModel.setUnitQuantity(unitToString.toInt())
-                    sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
+                if(inputUnits.text.toString() != ""){
+                    sharedViewModel.setUnitQuantity(inputUnits.text.toString().toInt())
+                }
+                if(inputCost.text.toString() != ""){
+                    sharedViewModel.setCostPerUnit(inputCost.text.toString().toInt())
                 }
 
                 lifecycleScope.launchWhenResumed {
+                    sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
+                    sharedViewModel.saveLocal("cost", sharedViewModel.costPerUnit.value.toString())
+                    sharedViewModel.saveLocal("date", sharedViewModel.quitDate)
                     findNavController().safelyNavigate(R.id.action_settingsFragment_to_homeFragment)
                 }
-
             }
-
-
-
-
         }
-
         return fragmentBinding.root
     }
 }
