@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/yellow"
     tools:context=".SplashFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
+    
     <ImageView
         android:id="@+id/splashIcon"
         android:layout_width="200dp"
