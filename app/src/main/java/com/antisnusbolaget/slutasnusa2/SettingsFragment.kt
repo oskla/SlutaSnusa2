@@ -1,5 +1,6 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,11 +44,18 @@ class SettingsFragment : Fragment() {
 
         binding?.apply {
 
-            val unitPerWeek = "${sharedViewModel.unitPerWeek.value.toString()} st"
-            val costPerUnit = "${sharedViewModel.costPerUnit.value.toString()} kr"
+            val unitPerWeek = sharedViewModel.unitPerWeek.value.toString()
+            val costPerUnit = sharedViewModel.costPerUnit.value.toString()
             inputUnits.hint = unitPerWeek
             inputCost.hint = costPerUnit
             inputDate.text = sharedViewModel.quitDate
+
+           /* inputUnits.setOnEditorActionListener { _, actionID, _ ->
+                if (actionID == EditorInfo.IME_ACTION_DONE) {
+                    inputUnits.isFocusable = false
+                }
+                false
+            } */
 
             inputDate.setOnClickListener{
             val manager = childFragmentManager
