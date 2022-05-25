@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ScreenSlide14Fragment"
+    tools:context=".SettingsFragment"
 
     >
 

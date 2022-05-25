@@ -3,6 +3,7 @@ package com.antisnusbolaget.slutasnusa2.model
 import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
+import android.text.Editable
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
@@ -10,9 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.antisnusbolaget.slutasnusa2.R
-import com.antisnusbolaget.slutasnusa2.UserData
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.database.DatabaseReference
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
