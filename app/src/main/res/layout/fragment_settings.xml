@@ -27,6 +27,7 @@
 
         <TextView
             android:id="@+id/tw_settings"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
@@ -148,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-
+                android:maxLength="2"
                 android:fontFamily="@font/montserrat_bold"
                 android:hint="7"
                 android:imeOptions="actionDone"
@@ -233,6 +234,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:textSize="46sp"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
