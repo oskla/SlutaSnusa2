@@ -43,8 +43,10 @@ class SettingsFragment : Fragment() {
 
         binding?.apply {
 
-            inputUnits.hint = sharedViewModel.unitPerWeek.value.toString()
-            inputCost.hint = sharedViewModel.costPerUnit.value.toString()
+            val unitPerWeek = "${sharedViewModel.unitPerWeek.value.toString()} st"
+            val costPerUnit = "${sharedViewModel.costPerUnit.value.toString()} kr"
+            inputUnits.hint = unitPerWeek
+            inputCost.hint = costPerUnit
             inputDate.text = sharedViewModel.quitDate
 
             inputDate.setOnClickListener{
