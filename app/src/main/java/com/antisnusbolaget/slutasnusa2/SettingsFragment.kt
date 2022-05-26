@@ -1,19 +1,16 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentHomeBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSettingsBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,10 +22,6 @@ class SettingsFragment : Fragment() {
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
         catch (e: Exception) { (e) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

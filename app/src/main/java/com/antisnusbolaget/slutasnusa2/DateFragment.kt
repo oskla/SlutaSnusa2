@@ -48,7 +48,9 @@ class DateFragment : Fragment() {
                 //ClickListener on date-popup
                 sharedViewModel.datePicker.addOnPositiveButtonClickListener {
                     // IF-condition to check if the date is ahead in time
-                    if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(sharedViewModel.currentDate)) {
+                    if(sharedViewModel.dateFormatter.parse(sharedViewModel.quitDate)!! > sharedViewModel.dateFormatter.parse(
+                            sharedViewModel.currentDate.toString()
+                        )) {
                         return@addOnPositiveButtonClickListener
                     }
                     else {

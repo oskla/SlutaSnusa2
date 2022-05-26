@@ -3,7 +3,6 @@ package com.antisnusbolaget.slutasnusa2.model
 import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
-import android.text.Editable
 import android.util.TypedValue
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
