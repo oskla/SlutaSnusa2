@@ -24,7 +24,7 @@ class ScreenSlide365Fragment : Fragment() {
 
         binding?.apply {
             // Setting values to textViews
-            twDaysLeftAchievement365.text = sharedViewModel.daysLeftAchievement(365, ).toString()
+            twDaysLeftAchievement365.text = sharedViewModel.daysLeftAchievement(365).toString()
             twMoneySavedAchievement365.text = sharedViewModel.moneySavedAchievement(365, twMoneySavedAchievement365).toString()
         }
         return fragmentBinding.root
