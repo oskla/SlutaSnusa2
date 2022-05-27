@@ -31,6 +31,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
     var daysLeftAchievement = 0
+    var runs = 1
     //___________________________________________________________________________________________
 
     // LiveData variables
