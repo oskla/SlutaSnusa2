@@ -13,6 +13,8 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_from_top"
+            app:exitAnim="@anim/still"
             app:popUpToInclusive="false" />
     </fragment>
     
@@ -82,6 +84,7 @@
         <action
             android:id="@+id/action_settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment"
+            app:exitAnim="@anim/slide_from_bottom"
             app:popUpTo="@id/settingsFragment"
             app:popUpToInclusive="true" />
     </fragment>

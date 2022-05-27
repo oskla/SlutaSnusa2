@@ -1,12 +1,14 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -32,6 +34,8 @@ class SettingsFragment : Fragment() {
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=false
+
+
 
         binding?.apply {
 
@@ -89,6 +93,7 @@ class SettingsFragment : Fragment() {
                     sharedViewModel.settingsChanged = true
                 }
             }
+
         }
         return fragmentBinding.root
     }

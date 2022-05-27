@@ -4,6 +4,7 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_home2_foreground"
+
         />
     <item
         android:id="@+id/achievementFragment"
