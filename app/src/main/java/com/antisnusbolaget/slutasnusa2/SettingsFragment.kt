@@ -39,9 +39,11 @@ class SettingsFragment : Fragment() {
 
         binding?.apply {
 
-            inputUnits.hint = sharedViewModel.unitPerWeek.value.toString()
-            inputCost.hint = sharedViewModel.costPerUnit.value.toString()
+            // Placeholder text in inputfields (Edittext)
+            inputUnits.hint = sharedViewModel.unitPerWeek.value.toString() + " "
+            inputCost.hint = sharedViewModel.costPerUnit.value.toString() + " "
             inputDate.text = sharedViewModel.quitDate
+            
 
             inputDate.setOnClickListener{
             val manager = childFragmentManager
