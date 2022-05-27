@@ -13,12 +13,8 @@
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_achievement.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_bottom_nav.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_cost.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_date.xml" value="0.2296195652173913" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide14.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide30.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide365.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide45.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide7.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.18697916666666667" />
@@ -35,7 +31,7 @@
         <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_cost.xml" value="0.2605632616126019" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.2958099365234375" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5542028808593751" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_screen_slide.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_screen_slide14.xml" value="0.3806581358978714" />
         <entry key="app/src/main/res/layout/fragment_screen_slide2.xml" value="0.16077898550724637" />

@@ -71,6 +71,24 @@ class SettingsFragment : Fragment() {
                     findNavController().safelyNavigate(R.id.action_settingsFragment_to_homeFragment)
                 }
             }
+
+            twSaveSettings.setOnClickListener {
+                if(inputUnits.text.toString() != ""){
+                    sharedViewModel.setUnitQuantity(inputUnits.text.toString().toInt())
+                }
+                if(inputCost.text.toString() != ""){
+                    sharedViewModel.setCostPerUnit(inputCost.text.toString().toInt())
+                }
+
+                lifecycleScope.launchWhenResumed {
+                    sharedViewModel.saveLocal("unit",sharedViewModel.unitPerWeek.value.toString())
+                    sharedViewModel.saveLocal("cost", sharedViewModel.costPerUnit.value.toString())
+                    sharedViewModel.saveLocal("date", sharedViewModel.quitDate)
+                    findNavController().safelyNavigate(R.id.action_settingsFragment_to_homeFragment)
+
+                    sharedViewModel.settingsChanged = true
+                }
+            }
         }
         return fragmentBinding.root
     }

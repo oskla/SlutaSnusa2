@@ -41,6 +41,7 @@
 
     <com.google.android.material.card.MaterialCardView
 
+        android:id="@+id/materialCardView3"
         style="@style/Widget.App.CardView"
         android:layout_width="362dp"
         android:layout_height="wrap_content"
@@ -61,14 +62,17 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_calendar"
-                android:contentDescription="@string/calendericon" />
+                android:contentDescription="@string/calendericon"
+                android:src="@drawable/ic_calendar" />
 
             <TextView
                 android:id="@+id/datumslutade"
@@ -92,8 +96,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -122,7 +125,9 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -203,7 +208,9 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp">
 
             <ImageView
                 android:id="@+id/cost"
@@ -262,6 +269,19 @@
 </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tw_save_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/spara"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/materialCardView3"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

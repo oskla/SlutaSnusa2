@@ -109,6 +109,8 @@
         android:id="@+id/btn_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:contentDescription="@string/image"
         android:src="@drawable/ic_settings"

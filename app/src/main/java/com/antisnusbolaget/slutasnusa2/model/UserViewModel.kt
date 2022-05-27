@@ -26,12 +26,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         .setTheme(R.style.ThemeOverlay)
         .build()
 
-    // DateFormatter & Empty variable for user pick
-    val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN)
+
+    val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN) // DateFormatter & Empty variable for user pick
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
     var daysLeftAchievement = 0
-    var runs = 1
+    var animationRuns = 1 // counter for animation in HomeFragment
+    var settingsChanged = false
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -174,6 +175,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun totalValuesAnimator(textView: TextView, value: Int) { // Animates numbers on homeScreen
         val animator = ValueAnimator.ofInt(0, value)
         animator.duration = 1500 //
+        animator.addUpdateListener { animation ->
+            textView.text = animation.animatedValue.toString()
+        }
+        animator.start()
+    }
+
+    fun totalValuesAnimatorSettings(textView: TextView, value: Int) { // Animates numbers on homeScreen
+        val animator = ValueAnimator.ofInt(0, value)
+        animator.duration = 500 //
         animator.addUpdateListener { animation ->
             textView.text = animation.animatedValue.toString()
         }
