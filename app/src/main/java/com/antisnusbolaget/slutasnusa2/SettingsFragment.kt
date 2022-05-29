@@ -1,11 +1,16 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.app.Activity
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,6 +25,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class SettingsFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSettingsBinding? = null
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -43,7 +61,27 @@ class SettingsFragment : Fragment() {
             inputUnits.hint = sharedViewModel.unitPerWeek.value.toString() + " "
             inputCost.hint = sharedViewModel.costPerUnit.value.toString() + " "
             inputDate.text = sharedViewModel.quitDate
-            
+
+            // Hide keyboard and clear focus when done
+            inputUnits.setOnEditorActionListener { _, keyCode, event ->
+                if (((event?.action ?: -1) == KeyEvent.ACTION_UP)
+                    || keyCode == EditorInfo.IME_ACTION_DONE) {
+
+                    inputUnits.clearFocus()
+                    hideKeyboard()
+                }
+                false
+            }
+
+            inputCost.setOnEditorActionListener { _, keyCode, event ->
+                if (((event?.action ?: -1) == KeyEvent.ACTION_UP)
+                    || keyCode == EditorInfo.IME_ACTION_DONE) {
+
+                    inputCost.clearFocus()
+                    hideKeyboard()
+                }
+                false
+            }
 
             inputDate.setOnClickListener{
             val manager = childFragmentManager
