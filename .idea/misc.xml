@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/drawable/ic_economy_foreground.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/ic_home2_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_home_foreground.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20822296142578128" />
         <entry key="app/src/main/res/layout/activity_screen_slide.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.45" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.28031768798828127" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/xml/selector.xml" value="0.1" />
       </map>
     </option>
   </component>

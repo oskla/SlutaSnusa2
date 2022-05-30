@@ -92,7 +92,7 @@
                 android:ems="10"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#000000"
-                android:textSize="46sp"
+                android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -148,6 +148,7 @@
 
 
         <LinearLayout
+            android:id="@+id/layout_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -159,12 +160,11 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:hint="@string/_7"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="2"
-
+                android:textColorHint="@drawable/selector"
                 android:textSize="40sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -245,10 +245,11 @@
         android:background="@android:color/transparent"
         android:fontFamily="@font/montserrat_bold"
         android:hint="@string/_87"
+        android:textColorHint="@drawable/selector"
         android:imeOptions="actionDone"
         android:inputType="number"
         android:textSize="40sp"
-        android:maxLength="3"
+        android:maxLength="2"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

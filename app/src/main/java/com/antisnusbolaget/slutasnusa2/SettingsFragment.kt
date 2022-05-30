@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -26,18 +27,32 @@ class SettingsFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentSettingsBinding? = null
 
-    fun Fragment.hideKeyboard() {
+    private fun Fragment.hideKeyboard() {
         view?.let { activity?.hideKeyboard(it) }
     }
 
-    fun Activity.hideKeyboard() {
-        hideKeyboard(currentFocus ?: View(this))
-    }
-
-    fun Context.hideKeyboard(view: View) {
+    private fun Context.hideKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    private fun Fragment.showKeyboard() {
+        view?.let { activity?.showKeyboard(it) }
+    }
+
+
+
+    private fun Context.showKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(binding?.inputUnits, InputMethodManager.SHOW_IMPLICIT)
+    }
+
+
+
+   /* InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT); */
+
+
 
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -62,8 +77,25 @@ class SettingsFragment : Fragment() {
             inputCost.hint = sharedViewModel.costPerUnit.value.toString() + " "
             inputDate.text = sharedViewModel.quitDate
 
+            inputUnits.setOnFocusChangeListener { view, b ->
+                println("2423")
+
+            }
+
+            materialCardView.setOnClickListener {
+                inputUnits.requestFocus()
+                showKeyboard()
+
+            }
+
+            materialCardView2.setOnClickListener {
+                inputCost.requestFocus()
+                showKeyboard()
+            }
+
             // Hide keyboard and clear focus when done
             inputUnits.setOnEditorActionListener { _, keyCode, event ->
+
                 if (((event?.action ?: -1) == KeyEvent.ACTION_UP)
                     || keyCode == EditorInfo.IME_ACTION_DONE) {
 
