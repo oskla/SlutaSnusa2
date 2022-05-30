@@ -166,7 +166,9 @@
                 android:maxLength="2"
                 android:textColorHint="@drawable/selector"
                 android:textSize="40sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                android:textCursorDrawable="@drawable/cursor"
+                />
 
             <TextView
                 android:id="@+id/st"
@@ -255,7 +257,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:textCursorDrawable="@drawable/cursor"
+        />
 
     <TextView
         android:id="@+id/kr"
