@@ -36,15 +36,14 @@ class SettingsFragment : Fragment() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun Fragment.showKeyboard() {
-        view?.let { activity?.showKeyboard(it) }
+    private fun Fragment.showKeyboard(view: View) {
+        view.let { activity?.showKeyboard(view) }
     }
-
 
 
     private fun Context.showKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.showSoftInput(binding?.inputUnits, InputMethodManager.SHOW_IMPLICIT)
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
 
@@ -84,13 +83,12 @@ class SettingsFragment : Fragment() {
 
             materialCardView.setOnClickListener {
                 inputUnits.requestFocus()
-                showKeyboard()
-
+                showKeyboard(inputUnits)
             }
 
             materialCardView2.setOnClickListener {
                 inputCost.requestFocus()
-                showKeyboard()
+                showKeyboard(inputCost)
             }
 
             // Hide keyboard and clear focus when done
