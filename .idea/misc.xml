@@ -23,11 +23,14 @@
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_unit.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/bg_yellow.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/cursor.xml" value="0.135" />
+        <entry key="app/src/main/res/drawable/ic_achievement.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/ic_economy_foreground.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/ic_home2_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_home_foreground.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.135" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20822296142578128" />
         <entry key="app/src/main/res/layout/activity_screen_slide.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_achievement.xml" value="0.45" />
