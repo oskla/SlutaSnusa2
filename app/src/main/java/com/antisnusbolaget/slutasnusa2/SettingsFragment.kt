@@ -2,8 +2,6 @@ package com.antisnusbolaget.slutasnusa2
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -12,7 +10,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -40,18 +37,10 @@ class SettingsFragment : Fragment() {
         view.let { activity?.showKeyboard(view) }
     }
 
-
     private fun Context.showKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
-
-
-
-   /* InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT); */
-
-
 
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -67,19 +56,11 @@ class SettingsFragment : Fragment() {
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=false
 
-
-
         binding?.apply {
 
-            // Placeholder text in inputfields (Edittext)
             inputUnits.hint = sharedViewModel.unitPerWeek.value.toString() + " "
             inputCost.hint = sharedViewModel.costPerUnit.value.toString() + " "
             inputDate.text = sharedViewModel.quitDate
-
-            inputUnits.setOnFocusChangeListener { view, b ->
-                println("2423")
-
-            }
 
             materialCardView.setOnClickListener {
                 inputUnits.requestFocus()
