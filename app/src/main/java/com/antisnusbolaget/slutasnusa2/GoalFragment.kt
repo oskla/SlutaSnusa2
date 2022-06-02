@@ -13,6 +13,7 @@ import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentGoalBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.transition.Hold
 
 class GoalFragment : Fragment() {
 
@@ -38,6 +39,29 @@ class GoalFragment : Fragment() {
 
         val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
         navBar?.isVisible=false
+
+        binding?.apply {
+            inputGoalName
+            inputGoalCost
+
+            fun switchCheckedBox(v : View) {
+                when (v.id) {
+                    R.id.checkboxNo -> checkboxNo.isChecked = false
+                    R.id.checkboxYes -> checkboxYes.isChecked = false
+                }
+            }
+
+            checkboxNo.setOnClickListener{
+                switchCheckedBox(checkboxYes)
+            }
+
+            checkboxYes.setOnClickListener{
+                switchCheckedBox(checkboxNo)
+            }
+
+        }
+
+
 
 
         return fragmentBinding.root
