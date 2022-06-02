@@ -176,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="8dp"
+                android:paddingLeft="5dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/st"
                 android:textColor="#000000"
@@ -246,7 +247,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:fontFamily="@font/montserrat_bold"
-        android:hint="@string/_87"
+
         android:textColorHint="@drawable/selector"
         android:imeOptions="actionDone"
         android:inputType="number"
@@ -269,6 +270,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/kr"
+        android:paddingLeft="5dp"
         android:textColor="#000000"
         android:textSize="40sp" />
 </LinearLayout>
