@@ -5,15 +5,20 @@
       <map>
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_achievement.xml" value="0.188" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2595" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2595" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.2595" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_calendar_add_on_fill0_wght400_grad0_opsz48.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_economy_foreground.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_home2_foreground.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_home_foreground.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.188" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
-        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_achievement.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_achievement.xml" value="0.16" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_bottom_nav.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_cost.xml" value="0.1" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_date.xml" value="0.2296195652173913" />
+        <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_goal.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide45.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Johan/Documents/Work/SlutaSnusa2/app/src/main/res/layout/fragment_screen_slide7.xml" value="0.2341485507246377" />

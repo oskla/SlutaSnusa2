@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
+import com.antisnusbolaget.slutasnusa2.databinding.FragmentGoalBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class AchievementFragment : Fragment() {
+class GoalFragment : Fragment() {
+
     private val sharedViewModel: UserViewModel by activityViewModels()
-    private var binding: FragmentAchievementBinding? = null
+    private var binding: FragmentGoalBinding? = null
 
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
@@ -30,19 +32,14 @@ class AchievementFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val fragmentBinding = FragmentAchievementBinding.inflate(inflater, container, false)
+        // Inflate the layout for this NICE fragment
+        val fragmentBinding = FragmentGoalBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
+        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
+        navBar?.isVisible=false
 
-        binding?.apply {
-            btnAdd.setOnClickListener{
-                lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
 
-                    findNavController().safelyNavigate(R.id.action_achievementFragment_to_goalFragment)
-
-                }
-            }
-        }
         return fragmentBinding.root
     }
 
