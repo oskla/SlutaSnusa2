@@ -11,6 +11,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Ange ditt mål"
         android:textColor="#000000"
@@ -41,73 +42,162 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="15dp">
 
+            <TextView
+                android:id="@+id/tv_sparartill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Vad sparar du till?"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/input_goal_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableBottom="@color/black"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:hint="Resa till Italien"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="yes"
+                android:inputType="textAutoComplete"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_sparartill"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sparartill"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <TextView
+                android:id="@+id/tv_kostar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Vad kostar det?"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/input_goal_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:hint="4300 kr"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="yes"
+                android:inputType="number"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_kostar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_kostar"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/tw_countSavedMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Räkna med redan sparade pengar?"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+            <com.google.android.material.card.MaterialCardView
+
+                android:id="@+id/materialCardView4"
+                style="@style/ShapeAppearance.App.SmallComponent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginVertical="15dp"
+                android:checkable="true"
+                android:focusable="true"
+                android:gravity="center"
+                app:cardBackgroundColor="@color/yellow"
+                app:cardElevation="8dp">
+            <CheckBox
+                android:id="@+id/checkboxYes"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_checkbox"
+                android:button="@null"
+
+                />
+
+            </com.google.android.material.card.MaterialCardView>
                 <TextView
-                    android:id="@+id/tv_sparartill"
+                    android:id="@+id/Yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Vad sparar du till?"
+                    android:text="Ja"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:textColor="#000000"
-                    android:textSize="22sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/input_goal_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="start"
-                    android:hint="Resa till Italien"
-                    android:imeOptions="actionDone"
-                    android:importantForAutofill="yes"
-                    android:inputType="textAutoComplete"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@drawable/cursor"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/tv_sparartill"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sparartill"
-                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <com.google.android.material.card.MaterialCardView
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:id="@+id/materialCardView5"
+                style="@style/ShapeAppearance.App.SmallComponent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginVertical="15dp"
+                android:checkable="true"
+                android:focusable="true"
+                android:gravity="center"
+                app:cardBackgroundColor="@color/yellow"
+                app:cardElevation="8dp">
+                <CheckBox
+                    android:id="@+id/checkboxNo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_checkbox"
+                    android:button="@null"
+                    />
 
+
+            </com.google.android.material.card.MaterialCardView>
                 <TextView
-                    android:id="@+id/tv_kostar"
+                    android:id="@+id/No"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Vad kostar det?"
+                    android:text="Nej"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:textColor="#000000"
-                    android:textSize="22sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/input_goal_cost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="start"
-                    android:hint="Resa till Italien"
-                    android:imeOptions="actionDone"
-                    android:importantForAutofill="yes"
-                    android:inputType="textAutoComplete"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@drawable/cursor"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/tv_kostar"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_kostar"
-                    tools:ignore="TouchTargetSizeCheck" />
-
+                    android:textSize="20sp" />
+            </LinearLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

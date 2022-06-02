@@ -26,6 +26,7 @@
     </style>
 
 
+
     <style name="DefaultDaySelectedStyle" parent="Widget.MaterialComponents.MaterialCalendar.Day.Selected">
         <item name="android:backgroundTint">@color/black</item>
         <item name="colorControlActivated">@color/black</item>
@@ -63,10 +64,17 @@
 
     </style>
 
+
+
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
     <item name="cornerFamily">cut</item>
     <item name="cornerSize">8dp</item>
 </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">3dp</item>
+    </style>
 
     <style name="ThemeOverlay.App.Card" parent="">
         <item name="colorSecondary">@color/black</item>
