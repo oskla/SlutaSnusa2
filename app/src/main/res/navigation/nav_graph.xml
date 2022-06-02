@@ -99,5 +99,9 @@
         android:id="@+id/goalFragment"
         android:name="com.antisnusbolaget.slutasnusa2.GoalFragment"
         android:label="fragment_goal"
-        tools:layout="@layout/fragment_goal" />
+        tools:layout="@layout/fragment_goal" >
+        <action
+            android:id="@+id/action_goalFragment_to_achievementFragment2"
+            app:destination="@id/achievementFragment" />
+    </fragment>
 </navigation>
