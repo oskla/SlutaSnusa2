@@ -44,20 +44,6 @@ class GoalFragment : Fragment() {
             inputGoalName
             inputGoalCost
 
-            fun switchCheckedBox(v : View) {
-                when (v.id) {
-                    R.id.checkboxNo -> checkboxNo.isChecked = false
-                    R.id.checkboxYes -> checkboxYes.isChecked = false
-                }
-            }
-
-            checkboxNo.setOnClickListener{
-                switchCheckedBox(checkboxYes)
-            }
-
-            checkboxYes.setOnClickListener{
-                switchCheckedBox(checkboxNo)
-            }
 
         }
 

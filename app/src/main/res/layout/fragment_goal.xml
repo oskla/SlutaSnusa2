@@ -116,88 +116,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-            <com.google.android.material.card.MaterialCardView
-
-                android:id="@+id/materialCardView4"
-                style="@style/ShapeAppearance.App.SmallComponent"
+            <RadioGroup
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginVertical="15dp"
-                android:checkable="true"
-                android:focusable="true"
-                android:gravity="center"
-                app:cardBackgroundColor="@color/yellow"
-                app:cardElevation="8dp">
-            <CheckBox
-                android:id="@+id/checkboxYes"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/custom_checkbox"
-                android:button="@null"
+                android:layout_height="wrap_content">
 
-                />
-
-            </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/Yes"
-                    android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#FFEB6C"
+                    android:buttonTint="#000000"
                     android:fontFamily="@font/montserrat_bold"
+                    android:elevation="10dp"
                     android:text="Ja"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textColor="#000000" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-
-            <com.google.android.material.card.MaterialCardView
-
-                android:id="@+id/materialCardView5"
-                style="@style/ShapeAppearance.App.SmallComponent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginVertical="15dp"
-                android:checkable="true"
-                android:focusable="true"
-                android:gravity="center"
-                app:cardBackgroundColor="@color/yellow"
-                app:cardElevation="8dp">
-                <CheckBox
-                    android:id="@+id/checkboxNo"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/custom_checkbox"
-                    android:button="@null"
-                    />
-
-
-            </com.google.android.material.card.MaterialCardView>
-                <TextView
-                    android:id="@+id/No"
-                    android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#FFEB6C"
+                    android:buttonTint="#000000"
                     android:fontFamily="@font/montserrat_bold"
+                    android:elevation="10dp"
                     android:text="Nej"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                    android:textColor="#000000" />
+            </RadioGroup>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
