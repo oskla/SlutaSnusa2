@@ -33,6 +33,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var daysLeftAchievement = 0
     var animationRuns = 1 // counter for animation in HomeFragment
     var settingsChanged = false
+    var goalExists = false // determines what to show in AchievementFragment
     //___________________________________________________________________________________________
 
     // LiveData variables

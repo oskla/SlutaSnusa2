@@ -116,9 +116,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+
             <RadioGroup
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+
+                >
 
                 <RadioButton
                     android:id="@+id/radioButton"
@@ -126,10 +131,15 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFEB6C"
                     android:buttonTint="#000000"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:checked="true"
                     android:elevation="10dp"
+
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="Ja"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+
+                    />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
@@ -137,11 +147,21 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFEB6C"
                     android:buttonTint="#000000"
-                    android:fontFamily="@font/montserrat_bold"
                     android:elevation="10dp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="Nej"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
             </RadioGroup>
+
+                <Button
+                    android:id="@+id/btn_sumbitGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Spara mål" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

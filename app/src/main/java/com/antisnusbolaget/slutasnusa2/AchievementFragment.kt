@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -35,7 +37,21 @@ class AchievementFragment : Fragment() {
 
 
         binding?.apply {
+            // Show statisticsFragment if goal exists
+            if (sharedViewModel.goalExists) {
+                fragmentContainerGoal.isVisible = true
+                btnAdd.isVisible = false
+                twGoalnotreached.isVisible = false
+            } else {
+                fragmentContainerGoal.isVisible = false
+                btnAdd.isVisible = true
+                twGoalnotreached.isVisible = true
+            }
+
+
             btnAdd.setOnClickListener{
+                // When adding goal set goalExists to true
+                sharedViewModel.goalExists = true
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
 
                     findNavController().safelyNavigate(R.id.action_achievementFragment_to_goalFragment)

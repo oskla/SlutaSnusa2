@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
     tools:context=".StatisticsFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -20,25 +20,41 @@
         android:checkable="true"
         android:focusable="true"
         android:gravity="center"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.slider.Slider
-            android:id="@+id/sliderGoal"
-            haloColor="@color/yellow"
-            labelBehavior="gone"
-            trackColorInactive="@color/orange"
-            trackHeight="10dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginBottom="116dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp"
+            >
+        <TextView
+            android:id="@+id/tw_headingGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resa till Liverpool"
+            android:fontFamily="@font/montserrat_bold"
+            />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderGoal"
+            app:haloColor="@color/yellow"
+            app:labelBehavior="gone"
+            app:trackColorInactive="@color/orange"
+            app:trackHeight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:valueFrom="1"
             android:valueTo="100"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

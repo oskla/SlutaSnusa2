@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentGoalBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
@@ -44,6 +46,15 @@ class GoalFragment : Fragment() {
             inputGoalName
             inputGoalCost
 
+            btnSumbitGoal.setOnClickListener {
+
+                lifecycleScope.launchWhenResumed {
+
+                    findNavController().safelyNavigate(R.id.action_goalFragment_to_achievementFragment2)
+
+
+                }
+            }
 
         }
 
