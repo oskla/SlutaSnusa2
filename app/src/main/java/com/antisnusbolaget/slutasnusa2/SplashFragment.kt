@@ -40,6 +40,7 @@ class SplashFragment : Fragment() {
         sharedViewModel.readLocal("date")
         sharedViewModel.readLocal("goalName")
         sharedViewModel.readLocal("goalExists")
+        sharedViewModel.readLocal("moneyGoal")
 
     }
 

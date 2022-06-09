@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+import kotlin.properties.Delegates
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -36,6 +37,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var settingsChanged = false
     var goalExists = false // determines what to show in AchievementFragment
     var goalName = "hello"
+    var moneyGoal = 0
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -172,6 +174,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                             "date" -> quitDate = stringBuilder.toString()
                             "goalName" -> goalName = stringBuilder.toString()
                             "goalExists" -> goalExists = true
+                            "moneyGoal" -> moneyGoal = stringBuilder.toString().toInt()
                         }
                     }
 

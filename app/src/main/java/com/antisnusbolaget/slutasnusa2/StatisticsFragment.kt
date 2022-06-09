@@ -48,6 +48,8 @@ class StatisticsFragment : Fragment() {
 
         binding?.apply {
             twHeadingGoal.text = sharedViewModel.goalName
+            twMoneyGoal.text = sharedViewModel.moneyGoal.toString() + " kr"
+
             sliderGoal.addOnChangeListener { _, value, _ ->
                 sliderGoal.setLabelFormatter {
                     val format = NumberFormat.getPercentInstance()
