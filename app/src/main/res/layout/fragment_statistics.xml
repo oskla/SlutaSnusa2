@@ -44,6 +44,15 @@
                 android:text="Resa till Liverpool"
                 android:textColor="#000000" />
 
+            <TextView
+                android:id="@+id/tw_moneySavedPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="199"
+                android:textColor="#000000" />
+
         <com.google.android.material.slider.Slider
             android:id="@+id/sliderGoal"
             app:haloColor="@color/yellow"

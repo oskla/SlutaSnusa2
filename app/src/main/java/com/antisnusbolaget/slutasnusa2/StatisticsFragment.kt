@@ -15,11 +15,14 @@ import com.antisnusbolaget.slutasnusa2.databinding.FragmentStatisticsBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.transition.Hold
+import java.text.NumberFormat
+import java.util.*
 
 class StatisticsFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentStatisticsBinding? = null
+    private var sliderValue: Int = 1
 
 
     // Prevents multiple navController calls
@@ -45,10 +48,18 @@ class StatisticsFragment : Fragment() {
 
         binding?.apply {
             twHeadingGoal.text = sharedViewModel.goalName
+            sliderGoal.addOnChangeListener { _, value, _ ->
+                sliderGoal.setLabelFormatter {
+                    val format = NumberFormat.getCurrencyInstance()
+                    format.maximumFractionDigits = 0
+                    format.currency = Currency.getInstance("%")
+                    format.format(value.toInt())
+                }
+                sliderValue = value.toInt()
+                twMoneySavedPercentage.text = "$sliderValue %"
+            }
 
         }
-
-
 
 
         return fragmentBinding.root
