@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import com.antisnusbolaget.slutasnusa2.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.io.*
+import java.nio.file.Files.exists
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -151,27 +152,39 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         if (key.trim() != "") {
             val fileInputStream: FileInputStream?
             val dir = context.fileList()
-            if (dir.isEmpty() ) { // If fileList=empty - don't run function
+            if (dir.isEmpty()) { // If fileList=empty - don't run function
                 return
             } else {
-                fileInputStream = context.openFileInput(key)
-                val inputStreamReader = InputStreamReader(fileInputStream)
-                val bufferedReader = BufferedReader(inputStreamReader)
-                val stringBuilder: StringBuilder = StringBuilder()
-                var text: String?
-                while (run {
-                        text = bufferedReader.readLine()
-                        text
-                    } != null) {
-                    stringBuilder.append(text)
-                    when (key) { // Looping through list of keys to set data
-                        "unit" -> setUnitQuantity(stringBuilder.toString().toInt())
-                        "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
-                        "date" -> quitDate = stringBuilder.toString()
-                        "goalName" -> goalName = stringBuilder.toString()
-                        "goalExists" -> goalExists = true
+                try {
+                    fileInputStream = context?.openFileInput(key)
+                    val inputStreamReader = InputStreamReader(fileInputStream)
+                    val bufferedReader = BufferedReader(inputStreamReader)
+                    val stringBuilder: StringBuilder = StringBuilder()
+                    var text: String?
+                    while (run {
+                            text = bufferedReader.readLine()
+                            text
+                        } != null) {
+                        stringBuilder.append(text)
+                        when (key) { // Looping through list of keys to set data
+                            "unit" -> setUnitQuantity(stringBuilder.toString().toInt())
+                            "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
+                            "date" -> quitDate = stringBuilder.toString()
+                            "goalName" -> goalName = stringBuilder.toString()
+                            "goalExists" -> goalExists = true
+                        }
                     }
+
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                } catch (e: NumberFormatException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
+
             }
         }
     }

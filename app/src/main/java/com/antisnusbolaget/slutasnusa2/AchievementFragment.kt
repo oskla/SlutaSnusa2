@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AchievementFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
@@ -34,7 +35,8 @@ class AchievementFragment : Fragment() {
     ): View {
         val fragmentBinding = FragmentAchievementBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-
+        val navBar: BottomNavigationView? = activity?.findViewById(R.id.bottomNavigationView)
+        navBar?.isVisible=true
 
         binding?.apply {
             // Show statisticsFragment if goal exists
@@ -50,8 +52,7 @@ class AchievementFragment : Fragment() {
 
 
             btnAdd.setOnClickListener{
-                // When adding goal set goalExists to true
-                sharedViewModel.goalExists = true
+
                 lifecycleScope.launchWhenResumed { // Prevents multiple navController calls
 
                     findNavController().safelyNavigate(R.id.action_achievementFragment_to_goalFragment)

@@ -50,7 +50,7 @@ class StatisticsFragment : Fragment() {
             twHeadingGoal.text = sharedViewModel.goalName
             sliderGoal.addOnChangeListener { _, value, _ ->
                 sliderGoal.setLabelFormatter {
-                    val format = NumberFormat.getCurrencyInstance()
+                    val format = NumberFormat.getPercentInstance()
                     format.maximumFractionDigits = 0
                     format.currency = Currency.getInstance("%")
                     format.format(value.toInt())
