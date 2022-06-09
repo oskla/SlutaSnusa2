@@ -117,7 +117,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,14 +153,14 @@
                     android:textSize="18sp" />
             </RadioGroup>
 
-                <Button
-                    android:id="@+id/btn_sumbitGoal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/btn_sumbitGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                    android:layout_gravity="end"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Spara mål" />
+                android:layout_gravity="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Spara mål" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

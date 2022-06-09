@@ -38,6 +38,9 @@ class SplashFragment : Fragment() {
         sharedViewModel.readLocal("unit")
         sharedViewModel.readLocal("cost")
         sharedViewModel.readLocal("date")
+        sharedViewModel.readLocal("goalName")
+        sharedViewModel.readLocal("goalExists")
+
     }
 
     override fun onCreateView(

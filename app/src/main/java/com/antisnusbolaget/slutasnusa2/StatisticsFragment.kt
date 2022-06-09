@@ -21,6 +21,7 @@ class StatisticsFragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentStatisticsBinding? = null
 
+
     // Prevents multiple navController calls
     private fun NavController.safelyNavigate(@IdRes resId: Int, args: Bundle? = null) =
         try { navigate(resId, args) }
@@ -28,6 +29,7 @@ class StatisticsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -42,7 +44,7 @@ class StatisticsFragment : Fragment() {
         navBar?.isVisible=false
 
         binding?.apply {
-
+            twHeadingGoal.text = sharedViewModel.goalName
 
         }
 

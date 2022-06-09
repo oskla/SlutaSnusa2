@@ -34,6 +34,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     var animationRuns = 1 // counter for animation in HomeFragment
     var settingsChanged = false
     var goalExists = false // determines what to show in AchievementFragment
+    var goalName = "hello"
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -150,7 +151,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         if (key.trim() != "") {
             val fileInputStream: FileInputStream?
             val dir = context.fileList()
-            if (dir.isEmpty()) { // If fileList=empty - don't run function
+            if (dir.isEmpty() ) { // If fileList=empty - don't run function
                 return
             } else {
                 fileInputStream = context.openFileInput(key)
@@ -167,6 +168,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                         "unit" -> setUnitQuantity(stringBuilder.toString().toInt())
                         "cost" -> setCostPerUnit(stringBuilder.toString().toInt())
                         "date" -> quitDate = stringBuilder.toString()
+                        "goalName" -> goalName = stringBuilder.toString()
+                        "goalExists" -> goalExists = true
                     }
                 }
             }

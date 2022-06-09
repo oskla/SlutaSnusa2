@@ -47,7 +47,10 @@ class GoalFragment : Fragment() {
             inputGoalCost
 
             btnSumbitGoal.setOnClickListener {
-
+                sharedViewModel.goalName = inputGoalName.text.toString()
+                sharedViewModel.goalExists = true
+                sharedViewModel.saveLocal("goalName", sharedViewModel.goalName)
+                sharedViewModel.saveLocal("goalExists", sharedViewModel.goalExists.toString())
                 lifecycleScope.launchWhenResumed {
 
                     findNavController().safelyNavigate(R.id.action_goalFragment_to_achievementFragment2)

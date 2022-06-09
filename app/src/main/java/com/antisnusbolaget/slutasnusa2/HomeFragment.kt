@@ -72,7 +72,6 @@ class HomeFragment : Fragment() {
             }
 
 
-
             btnSettings.setOnClickListener{
                 lifecycleScope.launchWhenResumed {
                     findNavController().safelyNavigate(R.id.action_homeFragment_to_settingsFragment)

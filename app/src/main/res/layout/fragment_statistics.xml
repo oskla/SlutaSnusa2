@@ -34,13 +34,15 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="15dp"
             >
-        <TextView
-            android:id="@+id/tw_headingGoal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Resa till Liverpool"
-            android:fontFamily="@font/montserrat_bold"
-            />
+
+            <TextView
+                android:id="@+id/tw_headingGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Resa till Liverpool"
+                android:textColor="#000000" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/sliderGoal"
