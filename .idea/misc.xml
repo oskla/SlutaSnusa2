@@ -48,6 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_screen_slide7.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.4329787234042553" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_unit.xml" value="0.5007518796992482" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2864583333333333" />
