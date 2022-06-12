@@ -49,18 +49,8 @@ class StatisticsFragment : Fragment() {
         binding?.apply {
             twHeadingGoal.text = sharedViewModel.goalName
             twMoneyGoal.text = sharedViewModel.moneyGoal.toString() + " kr"
-
-            sliderGoal.addOnChangeListener { _, value, _ ->
-                sliderGoal.setLabelFormatter {
-                    val format = NumberFormat.getPercentInstance()
-                    format.maximumFractionDigits = 0
-                    format.currency = Currency.getInstance("%")
-                    format.format(value.toInt())
-                }
-                sliderValue = value.toInt()
-                twMoneySavedPercentage.text = "$sliderValue %"
-            }
-
+            sliderGoal.progress = sharedViewModel.moneyGoal
+            twMoneySavedPercentage.text = "$sliderValue %"
         }
 
 

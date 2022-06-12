@@ -54,17 +54,14 @@
                 android:textColor="#000000" />
 
 
-        <com.google.android.material.slider.Slider
+        <ProgressBar
             android:id="@+id/sliderGoal"
             app:haloColor="@color/yellow"
-            app:labelBehavior="gone"
-            app:trackColorInactive="@color/orange"
-            app:trackHeight="10dp"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:valueFrom="1"
-            android:valueTo="100"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:max="100"
+            android:progress="0"/>
 
             <TextView
                 android:id="@+id/tw_moneyGoal"
