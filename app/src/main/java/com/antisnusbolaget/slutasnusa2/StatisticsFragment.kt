@@ -22,7 +22,6 @@ class StatisticsFragment : Fragment() {
 
     private val sharedViewModel: UserViewModel by activityViewModels()
     private var binding: FragmentStatisticsBinding? = null
-    private var sliderValue: Int = 1
 
 
     // Prevents multiple navController calls
@@ -47,10 +46,8 @@ class StatisticsFragment : Fragment() {
         navBar?.isVisible=false
 
         binding?.apply {
-            twHeadingGoal.text = sharedViewModel.goalName
-            twMoneyGoal.text = sharedViewModel.moneyGoal.toString() + " kr"
-            sliderGoal.progress = sharedViewModel.moneyGoal
-            twMoneySavedPercentage.text = "$sliderValue %"
+
+
         }
 
 

@@ -125,23 +125,21 @@
                 >
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioYes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFEB6C"
                     android:buttonTint="#000000"
                     android:checked="true"
                     android:elevation="10dp"
-
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Ja"
                     android:textColor="#000000"
                     android:textSize="18sp"
-
                     />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/radioNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFEB6C"

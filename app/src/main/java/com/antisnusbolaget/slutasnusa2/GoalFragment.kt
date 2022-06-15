@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.antisnusbolaget.slutasnusa2.databinding.FragmentDateBinding
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentGoalBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -53,6 +52,7 @@ class GoalFragment : Fragment() {
                 sharedViewModel.saveLocal("goalName", sharedViewModel.goalName)
                 sharedViewModel.saveLocal("goalExists", sharedViewModel.goalExists.toString())
                 sharedViewModel.saveLocal("moneyGoal", sharedViewModel.moneyGoal.toString())
+                sharedViewModel.goalFun(radioYes)
 
 
                 lifecycleScope.launchWhenResumed {

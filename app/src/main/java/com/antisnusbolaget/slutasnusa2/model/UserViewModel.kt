@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.app.Application
 import android.content.Context
 import android.util.TypedValue
+import android.view.View
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
@@ -32,12 +34,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN) // DateFormatter & Empty variable for user pick
     var quitDate = ""
     val currentDate: String? = dateFormatter.format(Date())
-    var daysLeftAchievement = 0
     var animationRuns = 1 // counter for animation in HomeFragment
     var settingsChanged = false
     var goalExists = false // determines what to show in AchievementFragment
     var goalName = "hello"
     var moneyGoal = 0
+    var countExistingMoney = false
     //___________________________________________________________________________________________
 
     // LiveData variables
@@ -99,35 +101,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val moneySaved = costPerDay?.times(daysWithout!!)
         if (moneySaved != null) {
             setTotalMoneySaved(moneySaved)
-        }
-    }
-
-    fun daysLeftAchievement(achievementDays: Int): Int { // Calculating days until achievement is fulfilled
-        val daysLeftAchievement2 = (achievementDays - daysWithout.value!!)
-        return if (daysLeftAchievement2 > 0) {
-            daysLeftAchievement2
-        } else {
-            0
-        }
-    }
-
-    fun moneySavedAchievement( // Calculating amount of money saved upon reaching achievement
-        achievementDays: Int,
-        textView: TextView,
-    ): Int {
-        val costPerWeek = costPerUnit.value?.times(unitPerWeek.value!!)
-        val costPerDay = costPerWeek?.div(7)
-        val moneySavedAchievement2 = costPerDay?.times(achievementDays)!!
-
-        if (moneySavedAchievement2 > 9999) {
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 75F)
-        }
-        println(moneySavedAchievement2)
-
-        return if (moneySavedAchievement2 > 0) {
-            moneySavedAchievement2
-        } else {
-            0
         }
     }
 
@@ -209,6 +182,22 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
         animator.start()
     }
+
+
+    fun goalFun(view: View){
+        if (view is RadioButton) {
+
+            if (view.isChecked){
+                //if YES
+                println("i want to count existing moneys")
+            }else{
+                //if NO
+                println("I do not want to count already saved monys")
+            }
+        }
+    }
+
+
 }
 
 
