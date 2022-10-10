@@ -55,14 +55,7 @@ class SplashFragment : Fragment() {
         navBar?.isVisible=false
 
         splashIcon.visibility = View.GONE
-
-        //Onclick view remove later
-        fragmentBinding.root.setOnClickListener{
-            lifecycleScope.launchWhenResumed {
-                findNavController().safelyNavigate(R.id.action_splashFragment_to_unitFragment)
-            }
-        }
-
+        
         fadeAnimationSplash()
 
         return fragmentBinding.root
@@ -75,7 +68,7 @@ class SplashFragment : Fragment() {
             .setListener(object: AnimatorListenerAdapter(){
 
                 // On start
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                     super.onAnimationStart(animation)
                     splashIcon.visibility = View.VISIBLE
                     //loading our custom made animations
