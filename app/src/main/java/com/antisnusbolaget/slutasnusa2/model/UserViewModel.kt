@@ -153,6 +153,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 return
             } else {
                 fileInputStream = context.openFileInput(key)
+                val file = context.getFileStreamPath(key)
+
+                if(file == null || !file.exists()) {
+                    return
+                }
                 val inputStreamReader = InputStreamReader(fileInputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
                 val stringBuilder: StringBuilder = StringBuilder()
