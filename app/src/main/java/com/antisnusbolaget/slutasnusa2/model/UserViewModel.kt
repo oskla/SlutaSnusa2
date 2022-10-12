@@ -152,12 +152,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             if (dir.isEmpty()) { // If fileList=empty - don't run function
                 return
             } else {
-                fileInputStream = context.openFileInput(key)
-                val file = context.getFileStreamPath(key)
 
+                val file = context.getFileStreamPath(key)
                 if(file == null || !file.exists()) {
                     return
                 }
+                fileInputStream = context.openFileInput(key)
+
                 val inputStreamReader = InputStreamReader(fileInputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
                 val stringBuilder: StringBuilder = StringBuilder()
