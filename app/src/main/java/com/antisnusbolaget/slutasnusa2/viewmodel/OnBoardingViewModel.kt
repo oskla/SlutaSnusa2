@@ -11,7 +11,7 @@ class OnBoardingViewModel : ViewModel() {
         private set
     var amountOfUnits = mutableStateOf(0)
         private set
-    var dateWhenQuit = mutableStateOf("2023-01-12")
+    var dateWhenQuit = mutableStateOf(0L)
         private set
 
     fun handleAction(action: Event) {
@@ -32,5 +32,6 @@ class OnBoardingViewModel : ViewModel() {
 
     private fun formatDate(action: OnBoardingActions.SetDate) {
         dateWhenQuit.value = action.date
+        println(dateWhenQuit.value)
     }
 }
