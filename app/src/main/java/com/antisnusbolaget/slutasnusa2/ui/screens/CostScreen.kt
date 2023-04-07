@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
@@ -14,18 +13,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen() {
+fun CostScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green),
-        contentAlignment = Alignment.Center,
+            .background(Color.Gray),
     ) {
-        Text(text = "Home Screen", fontSize = 30.sp)
+        Text(text = "Cost Screen", fontSize = 30.sp)
     }
 }
 
-private const val componentName = "Home Screen"
+private const val componentName = "Cost Screen"
 
 @Preview("$componentName (light)", showBackground = true)
 @Preview("$componentName (dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -33,5 +31,5 @@ private const val componentName = "Home Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    HomeScreen()
+    CostScreen()
 }
