@@ -31,6 +31,7 @@ fun RootComponent() {
 
     bottomBarState.value = Screen.shouldShowBottomBar(navBackStackEntry?.destination?.route)
     topBarState.value = Screen.shouldShowTopBar(navBackStackEntry?.destination?.route)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
             scaffoldState = scaffoldState,
