@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2
+package com.antisnusbolaget.slutasnusa2.views
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSplashBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView

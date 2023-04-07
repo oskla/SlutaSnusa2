@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2
+package com.antisnusbolaget.slutasnusa2.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel
 

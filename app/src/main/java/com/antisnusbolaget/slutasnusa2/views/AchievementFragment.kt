@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2
+package com.antisnusbolaget.slutasnusa2.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.achievementslides.*
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentAchievementBinding
 import com.antisnusbolaget.slutasnusa2.model.UserViewModel

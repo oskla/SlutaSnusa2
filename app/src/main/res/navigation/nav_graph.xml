@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.HomeFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -20,7 +20,7 @@
     
     <fragment
         android:id="@+id/dateFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.DateFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.DateFragment"
         android:label="fragment_date"
         tools:layout="@layout/fragment_date">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/costFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.CostFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.CostFragment"
         android:label="fragment_cost"
         tools:layout="@layout/fragment_cost" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/unitFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.UnitFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.UnitFragment"
         android:label="fragment_unit"
         tools:layout="@layout/fragment_unit" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.SplashFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -77,12 +77,12 @@
     </fragment>
     <fragment
         android:id="@+id/achievementFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.AchievementFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.AchievementFragment"
         android:label="fragment_achievment"
         tools:layout="@layout/fragment_achievement" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.antisnusbolaget.slutasnusa2.SettingsFragment"
+        android:name="com.antisnusbolaget.slutasnusa2.views.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
