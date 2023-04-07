@@ -89,6 +89,11 @@ dependencies {
     // Koin
     implementation "io.insert-koin:koin-androidx-compose:3.4.1"
 
+    // Compose Navigation
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+
 }
 
 
