@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.views
+package com.antisnusbolaget.slutasnusa2.old.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentUnitBinding
-import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.antisnusbolaget.slutasnusa2.old.viewmodel.UserViewModel
 
 class UnitFragment : Fragment() {
 

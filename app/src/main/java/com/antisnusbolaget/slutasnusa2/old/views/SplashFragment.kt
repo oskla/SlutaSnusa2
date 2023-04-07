@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.views
+package com.antisnusbolaget.slutasnusa2.old.views
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentSplashBinding
-import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.antisnusbolaget.slutasnusa2.old.viewmodel.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SplashFragment : Fragment() {

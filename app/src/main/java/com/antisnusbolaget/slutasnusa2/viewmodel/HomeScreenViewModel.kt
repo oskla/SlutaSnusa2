@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.model
+package com.antisnusbolaget.slutasnusa2.viewmodel
 
 import androidx.lifecycle.ViewModel
 
