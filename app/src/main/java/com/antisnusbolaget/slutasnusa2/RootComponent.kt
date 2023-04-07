@@ -10,18 +10,21 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.compose.rememberNavController
+import com.antisnusbolaget.slutasnusa2.navigation.NavGraph
 
 @Composable
 fun RootComponent() {
+    val navController = rememberNavController()
+    val materialBlue700 = Color(0xFF1976D2)
+    val scaffoldState = rememberScaffoldState()
+
     Box(modifier = Modifier.fillMaxSize()) {
-        val materialBlue700 = Color(0xFF1976D2)
-        val scaffoldState = rememberScaffoldState()
         Scaffold(
             scaffoldState = scaffoldState,
-            drawerContent = { Text(text = "drawerContent") },
             content = { scaffoldPadding ->
                 Box(modifier = Modifier.padding(paddingValues = scaffoldPadding)) {
-                    // TODO NAV GRAPH
+                    NavGraph(navController = navController)
                 }
             },
             bottomBar = { BottomAppBar(backgroundColor = materialBlue700) { Text("BottomAppBar") } },
