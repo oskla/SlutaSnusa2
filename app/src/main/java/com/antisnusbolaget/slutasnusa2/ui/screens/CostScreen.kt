@@ -17,7 +17,7 @@ fun CostScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray),
+            .background(Color.Yellow),
     ) {
         Text(text = "Cost Screen", fontSize = 30.sp)
     }

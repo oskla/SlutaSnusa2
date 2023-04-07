@@ -10,6 +10,17 @@ sealed class Screen(val route: String, var title: String) {
     object Achievement : Screen(route = "achievement_screen", title = "Achievement")
 
     companion object {
+
+        fun shouldShowTopBar(route: String?): Boolean {
+            val screensWithTopBar = listOf(
+                Unit.route,
+                Cost.route,
+                Date.route,
+            )
+            if (route.isNullOrBlank()) return false
+            return screensWithTopBar.any { route.contains(it, ignoreCase = true) }
+        }
+
         fun shouldShowBottomBar(route: String?): BooleanPair {
             val screensWithBottomYellow = listOf(
                 Unit.route,
