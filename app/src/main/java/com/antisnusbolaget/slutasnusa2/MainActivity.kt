@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.antisnusbolaget.slutasnusa2.di.viewModel
+import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -21,7 +22,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            RootComponent()
+            SlutaSnutaTheme {
+                RootComponent()
+            }
         }
 
         //      val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
