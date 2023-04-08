@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.achievementslides
+package com.antisnusbolaget.slutasnusa2.old.views.achievementslides
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.antisnusbolaget.slutasnusa2.databinding.FragmentScreenSlide365Binding
 
 
-import com.antisnusbolaget.slutasnusa2.model.UserViewModel
+import com.antisnusbolaget.slutasnusa2.old.viewmodel.UserViewModel
 
 class ScreenSlide365Fragment : Fragment() {
     private val sharedViewModel: UserViewModel by activityViewModels()

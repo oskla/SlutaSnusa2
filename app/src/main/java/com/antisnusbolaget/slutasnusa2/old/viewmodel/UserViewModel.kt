@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.model
+package com.antisnusbolaget.slutasnusa2.old.viewmodel
 
 import android.animation.ValueAnimator
 import android.app.Application

@@ -8,7 +8,7 @@
     android:background="@color/yellow"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".views.AchievementFragment"
+    tools:context=".old.views.AchievementFragment"
     android:paddingBottom="10dp"
     >
 

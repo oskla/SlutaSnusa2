@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".achievementslides.ScreenSlide30Fragment">
+    tools:context=".old.views.achievementslides.ScreenSlide30Fragment">
 
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
