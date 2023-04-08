@@ -1,10 +1,14 @@
 package com.antisnusbolaget.slutasnusa2
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +23,7 @@ import com.antisnusbolaget.slutasnusa2.navigation.Screen
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNav
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RootComponent() {
     val navController = rememberNavController()
@@ -26,11 +31,16 @@ fun RootComponent() {
     val bottomBarState = remember { mutableStateOf(BooleanPair(shouldShowNav = false, shouldShowYellow = false)) }
     val topBarState = rememberSaveable { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val onBoardingScreensIndex = remember { mutableStateOf(0) }
+
+    fun onBackPressed() {
+        onBoardingScreensIndex.value = onBoardingScreensIndex.value - 1
+    }
 
     bottomBarState.value = Screen.shouldShowBottomBar(navBackStackEntry?.destination?.route)
     topBarState.value = Screen.shouldShowTopBar(navBackStackEntry?.destination?.route)
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Scaffold(
             scaffoldState = scaffoldState,
             content = { scaffoldPadding ->
@@ -42,7 +52,8 @@ fun RootComponent() {
                 BottomNav(
                     navController = navController,
                     bottomBarState = bottomBarState,
-                    onClickNext = { /* TODO - a function that checks whats screen to go to next? If we don't find a clever and clean way to do this, maybe we have to rethink the bottomScaffold architecture. Maybe we can store that state in the viewmodel so that we know where we can tell the navcontroller where we want to go?  */ },
+                    onClickNext = { navController.navigate(Screen.nextScreen(onBoardingScreensIndex)) },
+                    onClickBack = { onBackPressed() },
                 )
             },
             topBar = { TopBar(topBarState = topBarState) },

@@ -1,5 +1,7 @@
 package com.antisnusbolaget.slutasnusa2.navigation
 
+import androidx.compose.runtime.MutableState
+
 data class BooleanPair(val shouldShowNav: Boolean, val shouldShowYellow: Boolean)
 sealed class Screen(val route: String, var title: String) {
     object Home : Screen(route = "home_screen", title = "Home")
@@ -10,13 +12,22 @@ sealed class Screen(val route: String, var title: String) {
     object Achievement : Screen(route = "achievement_screen", title = "Achievement")
 
     companion object {
+        fun nextScreen(onBoardingScreensIndex: MutableState<Int>): String {
+            onBoardingScreensIndex.value += 1
 
+            if (onBoardingScreensIndex.value >= 3) {
+                return Screen.Home.route
+            }
+
+            return screensWithTopBar[onBoardingScreensIndex.value]
+        }
+
+        private val screensWithTopBar = listOf(
+            Cost.route,
+            Unit.route,
+            Date.route,
+        )
         fun shouldShowTopBar(route: String?): Boolean {
-            val screensWithTopBar = listOf(
-                Unit.route,
-                Cost.route,
-                Date.route,
-            )
             if (route.isNullOrBlank()) return false
             return screensWithTopBar.any { route.contains(it, ignoreCase = true) }
         }

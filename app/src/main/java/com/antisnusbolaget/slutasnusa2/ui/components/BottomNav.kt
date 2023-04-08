@@ -30,6 +30,7 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.antisnusbolaget.slutasnusa2.R
+import com.antisnusbolaget.slutasnusa2.helper.BackPressHandler
 import com.antisnusbolaget.slutasnusa2.navigation.BooleanPair
 
 @Composable
@@ -37,6 +38,7 @@ fun BottomNav(
     navController: NavController,
     bottomBarState: MutableState<BooleanPair>,
     onClickNext: () -> Unit,
+    onClickBack: () -> Unit,
 ) {
     when (bottomBarState.value) {
         BooleanPair(shouldShowNav = true, shouldShowYellow = false) ->
@@ -54,7 +56,11 @@ fun BottomNav(
                     .background(MaterialTheme.colorScheme.background)
                     .height(60.dp),
             ) {
-                BottomScaffoldYellow(onClickNext = onClickNext)
+                BottomScaffoldYellow(
+                    onClickNext = onClickNext,
+                    onClickBack = onClickBack,
+                    navController = navController,
+                )
             }
     }
 }
@@ -62,7 +68,16 @@ fun BottomNav(
 @Composable
 fun BottomScaffoldYellow(
     onClickNext: () -> Unit,
+    onClickBack: () -> Unit,
+    navController: NavController,
 ) {
+    BackPressHandler(
+        onBackPressed = {
+            navController.popBackStack()
+            onClickBack()
+        },
+    )
+
     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Image(
             modifier = Modifier.height(45.dp).zIndex(1f),
@@ -104,6 +119,7 @@ private fun PreviewComponent() {
             bottomBarState = mutableStateOf(BooleanPair(shouldShowYellow = true, shouldShowNav = false)),
             navController = rememberNavController(),
             onClickNext = {},
+            onClickBack = {},
         )
         BottomNav(
             bottomBarState = mutableStateOf(
@@ -114,6 +130,7 @@ private fun PreviewComponent() {
             ),
             navController = rememberNavController(),
             onClickNext = {},
+            onClickBack = {},
         )
     }
 }

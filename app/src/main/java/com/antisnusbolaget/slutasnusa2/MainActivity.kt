@@ -1,8 +1,10 @@
 package com.antisnusbolaget.slutasnusa2
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.antisnusbolaget.slutasnusa2.di.viewModel
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
@@ -11,10 +13,10 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_main)
         startKoin {
             androidLogger()
             androidContext(applicationContext)
@@ -26,11 +28,5 @@ class MainActivity : AppCompatActivity() {
                 RootComponent()
             }
         }
-
-        //      val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        //    val navController = navHostFragment.navController
-        //  bottomNav.setupWithNavController(navController)
-        // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }

@@ -4,9 +4,9 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.antisnusbolaget.slutasnusa2.ui.components.Calendar
@@ -30,7 +30,7 @@ fun DateScreenContent(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray),
+            .background(MaterialTheme.colorScheme.background),
     ) {
         Calendar(onDateSelected = onDateSelected)
     }
