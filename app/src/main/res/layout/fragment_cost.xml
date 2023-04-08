@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".views.CostFragment">
+    tools:context=".old.views.CostFragment">
 
     <com.google.android.material.slider.Slider
         android:id="@+id/sliderCost"

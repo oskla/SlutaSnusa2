@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".views.DateFragment">
+    tools:context=".old.views.DateFragment">
 
     <TextView
         android:id="@+id/tw_no"
