@@ -1,23 +1,52 @@
 package com.antisnusbolaget.slutasnusa2.ui.components
 
+import android.annotation.SuppressLint
+import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
+import com.antisnusbolaget.slutasnusa2.R
 
 @Composable
 fun TopBar(
     topBarState: MutableState<Boolean>,
 ) {
     if (topBarState.value) {
-        Box(modifier = Modifier.fillMaxWidth().height(60.dp).background(Color.Yellow)) {
-            Text(text = "TopBar")
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(Color.Yellow),
+        ) {
+            Image(
+                imageVector = ImageVector.vectorResource(id = R.drawable.top_scaffold_yellow),
+                contentDescription = "top",
+                contentScale = ContentScale.Inside,
+            )
         }
     }
+}
+
+private const val componentName = "TopBar"
+
+@SuppressLint("UnrememberedMutableState")
+@Preview("$componentName (light)", showBackground = true)
+@Preview("$componentName (dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview("$componentName (big font)", fontScale = 1.5f, showBackground = true)
+@Preview("$componentName (large screen)", device = Devices.PIXEL_C)
+@Composable
+private fun PreviewComponent() {
+    TopBar(topBarState = mutableStateOf(true))
 }
