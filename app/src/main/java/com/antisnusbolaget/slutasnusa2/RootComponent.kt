@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.antisnusbolaget.slutasnusa2.navigation.BooleanPair
@@ -23,7 +22,6 @@ import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 @Composable
 fun RootComponent() {
     val navController = rememberNavController()
-    val materialBlue700 = Color(0xFF1976D2)
     val scaffoldState = rememberScaffoldState()
     val bottomBarState = remember { mutableStateOf(BooleanPair(shouldShowNav = false, shouldShowYellow = false)) }
     val topBarState = rememberSaveable { mutableStateOf(false) }
@@ -40,7 +38,13 @@ fun RootComponent() {
                     NavGraph(navController = navController)
                 }
             },
-            bottomBar = { BottomNav(navController = navController, bottomBarState = bottomBarState) },
+            bottomBar = {
+                BottomNav(
+                    navController = navController,
+                    bottomBarState = bottomBarState,
+                    onClickNext = { /* TODO - a function that checks whats screen to go to next? If we don't find a clever and clean way to do this, maybe we have to rethink the bottomScaffold architecture. Maybe we can store that state in the viewmodel so that we know where we can tell the navcontroller where we want to go?  */ },
+                )
+            },
             topBar = { TopBar(topBarState = topBarState) },
         )
     }
