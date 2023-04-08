@@ -13,12 +13,10 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.Event
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Calendar(onAction: (Event) -> Unit) {
+fun Calendar(onDateSelected: (Long) -> Unit) {
     val snackState = remember { SnackbarHostState() }
     SnackbarHost(hostState = snackState, Modifier)
     val openDialog = remember { mutableStateOf(true) }
@@ -35,7 +33,7 @@ fun Calendar(onAction: (Event) -> Unit) {
                 TextButton(
                     onClick = {
                         openDialog.value = false
-                        onAction(OnBoardingActions.SetDate(datePickerState.selectedDateMillis!!))
+                        onDateSelected(datePickerState.selectedDateMillis!!)
                     },
                     enabled = confirmEnabled.value,
                 ) {

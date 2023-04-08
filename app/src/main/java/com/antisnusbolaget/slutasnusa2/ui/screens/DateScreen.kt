@@ -11,26 +11,28 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.antisnusbolaget.slutasnusa2.ui.components.Calendar
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.Event
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun DateScreen(viewModel: OnBoardingViewModel = koinViewModel()) {
     DateScreenContent(
-        onAction = { viewModel.handleAction(it) },
+        onDateSelected = { dateInMillis ->
+            viewModel.handleEvents(OnBoardingEvent.SetDate(dateInMillis))
+        },
     )
 }
 
 @Composable
 fun DateScreenContent(
-    onAction: (Event) -> Unit,
+    onDateSelected: (Long) -> Unit,
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Gray),
     ) {
-        Calendar(onAction = onAction)
+        Calendar(onDateSelected = onDateSelected)
     }
 }
 
