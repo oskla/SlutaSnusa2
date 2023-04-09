@@ -30,7 +30,7 @@ sealed class Screen(val route: String, var title: String) {
                 0 -> Cost.route
                 1 -> Unit.route
                 2 -> Date.route
-                else -> Home.route
+                else -> Home.route // TODO this will point to another NavGraph later
             }
         }
 
