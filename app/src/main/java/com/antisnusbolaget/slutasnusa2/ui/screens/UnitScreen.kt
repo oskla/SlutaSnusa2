@@ -70,7 +70,7 @@ fun UnitScreenContent() {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_decrement),
                     contentDescription = "Subtract unit from total amount",
-                    modifier = Modifier.size(80.dp),
+                    modifier = Modifier.size(70.dp),
                 )
             }
             Spacer(Modifier.width(29.dp))
@@ -78,7 +78,7 @@ fun UnitScreenContent() {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_increment),
                     contentDescription = "Add unit to total amount",
-                    modifier = Modifier.size(80.dp),
+                    modifier = Modifier.size(70.dp),
                 )
             }
         }
