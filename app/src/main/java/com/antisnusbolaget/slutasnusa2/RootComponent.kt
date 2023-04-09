@@ -1,8 +1,6 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.os.Build
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,7 +24,6 @@ import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.nextScreen
 import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.onBackPressed
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
     val navController = rememberNavController()

@@ -1,7 +1,5 @@
 package com.antisnusbolaget.slutasnusa2.navigation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -13,7 +11,6 @@ import com.antisnusbolaget.slutasnusa2.ui.screens.UnitScreen
 
 const val ON_BOARDING_GRAPH_ROUTE = "onboarding_route"
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Cost.route, route = ON_BOARDING_GRAPH_ROUTE) {
