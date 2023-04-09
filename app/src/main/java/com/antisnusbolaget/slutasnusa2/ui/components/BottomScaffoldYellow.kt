@@ -3,7 +3,6 @@ package com.antisnusbolaget.slutasnusa2.ui.components
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,13 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -30,40 +24,9 @@ import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.antisnusbolaget.slutasnusa2.R
-import com.antisnusbolaget.slutasnusa2.helper.BackPressHandler
-import com.antisnusbolaget.slutasnusa2.navigation.BooleanPair
-
-@Composable
-fun BottomNav(
-    navController: NavController,
-    bottomBarState: MutableState<BooleanPair>,
-    onClickNext: () -> Unit,
-    onClickBack: () -> Unit,
-) {
-    when (bottomBarState.value) {
-        BooleanPair(shouldShowNav = true, shouldShowYellow = false) ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp),
-            ) {
-                Text(text = "navBar")
-            }
-        BooleanPair(shouldShowNav = false, shouldShowYellow = true) ->
-            Box(
-                modifier = Modifier
-                    .wrapContentWidth()
-                    .background(MaterialTheme.colorScheme.background)
-                    .height(60.dp),
-            ) {
-                BottomScaffoldYellow(
-                    onClickNext = onClickNext,
-                    onClickBack = onClickBack,
-                    navController = navController,
-                )
-            }
-    }
-}
+import com.antisnusbolaget.slutasnusa2.helper.SystemBackPressHandler
+import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
+import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
 @Composable
 fun BottomScaffoldYellow(
@@ -71,7 +34,7 @@ fun BottomScaffoldYellow(
     onClickBack: () -> Unit,
     navController: NavController,
 ) {
-    BackPressHandler(
+    SystemBackPressHandler(
         onBackPressed = {
             navController.popBackStack()
             onClickBack()
@@ -116,17 +79,16 @@ private const val componentName = "BottomBar"
 private fun PreviewComponent() {
     Column() {
         BottomNav(
-            bottomBarState = mutableStateOf(BooleanPair(shouldShowYellow = true, shouldShowNav = false)),
+            bottomBarState = BottomBarVisibility(shouldShowYellow = true, shouldShowNav = false),
             navController = rememberNavController(),
             onClickNext = {},
             onClickBack = {},
         )
         BottomNav(
-            bottomBarState = mutableStateOf(
-                BooleanPair(
-                    shouldShowYellow = false,
-                    shouldShowNav = true,
-                ),
+            bottomBarState =
+            BottomBarVisibility(
+                shouldShowYellow = false,
+                shouldShowNav = true,
             ),
             navController = rememberNavController(),
             onClickNext = {},

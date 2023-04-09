@@ -1,6 +1,7 @@
 package com.antisnusbolaget.slutasnusa2
 
 import android.os.Build
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -17,25 +18,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.antisnusbolaget.slutasnusa2.navigation.BooleanPair
+import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
+import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 import com.antisnusbolaget.slutasnusa2.navigation.NavGraph
 import com.antisnusbolaget.slutasnusa2.navigation.Screen
-import com.antisnusbolaget.slutasnusa2.ui.components.BottomNav
+import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.nextScreen
+import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.onBackPressed
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun RootComponent() {
+fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
-    val bottomBarState = remember { mutableStateOf(BooleanPair(shouldShowNav = false, shouldShowYellow = false)) }
+    val bottomBarState = remember { mutableStateOf(BottomBarVisibility(shouldShowNav = false, shouldShowYellow = false)) }
     val topBarState = rememberSaveable { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val onBoardingScreensIndex = remember { mutableStateOf(0) }
-
-    fun onBackPressed() {
-        onBoardingScreensIndex.value = onBoardingScreensIndex.value - 1
-    }
 
     bottomBarState.value = Screen.shouldShowBottomBar(navBackStackEntry?.destination?.route)
     topBarState.value = Screen.shouldShowTopBar(navBackStackEntry?.destination?.route)
@@ -51,12 +49,12 @@ fun RootComponent() {
             bottomBar = {
                 BottomNav(
                     navController = navController,
-                    bottomBarState = bottomBarState,
-                    onClickNext = { navController.navigate(Screen.nextScreen(onBoardingScreensIndex)) },
-                    onClickBack = { onBackPressed() },
+                    bottomBarState = bottomBarState.value,
+                    onClickNext = { navController.navigate(nextScreen()) },
+                    onClickBack = { onBackPressed(moveToBackCallBack) },
                 )
             },
-            topBar = { TopBar(topBarState = topBarState) },
+            topBar = { TopBar(showTopBar = topBarState.value) },
         )
     }
 }

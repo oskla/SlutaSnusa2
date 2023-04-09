@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -21,9 +19,9 @@ import com.antisnusbolaget.slutasnusa2.R
 
 @Composable
 fun TopBar(
-    topBarState: MutableState<Boolean>,
+    showTopBar: Boolean,
 ) {
-    if (topBarState.value) {
+    if (showTopBar) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,5 +46,5 @@ private const val componentName = "TopBar"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    TopBar(topBarState = mutableStateOf(true))
+    TopBar(showTopBar = true)
 }

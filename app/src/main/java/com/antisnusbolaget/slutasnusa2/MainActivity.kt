@@ -3,6 +3,7 @@ package com.antisnusbolaget.slutasnusa2
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,14 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val moveToBackCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Finish the current activity to minimize the app
+                moveTaskToBack(true)
+            }
+        }
+
         startKoin {
             androidLogger()
             androidContext(applicationContext)
@@ -25,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             SlutaSnutaTheme {
-                RootComponent()
+                RootComponent(moveToBackCallBack = moveToBackCallBack)
             }
         }
     }
