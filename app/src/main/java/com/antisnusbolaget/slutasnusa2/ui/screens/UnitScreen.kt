@@ -43,7 +43,7 @@ fun UnitScreenContent() {
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly.also { Arrangement.spacedBy(space = 30.dp) },
+        verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         Text(
             text = "Hur många dosor snusar du i veckan?",
@@ -58,6 +58,7 @@ fun UnitScreenContent() {
             text = "0", // Placeholder
             fontSize = 100.sp,
             fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(vertical = 30.dp),
         )
 
         Row(
