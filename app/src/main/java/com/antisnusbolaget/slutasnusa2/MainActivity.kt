@@ -1,8 +1,10 @@
 package com.antisnusbolaget.slutasnusa2
 
-import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.antisnusbolaget.slutasnusa2.di.viewModel
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
@@ -11,10 +13,17 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("ResourceType")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_main)
+
+        val moveToBackCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Move the task containing this activity to the back of the activity stack
+                moveTaskToBack(true)
+            }
+        }
+
         startKoin {
             androidLogger()
             androidContext(applicationContext)
@@ -23,14 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             SlutaSnutaTheme {
-                RootComponent()
+                RootComponent(moveToBackCallBack = moveToBackCallBack)
             }
         }
-
-        //      val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        //    val navController = navHostFragment.navController
-        //  bottomNav.setupWithNavController(navController)
-        // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
