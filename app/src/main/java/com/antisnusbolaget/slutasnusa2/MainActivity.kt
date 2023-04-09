@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val moveToBackCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Finish the current activity to minimize the app
+                // Move the task containing this activity to the back of the activity stack
                 moveTaskToBack(true)
             }
         }
