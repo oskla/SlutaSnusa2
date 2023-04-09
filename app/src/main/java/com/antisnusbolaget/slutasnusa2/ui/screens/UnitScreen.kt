@@ -69,7 +69,7 @@ fun UnitScreenContent() {
             IconButton(onClick = { println("Decrement") }) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_decrement),
-                    contentDescription = "Remove unit",
+                    contentDescription = "Subtract unit from total amount",
                     modifier = Modifier.size(80.dp),
                 )
             }
@@ -77,7 +77,7 @@ fun UnitScreenContent() {
             IconButton(onClick = { println("Increment") }) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_increment),
-                    contentDescription = "Add unit",
+                    contentDescription = "Add unit to total amount",
                     modifier = Modifier.size(80.dp),
                 )
             }
