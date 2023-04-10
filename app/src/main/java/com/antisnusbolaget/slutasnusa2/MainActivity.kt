@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import com.antisnusbolaget.slutasnusa2.di.daoModule
+import com.antisnusbolaget.slutasnusa2.di.repositoryModule
 import com.antisnusbolaget.slutasnusa2.di.viewModel
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 import org.koin.android.ext.koin.androidContext
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         startKoin {
             androidLogger()
             androidContext(applicationContext)
-            koin.loadModules(listOf(viewModel))
+            koin.loadModules(listOf(viewModel, daoModule, repositoryModule))
         }
 
         setContent {

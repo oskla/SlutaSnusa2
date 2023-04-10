@@ -12,9 +12,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.antisnusbolaget.slutasnusa2.viewmodel.HomeScreenViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(homeScreenViewModel: HomeScreenViewModel = koinViewModel()) {
+
+val homeScreenViewModel2 = homeScreenViewModel
     Box(
         modifier = Modifier
             .fillMaxSize()
