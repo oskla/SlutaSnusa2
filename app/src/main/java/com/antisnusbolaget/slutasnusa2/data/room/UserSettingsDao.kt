@@ -13,13 +13,13 @@ interface UserSettingsDao {
     suspend fun getAllUserSettings(): UserSettingsEntity
 
     @Query(value = "SELECT costPerUnit FROM $USER_SETTINGS_TABLE")
-    suspend fun getCostPerUnit(): Int
+    suspend fun getCostPerUnit(): Int?
 
     @Query(value = "SELECT unitAmount FROM $USER_SETTINGS_TABLE")
-    suspend fun getUnitAmount(): Int
+    suspend fun getUnitAmount(): Int?
 
     @Query(value = "SELECT quitDate FROM $USER_SETTINGS_TABLE")
-    suspend fun getQuitDate(): Long
+    suspend fun getQuitDate(): Long?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertUserSettings(userSettingsEntity: UserSettingsEntity)

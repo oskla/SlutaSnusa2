@@ -16,7 +16,12 @@ class UserSettingsRepository(private val userSettingsDao: UserSettingsDao) {
         Log.d("Repository", "Succeeded)")
     }
 
-    suspend fun updateUserSettings(cost: Int? = 0, unit: Int? = 4, date: Long? = 5) {
+    suspend fun getCost() {
+        val cost = userSettingsDao.getCostPerUnit()
+        Log.d("Repository", "Cost: $cost")
+    }
+
+    suspend fun updateUserSettings(cost: Int? = null, unit: Int? = null, date: Long? = null) {
         val costDao = userSettingsDao.getCostPerUnit()
         val unitDao = userSettingsDao.getUnitAmount()
         val dateDao = userSettingsDao.getQuitDate()

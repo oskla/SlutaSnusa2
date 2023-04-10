@@ -18,10 +18,8 @@ class OnBoardingViewModel(private val userSettingsRepo: UserSettingsRepository) 
         private set
 
     init {
-        viewModelScope.launch {
-            userSettingsRepo.setCost()
-        }
-        //saveCostPerUnitRoom(43)
+       saveCostPerUnitRoom(costPerUnit = 54)
+
     }
 
     fun handleEvents(event: OnBoardingEvent) {

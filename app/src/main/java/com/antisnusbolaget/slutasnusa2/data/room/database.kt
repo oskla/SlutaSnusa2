@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.antisnusbolaget.slutasnusa2.data.entity.UserSettingsEntity
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@Database(entities = [UserSettingsEntity::class], version = 1, exportSchema = false)
+@Database(entities = [UserSettingsEntity::class], version = 3, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userSettingsDao(): UserSettingsDao

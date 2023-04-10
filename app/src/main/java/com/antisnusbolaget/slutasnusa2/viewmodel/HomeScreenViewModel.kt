@@ -13,7 +13,7 @@ class HomeScreenViewModel(private val userSettingsRepository: UserSettingsReposi
 
     private fun getUserSettingsRoom() {
         viewModelScope.launch {
-            val userSettings = userSettingsRepository.getUserSettings()
+            userSettingsRepository.getUserSettings()
         }
     }
 }

@@ -13,11 +13,11 @@ data class UserSettingsEntity(
     val id: Int = 1,
 
     @ColumnInfo(name = "costPerUnit")
-    val costPerUnit: Int = 0,
+    val costPerUnit: Int?,
 
     @ColumnInfo(name = "unitAmount")
-    val unitAmount: Int = 0,
+    val unitAmount: Int?,
 
     @ColumnInfo(name = "quitDate")
-    val quitDate: Long = 0,
+    val quitDate: Long?,
 )
