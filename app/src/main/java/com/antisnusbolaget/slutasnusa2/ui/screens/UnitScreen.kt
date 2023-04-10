@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.R
-import com.antisnusbolaget.slutasnusa2.ui.theme.MontserratFamily
+import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -46,10 +46,7 @@ fun UnitScreenContent() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
-        Text(
-            fontFamily = MontserratFamily,
-            fontSize = 40.sp,
-            fontWeight = FontWeight.Bold,
+        TextBold(
             text = "Hur många dosor snusar du i veckan?",
             textAlign = TextAlign.Center,
         )
@@ -66,19 +63,17 @@ fun UnitScreenContent() {
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            IconButton(onClick = { println("Decrement") }) {
+            IconButton(onClick = { println("Decrement") }, modifier = Modifier.size(70.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_decrement),
                     contentDescription = "Subtract unit from total amount",
-                    modifier = Modifier.size(70.dp),
                 )
             }
             Spacer(Modifier.width(29.dp))
-            IconButton(onClick = { println("Increment") }) {
+            IconButton(onClick = { println("Increment") }, modifier = Modifier.size(70.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_increment),
                     contentDescription = "Add unit to total amount",
-                    modifier = Modifier.size(70.dp),
                 )
             }
         }

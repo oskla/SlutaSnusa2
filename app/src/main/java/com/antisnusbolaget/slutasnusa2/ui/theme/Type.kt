@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.R
 
 val MontserratFamily = FontFamily(
-    Font(resId = R.font.montserrat_variablefont_wght)
+    Font(resId = R.font.montserrat_bold)
 )
 
 // Set of Material typography styles to start with
