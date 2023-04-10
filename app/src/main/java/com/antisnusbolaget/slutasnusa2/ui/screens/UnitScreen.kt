@@ -41,7 +41,7 @@ fun UnitScreenContent() {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
@@ -50,8 +50,6 @@ fun UnitScreenContent() {
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(320.dp),
-            minLines = 3,
         )
 
         Text(
