@@ -11,6 +11,11 @@ class UserSettingsRepository(private val userSettingsDao: UserSettingsDao) {
         return userSettingsDao.getAllUserSettings()
     }
 
+    suspend fun setCost() {
+        userSettingsDao.upsertUserSettings(UserSettingsEntity(costPerUnit = 64, unitAmount = 4, quitDate = 2))
+        Log.d("Repository", "Succeeded)")
+    }
+
     suspend fun updateUserSettings(cost: Int? = 0, unit: Int? = 4, date: Long? = 5) {
         val costDao = userSettingsDao.getCostPerUnit()
         val unitDao = userSettingsDao.getUnitAmount()
