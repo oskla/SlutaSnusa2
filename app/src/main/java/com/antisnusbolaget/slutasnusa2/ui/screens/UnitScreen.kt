@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.R
+import com.antisnusbolaget.slutasnusa2.ui.theme.MontserratFamily
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -46,9 +47,10 @@ fun UnitScreenContent() {
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         Text(
-            text = "Hur många dosor snusar du i veckan?",
+            fontFamily = MontserratFamily,
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
+            text = "Hur många dosor snusar du i veckan?",
             textAlign = TextAlign.Center,
         )
 

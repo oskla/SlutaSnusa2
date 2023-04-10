@@ -1,13 +1,13 @@
 package com.antisnusbolaget.slutasnusa2
 
+
 import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,7 +27,6 @@ import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 @Composable
 fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
     val navController = rememberNavController()
-    val scaffoldState = rememberScaffoldState()
     val bottomBarState = remember { mutableStateOf(BottomBarVisibility(shouldShowNav = false, shouldShowYellow = false)) }
     val topBarState = rememberSaveable { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -37,7 +36,6 @@ fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
 
     Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Scaffold(
-            scaffoldState = scaffoldState,
             content = { scaffoldPadding ->
                 Box(modifier = Modifier.padding(paddingValues = scaffoldPadding)) {
                     NavGraph(navController = navController)
