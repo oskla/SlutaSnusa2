@@ -15,10 +15,10 @@ sealed class Screen(val route: String, var title: String) {
 
     companion object {
 
-        private val onBoardingScreensIndex = mutableStateOf(0)
+        private val onBoardingScreenIndex = mutableStateOf(0)
 
         private fun handleBackAndForwardNavigation(): String {
-            return when (onBoardingScreensIndex.value) {
+            return when (onBoardingScreenIndex.value) {
                 0 -> Cost.route
                 1 -> Unit.route
                 2 -> Date.route
@@ -27,19 +27,16 @@ sealed class Screen(val route: String, var title: String) {
         }
 
         fun onBackPressed(moveToBack: OnBackPressedCallback): String {
-            if (onBoardingScreensIndex.value <= 0) {
-                onBoardingScreensIndex.value = 0 // för att säkerställa att det verkligen aldrig blir mindre än 0
-
+            if (onBoardingScreenIndex.value <= 0) {
+                onBoardingScreenIndex.value = 0 // för att säkerställa att det verkligen aldrig blir mindre än 0
                 moveToBack.handleOnBackPressed()
             }
-
-            onBoardingScreensIndex.value = onBoardingScreensIndex.value - 1
-
+            onBoardingScreenIndex.value = onBoardingScreenIndex.value - 1
             return handleBackAndForwardNavigation()
         }
 
         fun nextScreen(): String {
-            onBoardingScreensIndex.value += 1
+            onBoardingScreenIndex.value += 1
             return handleBackAndForwardNavigation()
         }
 
