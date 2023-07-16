@@ -1,6 +1,5 @@
 package com.antisnusbolaget.slutasnusa2
 
-
 import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,14 +19,12 @@ import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
 import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 import com.antisnusbolaget.slutasnusa2.navigation.NavGraph
 import com.antisnusbolaget.slutasnusa2.navigation.Screen
-import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.nextScreen
-import com.antisnusbolaget.slutasnusa2.navigation.Screen.Companion.onBackPressed
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 
 @Composable
 fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
     val navController = rememberNavController()
-    val bottomBarState = remember { mutableStateOf(BottomBarVisibility(shouldShowNav = false, shouldShowYellow = false)) }
+    val bottomBarState = remember { mutableStateOf(BottomBarVisibility(isHomeScreen = false, isOnBoarding = false)) }
     val topBarState = rememberSaveable { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
@@ -45,8 +42,8 @@ fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
                 BottomNav(
                     navController = navController,
                     bottomBarState = bottomBarState.value,
-                    onClickNext = { navController.navigate(nextScreen()) },
-                    onClickBack = { onBackPressed(moveToBackCallBack) },
+                    onClickNext = { navController.navigate(Screen.nextScreen()) },
+                    onClickBack = { Screen.onBackPressed(moveToBackCallBack) },
                 )
             },
             topBar = { TopBar(showTopBar = topBarState.value) },
