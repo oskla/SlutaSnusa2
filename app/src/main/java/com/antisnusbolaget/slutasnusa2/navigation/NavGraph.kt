@@ -10,9 +10,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.antisnusbolaget.slutasnusa2.ui.screens.AchievementScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.CostScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.DateScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.HomeScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.SettingScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.UnitScreen
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -51,10 +53,17 @@ fun NavGraph(navController: NavHostController) {
             composable(Screen.Home.route) {
                 HomeScreen()
             }
+            composable(Screen.Settings.route) {
+                SettingScreen()
+            }
+            composable(Screen.Achievement.route) {
+                AchievementScreen()
+            }
         }
     }
 }
 
+// Scope viewModel to graph, as soon as graph is popped -> viewModel with be cleared
 @Composable
 inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navController: NavController): T {
     val navGraphRoute = destination.parent?.route ?: return koinViewModel()
