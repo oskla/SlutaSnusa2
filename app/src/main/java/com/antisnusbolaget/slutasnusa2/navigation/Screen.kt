@@ -2,6 +2,7 @@ package com.antisnusbolaget.slutasnusa2.navigation
 
 import androidx.activity.OnBackPressedCallback
 import androidx.compose.runtime.mutableStateOf
+import androidx.navigation.NavController
 
 data class BottomBarVisibility(val isHomeScreen: Boolean, val isOnBoarding: Boolean)
 
@@ -17,27 +18,33 @@ sealed class Screen(val route: String, var title: String) {
 
         private val onBoardingScreenIndex = mutableStateOf(0)
 
-        private fun handleBackAndForwardNavigation(): String {
-            return when (onBoardingScreenIndex.value) {
-                0 -> Cost.route
-                1 -> Unit.route
-                2 -> Date.route
-                else -> Home.route
+        private fun handleBackAndForwardNavigation(navController: NavController) {
+            when (onBoardingScreenIndex.value) {
+                0 -> navController.navigate(Cost.route) // Cost.route
+                1 -> navController.navigate(Unit.route) // Unit.route
+                2 -> navController.navigate(Date.route)
+                else -> {
+                    navController.navigate(Home.route) {
+                        popUpTo(ON_BOARDING_GRAPH_ROUTE) {
+                            inclusive = true
+                        }
+                    }
+                }
             }
         }
 
-        fun onBackPressed(moveToBack: OnBackPressedCallback): String {
+        fun onBackPressed(moveToBack: OnBackPressedCallback, navController: NavController) {
             if (onBoardingScreenIndex.value <= 0) {
                 onBoardingScreenIndex.value = 0 // för att säkerställa att det verkligen aldrig blir mindre än 0
                 moveToBack.handleOnBackPressed()
             }
             onBoardingScreenIndex.value = onBoardingScreenIndex.value - 1
-            return handleBackAndForwardNavigation()
+            handleBackAndForwardNavigation(navController)
         }
 
-        fun nextScreen(): String {
+        fun nextScreen(navController: NavController) {
             onBoardingScreenIndex.value += 1
-            return handleBackAndForwardNavigation()
+            handleBackAndForwardNavigation(navController)
         }
 
         private val screensWithTopBar = listOf(

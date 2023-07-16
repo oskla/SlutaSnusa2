@@ -42,8 +42,8 @@ fun RootComponent(moveToBackCallBack: OnBackPressedCallback) {
                 BottomNav(
                     navController = navController,
                     bottomBarState = bottomBarState.value,
-                    onClickNext = { navController.navigate(Screen.nextScreen()) },
-                    onClickBack = { Screen.onBackPressed(moveToBackCallBack) },
+                    onClickNext = { Screen.nextScreen(navController) },
+                    onClickBack = { Screen.onBackPressed(moveToBackCallBack, navController) },
                 )
             },
             topBar = { TopBar(showTopBar = topBarState.value) },
