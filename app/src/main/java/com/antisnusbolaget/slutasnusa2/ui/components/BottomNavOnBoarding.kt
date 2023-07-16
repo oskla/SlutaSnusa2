@@ -29,7 +29,7 @@ import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
 import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
 @Composable
-fun BottomScaffoldYellow(
+fun BottomNavOnBoarding(
     onClickNext: () -> Unit,
     onClickBack: () -> Unit,
     navController: NavController,
@@ -79,7 +79,7 @@ private const val componentName = "BottomBar"
 private fun PreviewComponent() {
     Column() {
         BottomNav(
-            bottomBarState = BottomBarVisibility(shouldShowYellow = true, shouldShowNav = false),
+            bottomBarState = BottomBarVisibility(isOnBoarding = true, isHomeScreen = false),
             navController = rememberNavController(),
             onClickNext = {},
             onClickBack = {},
@@ -87,8 +87,8 @@ private fun PreviewComponent() {
         BottomNav(
             bottomBarState =
             BottomBarVisibility(
-                shouldShowYellow = false,
-                shouldShowNav = true,
+                isOnBoarding = false,
+                isHomeScreen = true,
             ),
             navController = rememberNavController(),
             onClickNext = {},
