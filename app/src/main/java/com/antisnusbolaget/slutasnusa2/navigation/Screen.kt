@@ -37,6 +37,7 @@ sealed class Screen(val route: String, var title: String) {
             if (onBoardingScreenIndex.value <= 0) {
                 onBoardingScreenIndex.value = 0 // för att säkerställa att det verkligen aldrig blir mindre än 0
                 moveToBack.handleOnBackPressed()
+                return
             }
             onBoardingScreenIndex.value = onBoardingScreenIndex.value - 1
             handleBackAndForwardNavigation(navController)
