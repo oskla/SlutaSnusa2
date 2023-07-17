@@ -14,12 +14,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,12 +49,7 @@ fun UnitScreenContent() {
             textAlign = TextAlign.Center,
         )
 
-        Text(
-            text = "0", // Placeholder
-            fontSize = 100.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(vertical = 30.dp),
-        )
+        TextBold(text = "0", fontSize = 100.sp)
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -69,7 +62,7 @@ fun UnitScreenContent() {
                     contentDescription = "Subtract unit from total amount",
                 )
             }
-            Spacer(Modifier.width(29.dp))
+            Spacer(Modifier.width(40.dp))
             IconButton(onClick = { println("Increment") }, modifier = Modifier.size(70.dp)) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_increment),
