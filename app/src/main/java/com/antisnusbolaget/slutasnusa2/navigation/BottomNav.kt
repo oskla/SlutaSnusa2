@@ -10,12 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
 
 @Composable
 fun BottomNav(
-    navController: NavController,
     bottomBarState: BottomBarVisibility,
     onClickNext: () -> Unit,
     onClickBack: () -> Unit,
@@ -39,7 +37,6 @@ fun BottomNav(
                 BottomNavOnBoarding(
                     onClickNext = onClickNext,
                     onClickBack = onClickBack,
-                    navController = navController,
                 )
             }
     }
