@@ -33,5 +33,5 @@ private const val componentName = "Home Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    HomeScreen()
+    // HomeScreen()
 }

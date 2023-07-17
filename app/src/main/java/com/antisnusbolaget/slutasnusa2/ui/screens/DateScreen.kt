@@ -44,5 +44,5 @@ private const val componentName = "DateScreen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    DateScreen()
+    // DateScreen()
 }

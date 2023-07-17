@@ -21,22 +21,18 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.helper.SystemBackPressHandler
 import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
 import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
 @Composable
-fun BottomScaffoldYellow(
+fun BottomNavOnBoarding(
     onClickNext: () -> Unit,
     onClickBack: () -> Unit,
-    navController: NavController,
 ) {
     SystemBackPressHandler(
         onBackPressed = {
-            navController.popBackStack()
             onClickBack()
         },
     )
@@ -79,18 +75,16 @@ private const val componentName = "BottomBar"
 private fun PreviewComponent() {
     Column() {
         BottomNav(
-            bottomBarState = BottomBarVisibility(shouldShowYellow = true, shouldShowNav = false),
-            navController = rememberNavController(),
+            bottomBarState = BottomBarVisibility(isOnBoarding = true, isHomeScreen = false),
             onClickNext = {},
             onClickBack = {},
         )
         BottomNav(
             bottomBarState =
             BottomBarVisibility(
-                shouldShowYellow = false,
-                shouldShowNav = true,
+                isOnBoarding = false,
+                isHomeScreen = true,
             ),
-            navController = rememberNavController(),
             onClickNext = {},
             onClickBack = {},
         )
