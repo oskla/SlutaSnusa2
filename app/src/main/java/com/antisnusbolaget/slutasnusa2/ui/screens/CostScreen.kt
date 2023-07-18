@@ -22,10 +22,11 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
 import com.antisnusbolaget.slutasnusa2.ui.theme.orange
+import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun CostScreen() {
+fun CostScreen(viewModel: OnBoardingViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -59,5 +60,5 @@ private const val componentName = "Cost Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    CostScreen()
+    // CostScreen()
 }

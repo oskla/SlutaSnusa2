@@ -22,10 +22,9 @@ import com.antisnusbolaget.slutasnusa2.ui.components.Calendar
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun DateScreen(viewModel: OnBoardingViewModel = koinViewModel()) {
+fun DateScreen(viewModel: OnBoardingViewModel) {
     DateScreenContent(
         onDateSelected = { dateInMillis ->
             viewModel.handleEvents(OnBoardingEvent.SetDate(dateInMillis))

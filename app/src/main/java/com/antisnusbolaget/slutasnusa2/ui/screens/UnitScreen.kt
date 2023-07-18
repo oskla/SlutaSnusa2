@@ -27,10 +27,9 @@ import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun UnitScreen(viewModel: OnBoardingViewModel = koinViewModel()) {
+fun UnitScreen(viewModel: OnBoardingViewModel) {
     UnitScreenContent()
 }
 

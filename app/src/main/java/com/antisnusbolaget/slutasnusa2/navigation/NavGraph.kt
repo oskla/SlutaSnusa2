@@ -34,15 +34,15 @@ fun NavGraph(navController: NavHostController) {
         ) {
             composable(Screen.Cost.route) {
                 val viewModel = it.sharedViewModel<OnBoardingViewModel>(navController)
-                CostScreen()
+                CostScreen(viewModel)
             }
             composable(Screen.Unit.route) {
                 val viewModel = it.sharedViewModel<OnBoardingViewModel>(navController)
-                UnitScreen()
+                UnitScreen(viewModel)
             }
             composable(Screen.Date.route) {
                 val viewModel = it.sharedViewModel<OnBoardingViewModel>(navController)
-                DateScreen()
+                DateScreen(viewModel)
             }
         }
 
