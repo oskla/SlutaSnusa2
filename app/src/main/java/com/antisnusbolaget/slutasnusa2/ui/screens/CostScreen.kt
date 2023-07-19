@@ -23,10 +23,22 @@ import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
 import com.antisnusbolaget.slutasnusa2.ui.theme.orange
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 import kotlin.math.roundToInt
 
 @Composable
 fun CostScreen(viewModel: OnBoardingViewModel) {
+    CostScreenContent(
+        onEvent = {
+            viewModel.handleEvents(it)
+        },
+    )
+}
+
+@Composable
+fun CostScreenContent(
+    onEvent: (OnBoardingEvent) -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,14 +47,15 @@ fun CostScreen(viewModel: OnBoardingViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
-        val sliderPosition = remember { mutableStateOf(0f) }
+        val sliderValue = remember { mutableStateOf(0f) }
         TextBold(text = "Vad kostar en dosa?", textAlign = TextAlign.Center)
-        TextBold(text = "${sliderPosition.value.roundToInt()} kr", fontSize = 100.sp)
+        TextBold(text = "${sliderValue.value.roundToInt()} kr", fontSize = 100.sp)
         Slider(
             modifier = Modifier.padding(horizontal = 20.dp),
-            value = sliderPosition.value,
+            value = sliderValue.value,
             valueRange = 0f..100f,
-            onValueChange = { sliderPosition.value = it },
+            onValueChangeFinished = { onEvent(OnBoardingEvent.SetCost(sliderValue.value.roundToInt())) },
+            onValueChange = { sliderValue.value = it },
             colors = SliderDefaults.colors(
                 activeTrackColor = black,
                 inactiveTrackColor = orange,
