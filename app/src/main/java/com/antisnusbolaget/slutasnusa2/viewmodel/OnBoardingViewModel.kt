@@ -23,7 +23,11 @@ class OnBoardingViewModel : ViewModel() {
     }
 
     private fun setUnit(action: OnBoardingEvent.SetUnit) {
-        state.value = state.value.copy(amountOfUnits = action.unitAmount)
+        if (state.value.amountOfUnits + action.unitAmount < 0) {
+            return
+        }
+        state.value =
+            state.value.copy(amountOfUnits = state.value.amountOfUnits + action.unitAmount)
     }
 
     private fun formatDate(action: OnBoardingEvent.SetDate) {
