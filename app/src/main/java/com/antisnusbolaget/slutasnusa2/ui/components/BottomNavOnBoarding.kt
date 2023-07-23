@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.helper.SystemBackPressHandler
-import com.antisnusbolaget.slutasnusa2.navigation.BottomBarVisibility
 import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
 @Composable
@@ -39,7 +38,9 @@ fun BottomNavOnBoarding(
 
     Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Image(
-            modifier = Modifier.height(45.dp).zIndex(1f),
+            modifier = Modifier
+                .height(45.dp)
+                .zIndex(1f),
             painter = painterResource(id = R.drawable.logo_no_undertext),
             contentDescription = "logo",
             alpha = 0.3f,
@@ -74,19 +75,6 @@ private const val componentName = "BottomBar"
 @Composable
 private fun PreviewComponent() {
     Column() {
-        BottomNav(
-            bottomBarState = BottomBarVisibility(isOnBoarding = true, isHomeScreen = false),
-            onClickNext = {},
-            onClickBack = {},
-        )
-        BottomNav(
-            bottomBarState =
-            BottomBarVisibility(
-                isOnBoarding = false,
-                isHomeScreen = true,
-            ),
-            onClickNext = {},
-            onClickBack = {},
-        )
+        BottomNav()
     }
 }
