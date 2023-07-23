@@ -22,10 +22,15 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
 import com.antisnusbolaget.slutasnusa2.ui.theme.orange
+import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
+import org.koin.androidx.compose.koinViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun CostScreen() {
+fun CostScreen(
+    viewModel: OnBoardingViewModel = koinViewModel(),
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,13 +40,21 @@ fun CostScreen() {
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         val sliderPosition = remember { mutableStateOf(0f) }
-        TextBold(text = "Vad kostar en dosa?", textAlign = TextAlign.Center)
+        TextBold(
+            text = "Vad kostar en dosa?",
+            textAlign = TextAlign.Center,
+        ) // TODO use string resources
+
         TextBold(text = "${sliderPosition.value.roundToInt()} kr", fontSize = 100.sp)
+
         Slider(
             modifier = Modifier.padding(horizontal = 20.dp),
             value = sliderPosition.value,
             valueRange = 0f..100f,
             onValueChange = { sliderPosition.value = it },
+            onValueChangeFinished = {
+                viewModel.handleEvents(OnBoardingEvent.SetCost(sliderPosition.value.roundToInt()))
+            },
             colors = SliderDefaults.colors(
                 activeTrackColor = black,
                 inactiveTrackColor = orange,
