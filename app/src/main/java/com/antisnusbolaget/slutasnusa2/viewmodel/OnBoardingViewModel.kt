@@ -42,7 +42,7 @@ class OnBoardingViewModel : ViewModel() {
     }
 
     private fun setCostPerUnit(cost: Int) {
-        _userData.value = _userData.value.copy(cost = cost)
+        _userData.value = _userData.value.copy(costPerUnit = cost)
     }
 
     private fun setUnit(units: Int) {

@@ -7,7 +7,7 @@ sealed interface OnBoardingScreenState {
 }
 
 data class UserData(
-    val cost: Int = 0,
+    val costPerUnit: Int = 0,
     val units: Int = 0,
     val dateWhenQuit: Long = 0,
 )
