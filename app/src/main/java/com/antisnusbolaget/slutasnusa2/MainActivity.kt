@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val moveToBackCallBack = object : OnBackPressedCallback(true) {
+        val moveToBackCallBack = object : OnBackPressedCallback(true) { // TODO do we need this function with the new setup?
             override fun handleOnBackPressed() {
                 // Move the task containing this activity to the back of the activity stack
                 moveTaskToBack(true)

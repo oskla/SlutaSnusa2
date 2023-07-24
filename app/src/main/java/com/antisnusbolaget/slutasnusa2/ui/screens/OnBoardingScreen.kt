@@ -28,9 +28,9 @@ fun OnBoardingScreen(
         content = {
             Box() {
                 when (uiState.value) {
-                    OnBoardingScreenState.CostScreenState -> CostScreen()
-                    OnBoardingScreenState.UnitScreenState -> UnitScreen()
-                    OnBoardingScreenState.DateScreenState -> DateScreen()
+                    is OnBoardingScreenState.CostScreenState -> CostScreen()
+                    is OnBoardingScreenState.UnitScreenState -> UnitScreen()
+                    is OnBoardingScreenState.DateScreenState -> DateScreen()
                 }
             }
         },

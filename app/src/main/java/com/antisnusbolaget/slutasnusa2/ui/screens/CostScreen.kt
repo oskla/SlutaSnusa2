@@ -40,6 +40,7 @@ fun CostScreen(
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         val sliderPosition = remember { mutableStateOf(0f) }
+
         TextBold(
             text = "Vad kostar en dosa?",
             textAlign = TextAlign.Center,
