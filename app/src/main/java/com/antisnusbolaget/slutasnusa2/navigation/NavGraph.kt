@@ -15,9 +15,9 @@ const val HOME_ROUTE = "home_route"
 fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Onboarding.route,
+        startDestination = Screen.OnBoarding.route,
     ) {
-        composable(Screen.Onboarding.route) {
+        composable(Screen.OnBoarding.route) {
             OnBoardingScreen()
         }
         composable(Screen.Home.route) {
