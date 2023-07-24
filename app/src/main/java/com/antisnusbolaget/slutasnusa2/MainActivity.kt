@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             SlutaSnutaTheme {
-                RootComponent(moveToBackCallBack = moveToBackCallBack)
+                RootComponent()
             }
         }
     }
