@@ -49,7 +49,7 @@ fun DateScreen(
             ) {
                 TextBold(
                     modifier = Modifier.clickable {
-                        println("Pick todays date")
+                        println("Pick todays date") // TODO add functionality for picking today's date
                     }, // TODO stringResources
                     text = "Ja", // TODO stringResources
                     textAlign = TextAlign.Center,
