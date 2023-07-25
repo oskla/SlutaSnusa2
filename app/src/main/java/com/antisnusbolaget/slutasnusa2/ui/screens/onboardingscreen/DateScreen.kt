@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.ui.screens
+package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
