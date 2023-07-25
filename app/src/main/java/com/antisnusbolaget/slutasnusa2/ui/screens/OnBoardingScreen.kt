@@ -8,7 +8,7 @@ import androidx.compose.runtime.collectAsState
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingScreenState
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -16,21 +16,29 @@ import org.koin.androidx.compose.koinViewModel
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val currentViewState = viewModel.currentView.collectAsState()
+    val userData = viewModel.userData.collectAsState()
 
     Scaffold(
         bottomBar = {
             BottomNavOnBoarding(
-                onClickNext = { viewModel.handleEvents(OnBoardingEvent.NavigateToNextState) },
+                onClickNext = {
+                    viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
+                },
                 onClickBack = {},
             )
         },
         content = {
             Box() {
-                when (uiState.value) {
-                    is OnBoardingScreenState.CostScreenState -> CostScreen()
-                    is OnBoardingScreenState.UnitScreenState -> UnitScreen()
-                    is OnBoardingScreenState.DateScreenState -> DateScreen()
+                when (currentViewState.value) {
+                    OnBoardingNavigationView.CostView -> CostScreen()
+                    OnBoardingNavigationView.UnitView -> UnitScreen(
+                        onEvent = { event ->
+                            viewModel.handleEvents(event)
+                        },
+                        amountOfUnitsLabel = userData.value.units.toString(),
+                    )
+                    OnBoardingNavigationView.DateView -> DateScreen()
                 }
             }
         },
