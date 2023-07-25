@@ -13,27 +13,33 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Calendar(onDateSelected: (Long) -> Unit) {
+fun Calendar(
+    onDateSelected: (Long) -> Unit,
+    onDismiss: () -> Unit,
+) {
     val snackState = remember { SnackbarHostState() }
     SnackbarHost(hostState = snackState, Modifier)
-    val isCalenderVisible = remember { mutableStateOf(false) }
+    val isCalenderVisible = remember { mutableStateOf(true) }
+
+    val datePickerState = rememberDatePickerState()
+    val confirmEnabled = remember {
+        derivedStateOf {
+            datePickerState.selectedDateMillis != null
+        }
+    }
 
     if (isCalenderVisible.value) {
-        val datePickerState = rememberDatePickerState()
-        val confirmEnabled =
-            remember { derivedStateOf { datePickerState.selectedDateMillis != null } }
         DatePickerDialog(
-            onDismissRequest = {
-                isCalenderVisible.value = false
-            },
+            onDismissRequest = onDismiss,
             confirmButton = {
                 TextButton(
                     onClick = {
-                        isCalenderVisible.value = false
-                        onDateSelected(datePickerState.selectedDateMillis!!)
+                        onDismiss.invoke()
+                        onDateSelected(datePickerState.selectedDateMillis ?: 0)
                     },
                     enabled = confirmEnabled.value,
                 ) {
@@ -43,14 +49,19 @@ fun Calendar(onDateSelected: (Long) -> Unit) {
             dismissButton = {
                 TextButton(
                     onClick = {
-                        isCalenderVisible.value = false
+                        onDismiss.invoke()
                     },
                 ) {
                     Text("Cancel")
                 }
             },
         ) {
-            DatePicker(state = datePickerState)
+            DatePicker(
+                state = datePickerState,
+                dateValidator = { selectedDate ->
+                    OnBoardingHelpers().isDateInThePast(selectedDate)
+                },
+            )
         }
     }
 }
