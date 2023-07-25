@@ -2,9 +2,12 @@ package com.antisnusbolaget.slutasnusa2.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
@@ -28,17 +31,31 @@ fun OnBoardingScreen(
                 onClickBack = {},
             )
         },
-        content = {
-            Box() {
+        content = { paddingValues ->
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .padding(paddingValues),
+            ) {
                 when (currentViewState.value) {
-                    OnBoardingNavigationView.CostView -> CostScreen()
+                    OnBoardingNavigationView.CostView -> CostScreen(
+                        onEvent = { event -> viewModel.handleEvents(event) },
+                    )
+
                     OnBoardingNavigationView.UnitView -> UnitScreen(
-                        onEvent = { event ->
-                            viewModel.handleEvents(event)
-                        },
+                        onEvent = { event -> viewModel.handleEvents(event) },
                         amountOfUnitsLabel = userData.value.units.toString(),
                     )
-                    OnBoardingNavigationView.DateView -> DateScreen()
+                    is OnBoardingNavigationView.DateView -> {
+                        val calendarVisibility = (currentViewState.value as OnBoardingNavigationView.DateView).showCalendar
+
+                        DateScreen(
+                            showCalendar = calendarVisibility,
+                            onEvent = { event ->
+                                viewModel.handleEvents(event)
+                            },
+                        )
+                    }
                 }
             }
         },

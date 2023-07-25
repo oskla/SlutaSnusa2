@@ -22,14 +22,12 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
 import com.antisnusbolaget.slutasnusa2.ui.theme.orange
-import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import org.koin.androidx.compose.koinViewModel
 import kotlin.math.roundToInt
 
 @Composable
 fun CostScreen(
-    viewModel: OnBoardingViewModel = koinViewModel(), // TODO remove VM here and only provide the data that is needed
+    onEvent: (OnBoardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -54,7 +52,7 @@ fun CostScreen(
             valueRange = 0f..100f,
             onValueChange = { sliderPosition.value = it },
             onValueChangeFinished = {
-                viewModel.handleEvents(OnBoardingEvent.SetCost(sliderPosition.value.roundToInt()))
+                onEvent(OnBoardingEvent.SetCost((sliderPosition.value.roundToInt())))
             },
             colors = SliderDefaults.colors(
                 activeTrackColor = black,
@@ -73,5 +71,5 @@ private const val componentName = "Cost Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    CostScreen()
+    CostScreen(onEvent = {})
 }
