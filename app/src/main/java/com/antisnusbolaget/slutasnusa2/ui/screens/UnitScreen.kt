@@ -26,16 +26,13 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
-import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import org.koin.androidx.compose.koinViewModel
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 
 @Composable
-fun UnitScreen(viewModel: OnBoardingViewModel = koinViewModel()) {
-    UnitScreenContent()
-}
-
-@Composable
-fun UnitScreenContent() {
+fun UnitScreen(
+    onEvent: (OnBoardingEvent) -> Unit,
+    amountOfUnitsLabel: String,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,21 +46,27 @@ fun UnitScreenContent() {
             textAlign = TextAlign.Center,
         )
 
-        TextBold(text = "0", fontSize = 100.sp)
+        TextBold(text = amountOfUnitsLabel, fontSize = 100.sp)
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            IconButton(onClick = { println("Decrement") }, modifier = Modifier.size(70.dp)) {
+            IconButton(
+                onClick = { onEvent(OnBoardingEvent.SetUnit(-1)) },
+                modifier = Modifier.size(70.dp),
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_decrement),
                     contentDescription = "Subtract unit from total amount",
                 )
             }
             Spacer(Modifier.width(40.dp))
-            IconButton(onClick = { println("Increment") }, modifier = Modifier.size(70.dp)) {
+            IconButton(
+                onClick = { onEvent(OnBoardingEvent.SetUnit(+1)) },
+                modifier = Modifier.size(70.dp),
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_increment),
                     contentDescription = "Add unit to total amount",
@@ -82,6 +85,6 @@ private const val componentName = "UnitScreen"
 @Composable
 private fun PreviewComponent() {
     SlutaSnutaTheme {
-        UnitScreenContent()
+        UnitScreen(onEvent = {}, amountOfUnitsLabel = "5")
     }
 }
