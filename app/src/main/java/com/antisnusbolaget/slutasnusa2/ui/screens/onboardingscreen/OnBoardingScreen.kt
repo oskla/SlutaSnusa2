@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.ui.screens
+package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
-import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.DateScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.CostScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.UnitScreen
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView

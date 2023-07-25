@@ -6,8 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.antisnusbolaget.slutasnusa2.ui.screens.AchievementScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.HomeScreen
-import com.antisnusbolaget.slutasnusa2.ui.screens.OnBoardingScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.SettingScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingScreen
 
 const val HOME_ROUTE = "home_route"
 
