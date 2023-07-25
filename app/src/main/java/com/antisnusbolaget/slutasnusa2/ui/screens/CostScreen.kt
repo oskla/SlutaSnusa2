@@ -29,7 +29,7 @@ import kotlin.math.roundToInt
 
 @Composable
 fun CostScreen(
-    viewModel: OnBoardingViewModel = koinViewModel(),
+    viewModel: OnBoardingViewModel = koinViewModel(), // TODO remove VM here and only provide the data that is needed
 ) {
     Column(
         modifier = Modifier
