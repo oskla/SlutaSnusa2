@@ -1,7 +1,6 @@
 package com.antisnusbolaget.slutasnusa2
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.antisnusbolaget.slutasnusa2.di.viewModel
@@ -14,13 +13,6 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val moveToBackCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // Move the task containing this activity to the back of the activity stack
-                moveTaskToBack(true)
-            }
-        }
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

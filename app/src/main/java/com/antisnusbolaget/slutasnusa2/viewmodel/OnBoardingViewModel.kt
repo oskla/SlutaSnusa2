@@ -1,58 +1,62 @@
 package com.antisnusbolaget.slutasnusa2.viewmodel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingScreenState
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.UserData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.util.concurrent.TimeUnit
 
 class OnBoardingViewModel : ViewModel() {
 
-    var costPerUnit = mutableStateOf(0)
-        private set
-    var amountOfUnits = mutableStateOf(0)
-        private set
-    var dateWhenQuit = mutableStateOf(0L)
-        private set
+    private val _userData: MutableStateFlow<UserData> = MutableStateFlow(UserData())
+    val userData: StateFlow<UserData> = _userData
 
     // uiState (what screen to show)
-    private val _uiState =
-        MutableStateFlow<OnBoardingScreenState>(OnBoardingScreenState.CostScreenState)
-    val uiState: StateFlow<OnBoardingScreenState> = _uiState
+    private val _currentView =
+        MutableStateFlow<OnBoardingNavigationView>(OnBoardingNavigationView.CostView)
+    val currentView: StateFlow<OnBoardingNavigationView> = _currentView
 
     fun handleEvents(event: OnBoardingEvent) {
         when (event) {
-            is OnBoardingEvent.SetCost -> setCostPerUnit(event)
-            is OnBoardingEvent.SetDate -> formatDate(event)
-            is OnBoardingEvent.SetUnit -> setUnit(event)
+            is OnBoardingEvent.SetCost -> setCostPerUnit(event.cost)
+            is OnBoardingEvent.SetDate -> formatDate(event.date)
+            is OnBoardingEvent.SetUnit -> setUnit(event.unitAmount)
 
-            is OnBoardingEvent.NavigateToNextState -> navigateToNextState()
+            is OnBoardingEvent.NavigateToNextView -> navigateToNextView()
+            // TODO handle backpress/swipe
         }
     }
 
-    private fun navigateToNextState() {
-        when (uiState.value) {
-            OnBoardingScreenState.CostScreenState -> { _uiState.value = OnBoardingScreenState.UnitScreenState }
-            OnBoardingScreenState.UnitScreenState -> { _uiState.value = OnBoardingScreenState.DateScreenState }
-            OnBoardingScreenState.DateScreenState -> {} // TODO Add actual navigation to Home
+    private fun navigateToNextView() {
+        when (currentView.value) {
+            is OnBoardingNavigationView.CostView -> {
+                _currentView.value = OnBoardingNavigationView.UnitView
+            }
+            is OnBoardingNavigationView.UnitView -> {
+                _currentView.value = OnBoardingNavigationView.DateView
+            }
+            is OnBoardingNavigationView.DateView -> {} // TODO Add actual navigation to Home
         }
     }
 
-    private fun setCostPerUnit(action: OnBoardingEvent.SetCost) {
-        costPerUnit.value = action.cost
+    private fun setCostPerUnit(cost: Int) {
+        _userData.value = _userData.value.copy(costPerUnit = cost)
     }
 
-    private fun setUnit(action: OnBoardingEvent.SetUnit) {
-        amountOfUnits.value = action.unitAmount
+    private fun setUnit(units: Int) {
+        if (_userData.value.units + units < 0) {
+            return
+        }
+        _userData.value = _userData.value.copy(units = _userData.value.units + units)
     }
 
-    private fun formatDate(action: OnBoardingEvent.SetDate) {
-        dateWhenQuit.value = action.date
-        println(dateWhenQuit.value)
+    private fun formatDate(dateWhenQuit: Long) {
+        _userData.value = _userData.value.copy(dateWhenQuit = dateWhenQuit)
+        println(dateWhenQuit)
         val date1millis = System.currentTimeMillis()
 
-        val days = TimeUnit.MILLISECONDS.toDays(date1millis - action.date)
+        val days = TimeUnit.MILLISECONDS.toDays(date1millis - dateWhenQuit)
     }
 }
