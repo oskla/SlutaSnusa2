@@ -22,6 +22,12 @@ fun OnBoardingScreen(
     val currentViewState = viewModel.currentView.collectAsState()
     val userData = viewModel.userData.collectAsState()
 
+    fun uiEventSetCostPerUnit(cost: Int) = viewModel.handleEvents(OnBoardingEvent.SetCost(cost))
+    fun uiEventSetUnits(units: Int) = viewModel.handleEvents(OnBoardingEvent.SetUnit(units))
+    fun uiEventOpenCalendar() = viewModel.handleEvents(OnBoardingEvent.OpenCalendar)
+    fun uiEventDismissCalendar() = viewModel.handleEvents(OnBoardingEvent.DismissCalendar)
+    fun uiEventSetDate(date: Long) = viewModel.handleEvents(OnBoardingEvent.SetDate(date))
+
     Scaffold(
         bottomBar = {
             BottomNavOnBoarding(
@@ -39,21 +45,23 @@ fun OnBoardingScreen(
             ) {
                 when (currentViewState.value) {
                     OnBoardingNavigationView.CostView -> CostScreen(
-                        onEvent = { event -> viewModel.handleEvents(event) },
+                        onValueChangeFinished = { uiEventSetCostPerUnit(it) },
                     )
 
                     OnBoardingNavigationView.UnitView -> UnitScreen(
-                        onEvent = { event -> viewModel.handleEvents(event) },
+                        onClickSetUnit = { uiEventSetUnits(it) },
                         amountOfUnitsLabel = userData.value.units.toString(),
                     )
+
                     is OnBoardingNavigationView.DateView -> {
-                        val calendarVisibility = (currentViewState.value as OnBoardingNavigationView.DateView).showCalendar
+                        val calendarVisibility =
+                            (currentViewState.value as OnBoardingNavigationView.DateView).showCalendar
 
                         DateScreen(
                             showCalendar = calendarVisibility,
-                            onEvent = { event ->
-                                viewModel.handleEvents(event)
-                            },
+                            openCalendar = { uiEventOpenCalendar() },
+                            dismissCalendar = { uiEventDismissCalendar() },
+                            onDateSelected = { uiEventSetDate(it) },
                         )
                     }
                 }

@@ -21,11 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.Calendar
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 
 @Composable
 fun DateScreen(
-    onEvent: (OnBoardingEvent) -> Unit,
+    openCalendar: () -> Unit,
+    dismissCalendar: () -> Unit,
+    onDateSelected: (Long) -> Unit,
     showCalendar: Boolean,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -58,7 +59,7 @@ fun DateScreen(
                 Spacer(Modifier.height(16.dp))
                 TextBold(
                     modifier = Modifier.clickable {
-                        onEvent(OnBoardingEvent.OpenCalendar)
+                        openCalendar.invoke()
                         println("Open calender")
                     }, // TODO stringResources
                     text = "Nej", // TODO stringResources
@@ -69,10 +70,8 @@ fun DateScreen(
         }
         if (showCalendar) {
             Calendar(
-                onDismiss = { onEvent(OnBoardingEvent.DismissCalendar) },
-                onDateSelected = { date ->
-                    onEvent.invoke(OnBoardingEvent.SetDate(date))
-                },
+                onDismiss = dismissCalendar,
+                onDateSelected = { onDateSelected(it) },
             )
         }
     }

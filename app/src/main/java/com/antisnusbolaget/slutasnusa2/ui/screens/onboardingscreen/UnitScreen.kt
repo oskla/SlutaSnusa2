@@ -26,11 +26,10 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 
 @Composable
 fun UnitScreen(
-    onEvent: (OnBoardingEvent) -> Unit,
+    onClickSetUnit: (Int) -> Unit,
     amountOfUnitsLabel: String,
 ) {
     Column(
@@ -54,7 +53,7 @@ fun UnitScreen(
             modifier = Modifier.fillMaxWidth(),
         ) {
             IconButton(
-                onClick = { onEvent(OnBoardingEvent.SetUnit(-1)) },
+                onClick = { onClickSetUnit(-1) },
                 modifier = Modifier.size(70.dp),
             ) {
                 Icon(
@@ -64,7 +63,7 @@ fun UnitScreen(
             }
             Spacer(Modifier.width(40.dp))
             IconButton(
-                onClick = { onEvent(OnBoardingEvent.SetUnit(+1)) },
+                onClick = { onClickSetUnit(+1) },
                 modifier = Modifier.size(70.dp),
             ) {
                 Icon(
@@ -85,6 +84,6 @@ private const val componentName = "UnitScreen"
 @Composable
 private fun PreviewComponent() {
     SlutaSnutaTheme {
-        UnitScreen(onEvent = {}, amountOfUnitsLabel = "5")
+        UnitScreen(onClickSetUnit = {}, amountOfUnitsLabel = "5")
     }
 }
