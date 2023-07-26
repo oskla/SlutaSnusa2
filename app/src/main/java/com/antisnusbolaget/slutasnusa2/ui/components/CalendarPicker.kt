@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,8 +55,10 @@ fun Calendar(
         DatePicker(
             state = datePickerState,
             dateValidator = { selectedDate ->
-                OnBoardingHelpers().isDateInThePast(selectedDate)
+                isDateInThePast(selectedDate)
             },
         )
     }
 }
+
+private fun isDateInThePast(selectedDate: Long): Boolean = System.currentTimeMillis() - selectedDate > 0
