@@ -14,6 +14,7 @@ sealed interface OnBoardingEvent {
 
     // All views
     object NavigateToNextView : OnBoardingEvent
+    object NavigateBack : OnBoardingEvent
 }
 
 data class OnBoardingState(

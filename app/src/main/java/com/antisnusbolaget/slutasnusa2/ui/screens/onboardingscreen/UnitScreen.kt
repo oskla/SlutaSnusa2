@@ -1,6 +1,7 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,8 +31,11 @@ import com.antisnusbolaget.slutasnusa2.ui.theme.SlutaSnutaTheme
 @Composable
 fun UnitScreen(
     onClickSetUnit: (Int) -> Unit,
+    onBackPress: () -> Unit,
     amountOfUnitsLabel: String,
 ) {
+    BackHandler(onBack = onBackPress)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -84,6 +88,6 @@ private const val componentName = "UnitScreen"
 @Composable
 private fun PreviewComponent() {
     SlutaSnutaTheme {
-        UnitScreen(onClickSetUnit = {}, amountOfUnitsLabel = "5")
+        UnitScreen(onClickSetUnit = {}, amountOfUnitsLabel = "5", onBackPress = {})
     }
 }

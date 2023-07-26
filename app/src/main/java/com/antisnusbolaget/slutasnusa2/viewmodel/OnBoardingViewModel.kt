@@ -22,10 +22,23 @@ class OnBoardingViewModel : ViewModel() {
             is OnBoardingEvent.SetDate -> setQuitDate(event.date)
             is OnBoardingEvent.SetUnit -> setUnit(event.unitAmount)
 
-            is OnBoardingEvent.NavigateToNextView -> navigateToNextView()
+            OnBoardingEvent.NavigateToNextView -> navigateToNextView()
+            OnBoardingEvent.NavigateBack -> navigateBack()
             // TODO handle backpress/swipe
             OnBoardingEvent.DismissCalendar -> showCalendar(false)
             OnBoardingEvent.OpenCalendar -> showCalendar(true)
+        }
+    }
+
+    private fun navigateBack() {
+        when (uiState.value.currentView) {
+            OnBoardingNavigationView.CostView -> {}
+            OnBoardingNavigationView.DateView -> {
+                _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.UnitView) }
+            }
+            OnBoardingNavigationView.UnitView -> {
+                _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.CostView) }
+            }
         }
     }
 
