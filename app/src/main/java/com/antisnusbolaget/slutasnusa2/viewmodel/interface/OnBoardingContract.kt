@@ -16,10 +16,16 @@ sealed interface OnBoardingEvent {
     object NavigateToNextView : OnBoardingEvent
 }
 
+data class OnBoardingState(
+    val userData: UserData = UserData(),
+    val isCalenderVisible: Boolean = false,
+    val currentView: OnBoardingNavigationView = OnBoardingNavigationView.CostView,
+)
+
 sealed interface OnBoardingNavigationView {
     object CostView : OnBoardingNavigationView
     object UnitView : OnBoardingNavigationView
-    data class DateView(val showCalendar: Boolean) : OnBoardingNavigationView
+    object DateView : OnBoardingNavigationView
 }
 
 data class UserData(

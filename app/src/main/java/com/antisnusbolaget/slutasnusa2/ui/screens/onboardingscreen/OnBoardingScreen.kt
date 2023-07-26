@@ -19,8 +19,7 @@ import org.koin.androidx.compose.koinViewModel
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
 ) {
-    val currentViewState = viewModel.currentView.collectAsState()
-    val userData = viewModel.userData.collectAsState()
+    val uiState = viewModel.uiState.collectAsState()
 
     fun uiEventSetCostPerUnit(cost: Int) = viewModel.handleEvents(OnBoardingEvent.SetCost(cost))
     fun uiEventSetUnits(units: Int) = viewModel.handleEvents(OnBoardingEvent.SetUnit(units))
@@ -43,22 +42,19 @@ fun OnBoardingScreen(
                 modifier = Modifier
                     .padding(paddingValues),
             ) {
-                when (currentViewState.value) {
+                when (uiState.value.currentView) {
                     OnBoardingNavigationView.CostView -> CostScreen(
                         onValueChangeFinished = { uiEventSetCostPerUnit(it) },
                     )
 
                     OnBoardingNavigationView.UnitView -> UnitScreen(
                         onClickSetUnit = { uiEventSetUnits(it) },
-                        amountOfUnitsLabel = userData.value.units.toString(),
+                        amountOfUnitsLabel = uiState.value.userData.units.toString(),
                     )
 
                     is OnBoardingNavigationView.DateView -> {
-                        val calendarVisibility =
-                            (currentViewState.value as OnBoardingNavigationView.DateView).showCalendar
-
                         DateScreen(
-                            showCalendar = calendarVisibility,
+                            showCalendar = uiState.value.isCalenderVisible,
                             openCalendar = { uiEventOpenCalendar() },
                             dismissCalendar = { uiEventDismissCalendar() },
                             onDateSelected = { uiEventSetDate(it) },
