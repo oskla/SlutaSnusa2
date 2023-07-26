@@ -27,6 +27,7 @@ import kotlin.math.roundToInt
 @Composable
 fun CostScreen(
     onValueChangeFinished: (Int) -> Unit,
+    initialSliderValue: Float,
 ) {
     Column(
         modifier = Modifier
@@ -36,7 +37,7 @@ fun CostScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
-        val sliderPosition = remember { mutableStateOf(0f) }
+        val sliderPosition = remember { mutableStateOf(initialSliderValue) }
 
         TextBold(
             text = "Vad kostar en dosa?",
@@ -70,5 +71,5 @@ private const val componentName = "Cost Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    CostScreen(onValueChangeFinished = {})
+    CostScreen(onValueChangeFinished = {}, initialSliderValue = 43f)
 }
