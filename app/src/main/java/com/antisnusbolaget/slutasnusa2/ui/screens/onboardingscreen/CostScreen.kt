@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.ui.screens
+package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -22,14 +22,12 @@ import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
 import com.antisnusbolaget.slutasnusa2.ui.theme.orange
-import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import org.koin.androidx.compose.koinViewModel
 import kotlin.math.roundToInt
 
 @Composable
 fun CostScreen(
-    viewModel: OnBoardingViewModel = koinViewModel(), // TODO remove VM here and only provide the data that is needed
+    onValueChangeFinished: (Int) -> Unit,
+    initialSliderValue: Float,
 ) {
     Column(
         modifier = Modifier
@@ -39,7 +37,7 @@ fun CostScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
-        val sliderPosition = remember { mutableStateOf(0f) }
+        val sliderPosition = remember { mutableStateOf(initialSliderValue) }
 
         TextBold(
             text = "Vad kostar en dosa?",
@@ -54,7 +52,7 @@ fun CostScreen(
             valueRange = 0f..100f,
             onValueChange = { sliderPosition.value = it },
             onValueChangeFinished = {
-                viewModel.handleEvents(OnBoardingEvent.SetCost(sliderPosition.value.roundToInt()))
+                onValueChangeFinished(sliderPosition.value.roundToInt())
             },
             colors = SliderDefaults.colors(
                 activeTrackColor = black,
@@ -73,5 +71,5 @@ private const val componentName = "Cost Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    CostScreen()
+    CostScreen(onValueChangeFinished = {}, initialSliderValue = 43f)
 }

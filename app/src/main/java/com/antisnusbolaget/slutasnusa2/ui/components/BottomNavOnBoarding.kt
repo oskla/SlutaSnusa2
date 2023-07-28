@@ -25,6 +25,9 @@ import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.helper.SystemBackPressHandler
 import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
+private const val TOP_PADDING_BOTTOM_SCAFFOLD = 32
+private const val BOTTOM_PADDING_BOTTOM_SCAFFOLD = 16
+
 @Composable
 fun BottomNavOnBoarding(
     onClickNext: () -> Unit,
@@ -36,7 +39,15 @@ fun BottomNavOnBoarding(
         },
     )
 
-    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                top = TOP_PADDING_BOTTOM_SCAFFOLD.dp,
+                bottom = BOTTOM_PADDING_BOTTOM_SCAFFOLD.dp,
+            ),
+        contentAlignment = Alignment.Center,
+    ) {
         Image(
             modifier = Modifier
                 .height(45.dp)
