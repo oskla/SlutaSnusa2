@@ -4,12 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.antisnusbolaget.slutasnusa2.ui.screens.AchievementScreen
+import androidx.navigation.navigation
 import com.antisnusbolaget.slutasnusa2.ui.screens.HomeScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.SettingScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.mainscreen.achievementscreen.AchievementScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingScreen
-
-const val HOME_ROUTE = "home_route"
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -20,14 +19,31 @@ fun NavGraph(navController: NavHostController) {
         composable(Screen.OnBoarding.route) {
             OnBoardingScreen()
         }
-        composable(Screen.Home.route) {
-            HomeScreen()
-        }
-        composable(Screen.Settings.route) {
-            SettingScreen()
-        }
-        composable(Screen.Achievement.route) {
-            AchievementScreen()
+
+        navigation(
+            startDestination = "LEFT_TAB",
+            route = "TABS",
+        ) {
+            navigation(
+                startDestination = Screen.Home.route,
+                route = "LEFT_TAB",
+            ) {
+                composable(Screen.Home.route) {
+                    HomeScreen()
+                }
+                composable(Screen.Settings.route) {
+                    SettingScreen()
+                }
+            }
+
+            navigation(
+                startDestination = Screen.Achievement.route,
+                route = "RIGHT_TAB",
+            ) {
+                composable(Screen.Achievement.route) {
+                    AchievementScreen()
+                }
+            }
         }
     }
 }
