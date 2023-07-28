@@ -27,12 +27,13 @@ fun OnBoardingScreen(
     fun uiEventDismissCalendar() = viewModel.handleEvents(OnBoardingEvent.DismissCalendar)
     fun uiEventSetDate(date: Long) = viewModel.handleEvents(OnBoardingEvent.SetDate(date))
     fun uiEventNavigateBack() = viewModel.handleEvents(OnBoardingEvent.NavigateBack)
+    fun uiEventNavigateNext() = viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
 
     Scaffold(
         bottomBar = {
             BottomNavOnBoarding(
                 onClickNext = {
-                    viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
+                    uiEventNavigateNext()
                 },
                 onClickBack = {},
             )
