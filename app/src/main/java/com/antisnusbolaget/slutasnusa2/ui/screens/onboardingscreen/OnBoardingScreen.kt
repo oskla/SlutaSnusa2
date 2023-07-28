@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
-import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
