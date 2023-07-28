@@ -1,6 +1,7 @@
 package com.antisnusbolaget.slutasnusa2.ui.components
 
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHost
@@ -12,6 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.antisnusbolaget.slutasnusa2.ui.theme.black
+import com.antisnusbolaget.slutasnusa2.ui.theme.darkYellow
+import com.antisnusbolaget.slutasnusa2.ui.theme.yellow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +35,9 @@ fun Calendar(
     }
 
     DatePickerDialog(
+        colors = DatePickerDefaults.colors(
+            containerColor = yellow,
+        ),
         onDismissRequest = onDismiss,
         confirmButton = {
             TextButton(
@@ -52,13 +60,53 @@ fun Calendar(
             }
         },
     ) {
+//        MaterialTheme(
+//            colorScheme = MaterialTheme.colorScheme.copy(
+//                surface = yellow,
+//                primary = MaterialTheme.colorScheme.primary,
+//                onPrimary = yellow,
+//                secondary = yellow,
+//                background = yellow,
+//                primaryContainer = yellow,
+//                secondaryContainer = yellow,
+//                tertiaryContainer = yellow,
+//                surfaceTint = yellow,
+//                surfaceVariant = yellow,
+//                tertiary = yellow,
+//                outline = yellow,
+//                scrim = yellow,
+//
+//            ),
+//        ) {
+//            Surface(
+//                tonalElevation = 6.dp,
+//                shape = MaterialTheme.shapes.extraLarge,
+//            ) {
         DatePicker(
+            colors = DatePickerDefaults.colors(
+                titleContentColor = black,
+                headlineContentColor = black,
+                subheadContentColor = black,
+                todayDateBorderColor = black,
+                todayContentColor = black,
+                selectedDayContentColor = Color.White,
+                selectedDayContainerColor = black,
+                currentYearContentColor = black,
+                selectedYearContainerColor = black,
+                selectedYearContentColor = Color.White,
+                containerColor = darkYellow,
+                yearContentColor = black,
+
+            ),
             state = datePickerState,
             dateValidator = { selectedDate ->
                 isDateInThePast(selectedDate)
             },
         )
     }
+//        }
+//    }
 }
 
-private fun isDateInThePast(selectedDate: Long): Boolean = System.currentTimeMillis() - selectedDate > 0
+private fun isDateInThePast(selectedDate: Long): Boolean =
+    System.currentTimeMillis() - selectedDate > 0
