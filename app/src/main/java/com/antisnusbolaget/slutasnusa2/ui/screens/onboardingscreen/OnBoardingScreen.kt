@@ -26,6 +26,7 @@ fun OnBoardingScreen(
     fun uiEventOpenCalendar() = viewModel.handleEvents(OnBoardingEvent.OpenCalendar)
     fun uiEventDismissCalendar() = viewModel.handleEvents(OnBoardingEvent.DismissCalendar)
     fun uiEventSetDate(date: Long) = viewModel.handleEvents(OnBoardingEvent.SetDate(date))
+    fun uiEventNavigateBack() = viewModel.handleEvents(OnBoardingEvent.NavigateBack)
 
     Scaffold(
         bottomBar = {
@@ -45,11 +46,13 @@ fun OnBoardingScreen(
                 when (uiState.value.currentView) {
                     OnBoardingNavigationView.CostView -> CostScreen(
                         onValueChangeFinished = { uiEventSetCostPerUnit(it) },
+                        initialSliderValue = uiState.value.userData.costPerUnit.toFloat(),
                     )
 
                     OnBoardingNavigationView.UnitView -> UnitScreen(
                         onClickSetUnit = { uiEventSetUnits(it) },
                         amountOfUnitsLabel = uiState.value.userData.units.toString(),
+                        onBackPress = { uiEventNavigateBack() },
                     )
 
                     is OnBoardingNavigationView.DateView -> {
@@ -58,6 +61,7 @@ fun OnBoardingScreen(
                             openCalendar = { uiEventOpenCalendar() },
                             dismissCalendar = { uiEventDismissCalendar() },
                             onDateSelected = { uiEventSetDate(it) },
+                            onBackPressed = { uiEventNavigateBack() },
                         )
                     }
                 }

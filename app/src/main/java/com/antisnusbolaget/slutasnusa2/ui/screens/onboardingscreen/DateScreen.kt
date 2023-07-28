@@ -1,6 +1,7 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,8 +28,11 @@ fun DateScreen(
     openCalendar: () -> Unit,
     dismissCalendar: () -> Unit,
     onDateSelected: (Long) -> Unit,
+    onBackPressed: () -> Unit,
     showCalendar: Boolean,
 ) {
+    BackHandler(onBack = onBackPressed)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
