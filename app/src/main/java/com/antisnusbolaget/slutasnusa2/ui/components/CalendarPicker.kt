@@ -17,7 +17,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.theme.black
@@ -91,11 +90,11 @@ fun Calendar(
                 subheadContentColor = black,
                 todayDateBorderColor = black,
                 todayContentColor = black,
-                selectedDayContentColor = Color.White,
+                selectedDayContentColor = yellow,
                 selectedDayContainerColor = black,
                 currentYearContentColor = black,
                 selectedYearContainerColor = black,
-                selectedYearContentColor = Color.White,
+                selectedYearContentColor = yellow,
                 containerColor = yellow,
                 yearContentColor = black,
 
