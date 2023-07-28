@@ -10,9 +10,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.antisnusbolaget.slutasnusa2.R
@@ -29,9 +28,10 @@ fun TopBar(
                 .background(MaterialTheme.colorScheme.background),
         ) {
             Image(
-                imageVector = ImageVector.vectorResource(id = R.drawable.top_scaffold_yellow),
+                modifier = Modifier.fillMaxWidth(),
+                painter = painterResource(id = R.drawable.top_scaffold_yellow),
                 contentDescription = "top",
-                contentScale = ContentScale.Inside,
+                contentScale = ContentScale.FillBounds,
             )
         }
     }
