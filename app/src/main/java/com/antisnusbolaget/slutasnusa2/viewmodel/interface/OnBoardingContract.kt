@@ -18,7 +18,7 @@ sealed interface OnBoardingEvent {
 }
 
 data class OnBoardingState(
-    val userData: UserData = UserData(),
+    val userData: UserData = UserData(0, 0, 0L),
     val isCalenderVisible: Boolean = false,
     val currentView: OnBoardingNavigationView = OnBoardingNavigationView.CostView,
 )
@@ -30,7 +30,7 @@ sealed interface OnBoardingNavigationView {
 }
 
 data class UserData(
-    val costPerUnit: Int = 0,
-    val units: Int = 0,
-    val dateWhenQuit: Long = 0,
+    val costPerUnit: Int,
+    val units: Int,
+    val dateWhenQuit: Long,
 )
