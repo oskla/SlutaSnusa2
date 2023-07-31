@@ -1,5 +1,5 @@
-## School Project
-`This is a work in progress`
+
+## Currently migrating to jetpack compose
 ***
 
 This application was made for android-phones, built in *Kotlin* with *MVVM-pattern*. *LiveData*, *Navigation Component* & *Bottom Navigation-bar*.  

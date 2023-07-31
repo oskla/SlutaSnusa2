@@ -6,10 +6,18 @@ import androidx.compose.runtime.Composable
 
 val AppLightColorScheme = lightColorScheme(
     background = yellow,
+    surface = yellow,
+    onSurface = black,
+    outline = black,
+    outlineVariant = black,
+    onPrimary = black,
+    primary = black,
     onBackground = black,
-    secondary = gray,
+    secondary = black,
     onSecondary = lightYellow,
     tertiary = darkYellow,
+    onTertiary = black,
+    onSurfaceVariant = black,
 )
 
 @Composable
