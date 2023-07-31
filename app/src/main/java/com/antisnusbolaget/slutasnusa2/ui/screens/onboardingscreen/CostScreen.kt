@@ -38,7 +38,6 @@ fun CostScreen(
                 vertical = ON_BOARDING_VERTICAL_PADDING.dp,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.SpaceBetween,
     ) {
         val sliderPosition = remember { mutableStateOf(initialSliderValue) }
 
