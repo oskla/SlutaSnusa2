@@ -17,23 +17,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.antisnusbolaget.slutasnusa2.R
 
 @Composable
-fun TopBar(
-    showTopBar: Boolean,
-) {
-    if (showTopBar) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(MaterialTheme.colorScheme.background),
-        ) {
-            Image(
-                modifier = Modifier.fillMaxWidth(),
-                painter = painterResource(id = R.drawable.top_scaffold_yellow),
-                contentDescription = "top",
-                contentScale = ContentScale.FillBounds,
-            )
-        }
+fun TopBar() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .background(MaterialTheme.colorScheme.background),
+    ) {
+        Image(
+            modifier = Modifier.fillMaxWidth(),
+            painter = painterResource(id = R.drawable.top_scaffold_yellow),
+            contentDescription = "top",
+            contentScale = ContentScale.FillBounds,
+        )
     }
 }
 
@@ -46,5 +42,5 @@ private const val componentName = "TopBar"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    TopBar(showTopBar = true)
+    TopBar()
 }
