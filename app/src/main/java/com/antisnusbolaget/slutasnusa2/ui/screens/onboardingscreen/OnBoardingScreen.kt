@@ -46,7 +46,7 @@ fun OnBoardingScreen(
                 when (uiState.value.currentView) {
                     OnBoardingNavigationView.CostView -> CostScreen(
                         onValueChangeFinished = { uiEventSetCostPerUnit(it) },
-                        initialSliderValue = uiState.value.userData.costPerUnit.toFloat(),
+                        sliderValue = uiState.value.userData.costPerUnit.toFloat(),
                     )
 
                     OnBoardingNavigationView.UnitView -> UnitScreen(
