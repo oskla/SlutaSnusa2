@@ -1,6 +1,8 @@
 package com.antisnusbolaget.slutasnusa2.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.antisnusbolaget.slutasnusa2.data.DataStoreRepo
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingLoadingState
@@ -9,15 +11,19 @@ import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class OnBoardingViewModel : ViewModel() {
+class OnBoardingViewModel(
+    private val dataStoreRepo: DataStoreRepo,
+) : ViewModel() {
 
     private val _uiState =
         MutableStateFlow<OnBoardingState>(OnBoardingState())
     val uiState: StateFlow<OnBoardingState> = _uiState
 
     init {
+        setUiStateFromDataStore()
         _uiState.update { uiState.value.copy(error = OnBoardingLoadingState.Success) }
     }
 
@@ -29,7 +35,7 @@ class OnBoardingViewModel : ViewModel() {
 
             OnBoardingEvent.NavigateToNextView -> navigateToNextView()
             OnBoardingEvent.NavigateBack -> navigateBack()
-            // TODO handle backpress/swipe
+
             OnBoardingEvent.DismissCalendar -> showCalendar(false)
             OnBoardingEvent.OpenCalendar -> showCalendar(true)
         }
@@ -37,8 +43,7 @@ class OnBoardingViewModel : ViewModel() {
 
     private fun navigateBack() {
         when (uiState.value.currentView) {
-            OnBoardingNavigationView.CostView -> {}
-
+            OnBoardingNavigationView.CostView -> {} // TODO should this kill activity? Or maybe put app in background?
             OnBoardingNavigationView.DateView -> {
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.UnitView) }
             }
@@ -46,6 +51,43 @@ class OnBoardingViewModel : ViewModel() {
             OnBoardingNavigationView.UnitView -> {
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.CostView) }
             }
+        }
+    }
+
+    /** If you for some reason end up in OnBoarding even though you already have data stored.
+     Then it would be nice to have that data prefilled. That's what this function is for. */
+    private fun setUiStateFromDataStore() {
+        viewModelScope.launch {
+            dataStoreRepo.getCostPerUnit().collect {
+                _uiState.updateUserData(cost = it.toInt())
+            }
+        }
+
+        viewModelScope.launch {
+            dataStoreRepo.getAmountOfUnits().collect {
+                _uiState.updateUserData(units = it.toInt())
+            }
+        }
+
+        viewModelScope.launch {
+            dataStoreRepo.getDateWhenQuit().collect {
+                _uiState.updateUserData(date = it.toLong())
+            }
+        }
+    }
+
+    // Update dataStore
+    private fun storeUserDataFromUiState() {
+        viewModelScope.launch {
+            dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit.toString())
+        }
+
+        viewModelScope.launch {
+            dataStoreRepo.setCostPerUnit(cost = uiState.value.userData.costPerUnit.toString())
+        }
+
+        viewModelScope.launch {
+            dataStoreRepo.setAmountOfUnits(units = uiState.value.userData.units.toString())
         }
     }
 
@@ -64,7 +106,9 @@ class OnBoardingViewModel : ViewModel() {
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.DateView) }
             }
 
-            is OnBoardingNavigationView.DateView -> {} // TODO Add actual navigation to Home
+            is OnBoardingNavigationView.DateView -> {
+                storeUserDataFromUiState()
+            } // TODO Add actual navigation to Home
         }
     }
 
