@@ -1,6 +1,5 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -8,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingNavigationView
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
@@ -38,6 +37,8 @@ fun OnBoardingScreen(
                 onClickBack = {},
             )
         },
+        topBar = { TopBar() },
+
         content = { paddingValues ->
             Box(
                 contentAlignment = Alignment.Center,
