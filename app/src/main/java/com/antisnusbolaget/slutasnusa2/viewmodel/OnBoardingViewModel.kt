@@ -73,8 +73,8 @@ class OnBoardingViewModel(
         }
     }
 
+    // Update dataStore
     private fun storeUserDataFromUiState() {
-        // Update dataStore
         viewModelScope.launch {
             dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit.toString())
         }
