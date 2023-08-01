@@ -5,13 +5,4 @@ sealed class Screen(val route: String, var title: String) {
     object Settings : Screen(route = "SETTINGS_SCREEN", title = "Settings")
     object Achievement : Screen(route = "ACHIEVEMENT_SCREEN", title = "Achievement")
     object OnBoarding : Screen(route = "ON_BOARDING_SCREEN", title = "OnBoarding")
-
-    companion object {
-        private val screenWithTopBar = OnBoarding.route
-
-        fun shouldShowTopBar(route: String?): Boolean {
-            if (route.isNullOrBlank()) return false
-            return screenWithTopBar == route
-        }
-    }
 }
