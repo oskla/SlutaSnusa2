@@ -3,6 +3,7 @@ package com.antisnusbolaget.slutasnusa2.viewmodel
 import androidx.lifecycle.ViewModel
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingLoadingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,10 @@ class OnBoardingViewModel : ViewModel() {
     private val _uiState =
         MutableStateFlow<OnBoardingState>(OnBoardingState())
     val uiState: StateFlow<OnBoardingState> = _uiState
+
+    init {
+        _uiState.update { uiState.value.copy(error = OnBoardingLoadingState.Success) }
+    }
 
     fun handleEvents(event: OnBoardingEvent) {
         when (event) {
@@ -33,9 +38,11 @@ class OnBoardingViewModel : ViewModel() {
     private fun navigateBack() {
         when (uiState.value.currentView) {
             OnBoardingNavigationView.CostView -> {}
+
             OnBoardingNavigationView.DateView -> {
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.UnitView) }
             }
+
             OnBoardingNavigationView.UnitView -> {
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.CostView) }
             }
@@ -43,7 +50,9 @@ class OnBoardingViewModel : ViewModel() {
     }
 
     private fun showCalendar(visible: Boolean) {
-        _uiState.update { uiState.value.copy(isCalenderVisible = visible) }
+        val updatedVisibility = uiState.value.copy(isCalenderVisible = visible)
+
+        _uiState.update { updatedVisibility }
     }
 
     private fun navigateToNextView() {
@@ -60,7 +69,7 @@ class OnBoardingViewModel : ViewModel() {
     }
 
     private fun setCostPerUnit(cost: Int) {
-        _uiState.updateUserData(cost = cost)
+        updateUserData(cost = cost)
         Timber.d("Cost per unit is set to: ${uiState.value.userData.costPerUnit}")
     }
 
@@ -70,7 +79,7 @@ class OnBoardingViewModel : ViewModel() {
             Timber.d("Amounts of units is already 0, can't go lower: ${uiState.value.userData.units}")
             return
         }
-        _uiState.updateUserData(units = newTotal)
+        updateUserData(units = newTotal)
         Timber.d("Amounts of units is set to: ${uiState.value.userData.units}")
     }
 
@@ -83,29 +92,29 @@ class OnBoardingViewModel : ViewModel() {
             return
         }
 
-        _uiState.updateUserData(date = dateWhenQuit)
-        Timber.d("Date when quit is set to: ${uiState.value.userData.dateWhenQuit}")
+        updateUserData(date = dateWhenQuit)
+        Timber.d("Date when quit is set to: ${uiState.value}")
         Timber.d("Days since quit is: $daysSinceQuit")
     }
 
     /** Extension function to safely update the value of userData in [_uiState] */
-    private fun MutableStateFlow<OnBoardingState>.updateUserData(
+    private fun updateUserData(
         cost: Int? = null,
         units: Int? = null,
         date: Long? = null,
     ) {
         if (cost != null) {
-            val updatedCost = this.value.userData.copy(costPerUnit = cost)
+            val updatedCost = uiState.value.userData.copy(costPerUnit = cost)
             _uiState.update { uiState.value.copy(userData = updatedCost) }
         }
 
         if (units != null) {
-            val updatedUnits = this.value.userData.copy(units = units)
+            val updatedUnits = uiState.value.userData.copy(units = units)
             _uiState.update { uiState.value.copy(userData = updatedUnits) }
         }
 
         if (date != null) {
-            val updatedDate = this.value.userData.copy(dateWhenQuit = date)
+            val updatedDate = uiState.value.userData.copy(dateWhenQuit = date)
             _uiState.update { uiState.value.copy(userData = updatedDate) }
         }
     }

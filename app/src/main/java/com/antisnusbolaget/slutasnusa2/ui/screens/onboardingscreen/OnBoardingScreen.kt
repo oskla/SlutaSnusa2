@@ -1,26 +1,45 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
 import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingLoadingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import org.koin.androidx.compose.koinViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
+    when (uiState.value.error) {
+        OnBoardingLoadingState.Error -> TODO()
+        OnBoardingLoadingState.Loading -> CircularProgressIndicator()
+        OnBoardingLoadingState.Success -> {
+            OnBoardingContent(
+                viewModel = viewModel,
+                uiState = uiState,
+            )
+        }
+    }
+}
+
+@Composable
+private fun OnBoardingContent(
+    viewModel: OnBoardingViewModel,
+    uiState: State<OnBoardingState>,
+) {
     fun uiEventSetCostPerUnit(cost: Int) = viewModel.handleEvents(OnBoardingEvent.SetCost(cost))
     fun uiEventSetUnits(units: Int) = viewModel.handleEvents(OnBoardingEvent.SetUnit(units))
     fun uiEventOpenCalendar() = viewModel.handleEvents(OnBoardingEvent.OpenCalendar)
