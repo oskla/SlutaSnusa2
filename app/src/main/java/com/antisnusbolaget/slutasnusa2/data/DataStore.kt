@@ -21,6 +21,11 @@ class DataStore(private val context: Context) {
         private val USER_TOKEN_UNITS = intPreferencesKey("user_token_units")
     }
 
+    fun isKeyStored(): Flow<Boolean> =
+        context.dataStore.data.map { preference ->
+            preference.contains(USER_TOKEN_COST)
+        }
+
     val getUserData: Flow<UserData> = context.dataStore.data.map { preferences ->
         UserData(
             dateWhenQuit = preferences[USER_TOKEN_DATE] ?: 0,

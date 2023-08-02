@@ -15,6 +15,11 @@ class DataStoreRepo(context: Context) {
         return dataStore.getUserData
     }
 
+    fun isKeyStored(): Flow<Boolean> {
+        val isKeyStored = dataStore.isKeyStored()
+        return isKeyStored
+    }
+
     suspend fun setDateWhenQuitInMillis(date: Long) {
         try {
             dataStore.setDateWhenQuitInMillis(quitDate = date)
