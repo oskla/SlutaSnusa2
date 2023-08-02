@@ -10,6 +10,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import com.antisnusbolaget.slutasnusa2.navigation.Screen
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
@@ -25,6 +27,7 @@ const val ON_BOARDING_HORIZONTAL_PADDING = 32
 @Composable
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
+    navController: NavController,
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
@@ -39,6 +42,7 @@ fun OnBoardingScreen(
             OnBoardingContent(
                 viewModel = viewModel,
                 uiState = uiState,
+                navController = navController,
             )
         }
     }
@@ -48,6 +52,7 @@ fun OnBoardingScreen(
 private fun OnBoardingContent(
     viewModel: OnBoardingViewModel,
     uiState: State<OnBoardingState>,
+    navController: NavController,
 ) {
     fun uiEventSetCostPerUnit(cost: Int) = viewModel.handleEvents(OnBoardingEvent.SetCost(cost))
     fun uiEventSetUnits(units: Int) = viewModel.handleEvents(OnBoardingEvent.SetUnit(units))
@@ -62,6 +67,9 @@ private fun OnBoardingContent(
         bottomBar = {
             BottomNavOnBoarding(
                 onClickNext = {
+                    if (uiState.value.currentView == OnBoardingNavigationView.DateView) {
+                        navController.navigate(Screen.Home.route)
+                    }
                     uiEventNavigateNext()
                 },
                 onClickBack = {},
