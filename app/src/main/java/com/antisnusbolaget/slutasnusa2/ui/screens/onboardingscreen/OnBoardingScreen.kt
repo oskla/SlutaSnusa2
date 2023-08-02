@@ -1,6 +1,5 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -8,16 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.antisnusbolaget.slutasnusa2.ui.components.BottomNavOnBoarding
-import com.antisnusbolaget.slutasnusa2.viewmodel.OnBoardingViewModel
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
 
 const val ON_BOARDING_VERTICAL_PADDING = 24
 const val ON_BOARDING_HORIZONTAL_PADDING = 32
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
@@ -30,16 +28,18 @@ fun OnBoardingScreen(
     fun uiEventDismissCalendar() = viewModel.handleEvents(OnBoardingEvent.DismissCalendar)
     fun uiEventSetDate(date: Long) = viewModel.handleEvents(OnBoardingEvent.SetDate(date))
     fun uiEventNavigateBack() = viewModel.handleEvents(OnBoardingEvent.NavigateBack)
+    fun uiEventNavigateNext() = viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
 
     Scaffold(
         bottomBar = {
             BottomNavOnBoarding(
                 onClickNext = {
-                    viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
+                    uiEventNavigateNext()
                 },
                 onClickBack = {},
             )
         },
+
         content = { paddingValues ->
             Box(
                 contentAlignment = Alignment.Center,

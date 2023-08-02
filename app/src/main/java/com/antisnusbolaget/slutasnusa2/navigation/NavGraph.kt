@@ -4,18 +4,16 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.antisnusbolaget.slutasnusa2.ui.screens.AchievementScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.HomeScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.SettingScreen
+import com.antisnusbolaget.slutasnusa2.ui.screens.mainscreen.achievementscreen.AchievementScreen
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingScreen
-
-const val HOME_ROUTE = "home_route"
 
 @Composable
 fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.OnBoarding.route,
+        startDestination = Screen.Home.route,
     ) {
         composable(Screen.OnBoarding.route) {
             OnBoardingScreen()

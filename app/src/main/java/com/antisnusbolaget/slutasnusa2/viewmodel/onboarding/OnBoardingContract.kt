@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.viewmodel.`interface` // ktlint-disable package-name
+package com.antisnusbolaget.slutasnusa2.viewmodel.onboarding // ktlint-disable package-name
 
 sealed interface OnBoardingEvent {
     // Cost view

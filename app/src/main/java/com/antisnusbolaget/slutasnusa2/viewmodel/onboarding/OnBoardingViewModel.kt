@@ -1,10 +1,7 @@
-package com.antisnusbolaget.slutasnusa2.viewmodel
+package com.antisnusbolaget.slutasnusa2.viewmodel.onboarding
 
 import androidx.lifecycle.ViewModel
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
