@@ -11,12 +11,26 @@ import kotlinx.coroutines.flow.map
 
 private const val DATA_STORE_NAME = "userToken"
 
+data class StringUserData(
+    val dateWhenQuit: String,
+    val costPerUnit: String,
+    val units: String,
+)
+
 class DataStore(private val context: Context) {
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
         private val USER_TOKEN_DATE = stringPreferencesKey("user_token")
         private val USER_TOKEN_COST = stringPreferencesKey("user_token_cost")
         private val USER_TOKEN_UNITS = stringPreferencesKey("user_token_units")
+    }
+
+    val getUserData: Flow<StringUserData> = context.dataStore.data.map { preferences ->
+        StringUserData(
+            dateWhenQuit = preferences[USER_TOKEN_DATE] ?: "",
+            costPerUnit = preferences[USER_TOKEN_COST] ?: "",
+            units = preferences[USER_TOKEN_UNITS] ?: "",
+        )
     }
 
     val getQuitDate: Flow<String> = context.dataStore.data.map { preferences ->

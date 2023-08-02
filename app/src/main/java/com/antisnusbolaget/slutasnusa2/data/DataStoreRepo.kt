@@ -1,7 +1,9 @@
 package com.antisnusbolaget.slutasnusa2.data
 
 import android.content.Context
+import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.UserData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.io.IOException
 
@@ -9,16 +11,14 @@ class DataStoreRepo(context: Context) {
 
     private val dataStore: DataStore = DataStore(context = context)
 
-    fun getDateWhenQuit(): Flow<String> {
-        return dataStore.getQuitDate
-    }
-
-    fun getCostPerUnit(): Flow<String> {
-        return dataStore.getCost
-    }
-
-    fun getAmountOfUnits(): Flow<String> {
-        return dataStore.getUnits
+    fun getUserData(): Flow<UserData> {
+        return dataStore.getUserData.map {
+            UserData(
+                costPerUnit = it.costPerUnit.toInt(),
+                units = it.units.toInt(),
+                dateWhenQuit = it.dateWhenQuit.toLong(),
+            )
+        }
     }
 
     suspend fun setDateWhenQuitInMillis(date: String) {
