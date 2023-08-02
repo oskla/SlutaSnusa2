@@ -16,6 +16,11 @@ import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingLoadingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
+import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
+import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingNavigationView
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingViewModel
 import org.koin.androidx.compose.koinViewModel
 
 const val ON_BOARDING_VERTICAL_PADDING = 24
@@ -54,16 +59,19 @@ private fun OnBoardingContent(
     fun uiEventDismissCalendar() = viewModel.handleEvents(OnBoardingEvent.DismissCalendar)
     fun uiEventSetDate(date: Long) = viewModel.handleEvents(OnBoardingEvent.SetDate(date))
     fun uiEventNavigateBack() = viewModel.handleEvents(OnBoardingEvent.NavigateBack)
+    fun uiEventNavigateNext() = viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
 
     Scaffold(
+        topBar = { TopBar() },
         bottomBar = {
             BottomNavOnBoarding(
                 onClickNext = {
-                    viewModel.handleEvents(OnBoardingEvent.NavigateToNextView)
+                    uiEventNavigateNext()
                 },
                 onClickBack = {},
             )
         },
+
         content = { paddingValues ->
             Box(
                 contentAlignment = Alignment.Center,

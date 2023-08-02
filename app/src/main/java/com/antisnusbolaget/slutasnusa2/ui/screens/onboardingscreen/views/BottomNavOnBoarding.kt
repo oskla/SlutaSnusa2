@@ -1,4 +1,4 @@
-package com.antisnusbolaget.slutasnusa2.ui.components
+package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.antisnusbolaget.slutasnusa2.R
 import com.antisnusbolaget.slutasnusa2.helper.SystemBackPressHandler
-import com.antisnusbolaget.slutasnusa2.navigation.BottomNav
 
 private const val TOP_PADDING_BOTTOM_SCAFFOLD = 32
 private const val BOTTOM_PADDING_BOTTOM_SCAFFOLD = 16
@@ -86,6 +85,6 @@ private const val componentName = "BottomBar"
 @Composable
 private fun PreviewComponent() {
     Column() {
-        BottomNav()
+        // BottomNav()
     }
 }
