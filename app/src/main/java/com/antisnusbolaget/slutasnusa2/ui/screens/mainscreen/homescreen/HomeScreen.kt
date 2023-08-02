@@ -9,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 import com.antisnusbolaget.slutasnusa2.ui.theme.yellow
 
 @Composable
@@ -24,7 +23,6 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .background(yellow),
         ) {
-            TextBold(text = "HOME SCREEN CONTENT")
         }
     }
 }

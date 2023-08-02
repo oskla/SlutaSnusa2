@@ -10,20 +10,14 @@ import com.antisnusbolaget.slutasnusa2.ui.screens.mainscreen.achievementscreen.A
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingScreen
 
 @Composable
-fun OnBoardingNavGraph(navController: NavHostController) {
+fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.OnBoarding.route,
+        startDestination = Screen.Home.route,
     ) {
         composable(Screen.OnBoarding.route) {
             OnBoardingScreen()
         }
-    }
-}
-
-@Composable
-fun MainNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
             HomeScreen()
         }
