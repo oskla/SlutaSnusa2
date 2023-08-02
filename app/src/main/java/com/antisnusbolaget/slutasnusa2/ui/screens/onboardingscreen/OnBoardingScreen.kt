@@ -27,7 +27,7 @@ fun OnBoardingScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    when (uiState.value.error) {
+    when (uiState.value.loadingState) {
         OnBoardingLoadingState.Error -> TODO()
         OnBoardingLoadingState.Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
