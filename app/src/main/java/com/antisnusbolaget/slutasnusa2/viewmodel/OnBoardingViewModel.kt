@@ -32,7 +32,7 @@ class OnBoardingViewModel(
             is OnBoardingEvent.SetDate -> setQuitDate(event.date)
             is OnBoardingEvent.SetUnit -> setUnit(event.unitAmount)
 
-            OnBoardingEvent.NavigateToNextView -> navigateToNextView()
+            OnBoardingEvent.NavigateToNextView -> { navigateToNextView() }
             OnBoardingEvent.NavigateBack -> navigateBack()
 
             OnBoardingEvent.DismissCalendar -> showCalendar(false)
@@ -58,7 +58,7 @@ class OnBoardingViewModel(
     private fun setUiStateFromDataStore() {
         viewModelScope.launch {
             dataStoreRepo.getUserData().collect {
-                updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
+                updateLoadingState(loadingState = OnBoardingLoadingState.Loading) // TODO figure out how to make the repo tell us what state to show.
 
                 updateUserData(
                     cost = it.costPerUnit,
@@ -71,19 +71,30 @@ class OnBoardingViewModel(
         }
     }
 
-    // Update dataStore
-    private fun storeUserData() {
+    private fun storeCostToDataStore() {
+        updateLoadingState(OnBoardingLoadingState.Loading)
         viewModelScope.launch {
-            dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit.toString())
+            dataStoreRepo.setCostPerUnit(cost = uiState.value.userData.costPerUnit)
         }
+        updateLoadingState(OnBoardingLoadingState.Success)
+    }
+
+    private fun storeUnitsToDataStore() {
+        updateLoadingState(OnBoardingLoadingState.Loading)
 
         viewModelScope.launch {
-            dataStoreRepo.setCostPerUnit(cost = uiState.value.userData.costPerUnit.toString())
+            dataStoreRepo.setAmountOfUnits(units = uiState.value.userData.units)
         }
+        updateLoadingState(OnBoardingLoadingState.Success)
+    }
+
+    private fun storeQuitDateToDataStore() {
+        updateLoadingState(OnBoardingLoadingState.Loading)
 
         viewModelScope.launch {
-            dataStoreRepo.setAmountOfUnits(units = uiState.value.userData.units.toString())
+            dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit)
         }
+        updateLoadingState(OnBoardingLoadingState.Success)
     }
 
     private fun showCalendar(visible: Boolean) {
@@ -94,14 +105,16 @@ class OnBoardingViewModel(
     private fun navigateToNextView() {
         when (uiState.value.currentView) {
             is OnBoardingNavigationView.CostView -> {
+                storeCostToDataStore()
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.UnitView) }
             }
             is OnBoardingNavigationView.UnitView -> {
+                storeUnitsToDataStore()
                 _uiState.update { uiState.value.copy(currentView = OnBoardingNavigationView.DateView) }
             }
 
             is OnBoardingNavigationView.DateView -> {
-                storeUserData()
+                storeQuitDateToDataStore()
             } // TODO Add actual navigation to Home
         }
     }
@@ -136,7 +149,7 @@ class OnBoardingViewModel(
     }
 
     private fun updateLoadingState(loadingState: OnBoardingLoadingState) {
-        _uiState.update { uiState.value.copy(error = loadingState) }
+        _uiState.update { uiState.value.copy(loadingState = loadingState) }
     }
 
     /** Function to safely update the value of userData in [_uiState] */
@@ -145,6 +158,8 @@ class OnBoardingViewModel(
         units: Int? = null,
         date: Long? = null,
     ) {
+        updateLoadingState(OnBoardingLoadingState.Loading)
+
         if (cost != null) {
             val updatedCost = uiState.value.userData.copy(costPerUnit = cost)
             _uiState.update { uiState.value.copy(userData = updatedCost) }
@@ -153,11 +168,15 @@ class OnBoardingViewModel(
         if (units != null) {
             val updatedUnits = uiState.value.userData.copy(units = units)
             _uiState.update { uiState.value.copy(userData = updatedUnits) }
+            updateLoadingState(OnBoardingLoadingState.Success)
         }
 
         if (date != null) {
             val updatedDate = uiState.value.userData.copy(dateWhenQuit = date)
             _uiState.update { uiState.value.copy(userData = updatedDate) }
+            updateLoadingState(OnBoardingLoadingState.Success)
         }
+
+        updateLoadingState(OnBoardingLoadingState.Success)
     }
 }
