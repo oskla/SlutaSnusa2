@@ -59,26 +59,27 @@ fun CostScreen(
         ) {
             TextBold(text = "${sliderPosition.value.roundToInt()} kr", fontSize = 100.sp)
 
-        Slider(
-            modifier = Modifier.padding(horizontal = 0.dp),
-            value = sliderPosition.value,
-            valueRange = 0f..100f,
-            onValueChange = { sliderPosition.value = it },
-            onValueChangeFinished = {
-                onValueChangeFinished(sliderPosition.value.roundToInt())
-            },
-            colors = SliderDefaults.colors(
-                activeTrackColor = black,
-                inactiveTrackColor = orange,
-                thumbColor = black,
-            ),
-            thumb = {
-                SliderDefaults.Thumb(
-                    interactionSource = MutableInteractionSource(),
-                    thumbSize = thumb_size,
-                )
-            },
-        )
+            Slider(
+                modifier = Modifier.padding(horizontal = 0.dp),
+                value = sliderPosition.value,
+                valueRange = 0f..100f,
+                onValueChange = { sliderPosition.value = it },
+                onValueChangeFinished = {
+                    onValueChangeFinished(sliderPosition.value.roundToInt())
+                },
+                colors = SliderDefaults.colors(
+                    activeTrackColor = black,
+                    inactiveTrackColor = orange,
+                    thumbColor = black,
+                ),
+                thumb = {
+                    SliderDefaults.Thumb(
+                        interactionSource = MutableInteractionSource(),
+                        thumbSize = thumb_size,
+                    )
+                },
+            )
+        }
     }
 }
 
