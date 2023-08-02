@@ -1,6 +1,7 @@
 package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
@@ -25,7 +26,11 @@ fun OnBoardingScreen(
 
     when (uiState.value.error) {
         OnBoardingLoadingState.Error -> TODO()
-        OnBoardingLoadingState.Loading -> CircularProgressIndicator()
+        OnBoardingLoadingState.Loading -> {
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                CircularProgressIndicator()
+            }
+        }
         OnBoardingLoadingState.Success -> {
             OnBoardingContent(
                 viewModel = viewModel,

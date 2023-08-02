@@ -24,7 +24,6 @@ class OnBoardingViewModel(
 
     init {
         setUiStateFromDataStore()
-        _uiState.update { uiState.value.copy(error = OnBoardingLoadingState.Success) }
     }
 
     fun handleEvents(event: OnBoardingEvent) {
@@ -58,26 +57,35 @@ class OnBoardingViewModel(
      Then it would be nice to have that data prefilled. That's what this function is for. */
     private fun setUiStateFromDataStore() {
         viewModelScope.launch {
+            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
+
             dataStoreRepo.getCostPerUnit().collect {
-                _uiState.updateUserData(cost = it.toInt())
+                updateUserData(cost = it.toInt())
+//                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
             }
         }
 
         viewModelScope.launch {
+            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
+
             dataStoreRepo.getAmountOfUnits().collect {
-                _uiState.updateUserData(units = it.toInt())
+                updateUserData(units = it.toInt())
+//                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
             }
         }
 
         viewModelScope.launch {
+            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
+
             dataStoreRepo.getDateWhenQuit().collect {
-                _uiState.updateUserData(date = it.toLong())
+                updateUserData(date = it.toLong())
+                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
             }
         }
     }
 
     // Update dataStore
-    private fun storeUserDataFromUiState() {
+    private fun storeUserData() {
         viewModelScope.launch {
             dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit.toString())
         }
@@ -93,7 +101,6 @@ class OnBoardingViewModel(
 
     private fun showCalendar(visible: Boolean) {
         val updatedVisibility = uiState.value.copy(isCalenderVisible = visible)
-
         _uiState.update { updatedVisibility }
     }
 
@@ -107,7 +114,7 @@ class OnBoardingViewModel(
             }
 
             is OnBoardingNavigationView.DateView -> {
-                storeUserDataFromUiState()
+                storeUserData()
             } // TODO Add actual navigation to Home
         }
     }
@@ -141,7 +148,11 @@ class OnBoardingViewModel(
         Timber.d("Days since quit is: $daysSinceQuit")
     }
 
-    /** Extension function to safely update the value of userData in [_uiState] */
+    private fun updateLoadingState(loadingState: OnBoardingLoadingState) {
+        _uiState.update { uiState.value.copy(error = loadingState) }
+    }
+
+    /** Function to safely update the value of userData in [_uiState] */
     private fun updateUserData(
         cost: Int? = null,
         units: Int? = null,
