@@ -40,40 +40,48 @@ fun UnitScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 32.dp),
+            .padding(
+                horizontal = ON_BOARDING_HORIZONTAL_PADDING.dp,
+                vertical = ON_BOARDING_VERTICAL_PADDING.dp,
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         TextBold(
             text = "Hur många dosor snusar du i veckan?",
             textAlign = TextAlign.Center,
         )
 
-        TextBold(text = amountOfUnitsLabel, fontSize = 100.sp)
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth(),
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize(),
         ) {
-            IconButton(
-                onClick = { onClickSetUnit(-1) },
-                modifier = Modifier.size(70.dp),
+            TextBold(text = amountOfUnitsLabel, fontSize = 100.sp)
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_decrement),
-                    contentDescription = "Subtract unit from total amount",
-                )
-            }
-            Spacer(Modifier.width(40.dp))
-            IconButton(
-                onClick = { onClickSetUnit(+1) },
-                modifier = Modifier.size(70.dp),
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_increment),
-                    contentDescription = "Add unit to total amount",
-                )
+                IconButton(
+                    onClick = { onClickSetUnit(-1) },
+                    modifier = Modifier.size(70.dp),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.icon_decrement),
+                        contentDescription = "Subtract unit from total amount",
+                    )
+                }
+                Spacer(Modifier.width(40.dp))
+                IconButton(
+                    onClick = { onClickSetUnit(+1) },
+                    modifier = Modifier.size(70.dp),
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.icon_increment),
+                        contentDescription = "Add unit to total amount",
+                    )
+                }
             }
         }
     }

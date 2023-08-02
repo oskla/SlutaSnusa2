@@ -18,6 +18,10 @@ import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigatio
 import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import org.koin.androidx.compose.koinViewModel
 
+const val ON_BOARDING_VERTICAL_PADDING = 24
+const val ON_BOARDING_HORIZONTAL_PADDING = 32
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OnBoardingScreen(
     viewModel: OnBoardingViewModel = koinViewModel(),
