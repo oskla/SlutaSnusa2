@@ -57,28 +57,15 @@ class OnBoardingViewModel(
      Then it would be nice to have that data prefilled. That's what this function is for. */
     private fun setUiStateFromDataStore() {
         viewModelScope.launch {
-            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
+            dataStoreRepo.getUserData().collect {
+                updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
 
-            dataStoreRepo.getCostPerUnit().collect {
-                updateUserData(cost = it.toInt())
-//                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
-            }
-        }
+                updateUserData(
+                    cost = it.costPerUnit,
+                    units = it.units,
+                    date = it.dateWhenQuit,
+                )
 
-        viewModelScope.launch {
-            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
-
-            dataStoreRepo.getAmountOfUnits().collect {
-                updateUserData(units = it.toInt())
-//                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
-            }
-        }
-
-        viewModelScope.launch {
-            updateLoadingState(loadingState = OnBoardingLoadingState.Loading)
-
-            dataStoreRepo.getDateWhenQuit().collect {
-                updateUserData(date = it.toLong())
                 updateLoadingState(loadingState = OnBoardingLoadingState.Success)
             }
         }
