@@ -39,9 +39,11 @@ fun CostScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 32.dp),
+            .padding(
+                horizontal = ON_BOARDING_HORIZONTAL_PADDING.dp,
+                vertical = ON_BOARDING_VERTICAL_PADDING.dp,
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
     ) {
         val sliderPosition = remember { mutableStateOf(initialSliderValue) }
 
@@ -50,7 +52,12 @@ fun CostScreen(
             textAlign = TextAlign.Center,
         ) // TODO use string resources
 
-        TextBold(text = "${sliderPosition.value.roundToInt()} kr", fontSize = 100.sp)
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            TextBold(text = "${sliderPosition.value.roundToInt()} kr", fontSize = 100.sp)
 
         Slider(
             modifier = Modifier.padding(horizontal = 0.dp),

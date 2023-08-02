@@ -3,7 +3,6 @@ package com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen
 import android.content.res.Configuration
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,8 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.antisnusbolaget.slutasnusa2.ui.components.Calendar
+import com.antisnusbolaget.slutasnusa2.ui.components.RectangleButton
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
 
 @Composable
@@ -38,38 +37,41 @@ fun DateScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
-                .padding(horizontal = 32.dp),
+                .padding(
+                    horizontal = ON_BOARDING_HORIZONTAL_PADDING.dp,
+                    vertical = ON_BOARDING_VERTICAL_PADDING.dp,
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             TextBold(
-                text = "Slutade du snusa idag?", // TODO stringResources
+                text = "När slutade du snusa?", // TODO stringResources
                 textAlign = TextAlign.Center,
             )
 
+            // This is for centering the button pair
             Column(
+                verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier,
+                modifier = Modifier.fillMaxSize(),
             ) {
-                TextBold(
-                    modifier = Modifier.clickable {
-                        println("Pick todays date") // TODO add functionality for picking today's date
-                    }, // TODO stringResources
-                    text = "Ja", // TODO stringResources
-                    textAlign = TextAlign.Center,
-                    fontSize = 100.sp,
-                )
-                Spacer(Modifier.height(16.dp))
-                TextBold(
-                    modifier = Modifier.clickable {
-                        openCalendar.invoke()
-                        println("Open calender")
-                    }, // TODO stringResources
-                    text = "Nej", // TODO stringResources
-                    textAlign = TextAlign.Center,
-                    fontSize = 100.sp,
-                )
+                // Button pair
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier,
+                ) {
+                    RectangleButton(
+                        filled = true,
+                        buttonLabel = "Välj datum",
+                        onClick = openCalendar,
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    RectangleButton(filled = false, buttonLabel = "Idag", onClick = {
+                        onDateSelected(System.currentTimeMillis())
+                    })
+                }
             }
         }
         if (showCalendar) {
@@ -89,5 +91,11 @@ private const val componentName = "DateScreen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    // DateScreen()
+    DateScreen(
+        openCalendar = {},
+        dismissCalendar = {},
+        onDateSelected = {},
+        onBackPressed = {},
+        showCalendar = false,
+    )
 }
