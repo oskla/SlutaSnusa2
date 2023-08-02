@@ -1,28 +1,46 @@
-package com.antisnusbolaget.slutasnusa2.ui.screens
+package com.antisnusbolaget.slutasnusa2.ui.screens.mainscreen.homescreen
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.antisnusbolaget.slutasnusa2.ui.theme.yellow
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.antisnusbolaget.slutasnusa2.navigation.Screen
+import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
+import com.antisnusbolaget.slutasnusa2.viewmodel.HomeScreenLoadingState
+import com.antisnusbolaget.slutasnusa2.viewmodel.HomeScreenViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    viewModel: HomeScreenViewModel = koinViewModel(),
+    navController: NavController,
+) {
+    val uiState = viewModel.uiState.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
     ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxSize()
-                .background(yellow),
-        ) {
+        when (uiState.value) {
+            HomeScreenLoadingState.Failed -> {
+                LaunchedEffect(uiState.value) {
+                    navController.navigate(Screen.OnBoarding.route)
+                }
+            }
+            HomeScreenLoadingState.Loading -> {
+                CircularProgressIndicator()
+            }
+            HomeScreenLoadingState.Success -> {
+                TextBold(text = "HAJ HAJ") // TODO HomeContent
+            }
         }
     }
 }
@@ -35,5 +53,5 @@ private const val componentName = "Home Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    HomeScreen()
+    HomeScreen(navController = rememberNavController())
 }
