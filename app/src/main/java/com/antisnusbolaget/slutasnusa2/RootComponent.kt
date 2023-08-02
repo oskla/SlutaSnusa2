@@ -24,9 +24,7 @@ fun RootComponent() {
     val navController = rememberNavController()
 
     val bottomBarState = remember {
-        mutableStateOf(
-            false,
-        )
+        mutableStateOf(false)
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     bottomBarState.value = Screen.shouldShowBottomBar(navBackStackEntry?.destination?.route)
