@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val viewModel = module {
     viewModel { OnBoardingViewModel(dataStoreRepo = get()) }
-    viewModel { HomeScreenViewModel() }
+    viewModel { HomeScreenViewModel(dataStoreRepo = get()) }
     viewModel { AchievementViewModel() }
     single { DataStoreRepo(context = get()) }
 }
