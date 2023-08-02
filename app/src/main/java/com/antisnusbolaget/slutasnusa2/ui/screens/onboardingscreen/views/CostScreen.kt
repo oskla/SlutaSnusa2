@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -33,7 +34,7 @@ private val thumb_size = DpSize(32.dp, 32.dp)
 @Composable
 fun CostScreen(
     onValueChangeFinished: (Int) -> Unit,
-    initialSliderValue: Float,
+    sliderValue: Float,
 ) {
     Column(
         modifier = Modifier
@@ -45,7 +46,14 @@ fun CostScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val sliderPosition = remember { mutableStateOf(initialSliderValue) }
+        val sliderPosition = remember { mutableStateOf(sliderValue) }
+
+        // This makes sure that the slider position is updated on start.
+        //  99% of the times this will be 0 from the start, but you know, edge cases and stuff.
+        //  Remove if causing bug.
+        LaunchedEffect(key1 = sliderValue) {
+            sliderPosition.value = sliderValue
+        }
 
         TextBold(
             text = "Vad kostar en dosa?",
@@ -91,5 +99,5 @@ private const val componentName = "Cost Screen"
 @Preview("$componentName (large screen)", device = Devices.PIXEL_C)
 @Composable
 private fun PreviewComponent() {
-    CostScreen(onValueChangeFinished = {}, initialSliderValue = 43f)
+    CostScreen(onValueChangeFinished = {}, sliderValue = 43f)
 }
