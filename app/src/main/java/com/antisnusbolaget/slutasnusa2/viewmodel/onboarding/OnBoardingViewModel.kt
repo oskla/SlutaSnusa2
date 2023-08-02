@@ -4,10 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antisnusbolaget.slutasnusa2.data.DataStoreRepo
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingLoadingState
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingNavigationView
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.OnBoardingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -32,7 +28,9 @@ class OnBoardingViewModel(
             is OnBoardingEvent.SetDate -> setQuitDate(event.date)
             is OnBoardingEvent.SetUnit -> setUnit(event.unitAmount)
 
-            OnBoardingEvent.NavigateToNextView -> { navigateToNextView() }
+            OnBoardingEvent.NavigateToNextView -> {
+                navigateToNextView()
+            }
             OnBoardingEvent.NavigateBack -> navigateBack()
 
             OnBoardingEvent.DismissCalendar -> showCalendar(false)

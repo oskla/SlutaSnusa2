@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.antisnusbolaget.slutasnusa2.viewmodel.`interface`.UserData
+import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.UserData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
