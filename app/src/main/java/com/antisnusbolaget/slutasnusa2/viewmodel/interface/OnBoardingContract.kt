@@ -21,7 +21,7 @@ data class OnBoardingState(
     val userData: UserData = UserData(0, 0, 0L),
     val isCalenderVisible: Boolean = false,
     val currentView: OnBoardingNavigationView = OnBoardingNavigationView.CostView,
-    val error: OnBoardingLoadingState = OnBoardingLoadingState.Loading,
+    val loadingState: OnBoardingLoadingState = OnBoardingLoadingState.Loading,
 )
 
 sealed interface OnBoardingLoadingState {
