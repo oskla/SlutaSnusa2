@@ -73,6 +73,7 @@ private fun NavigationBarItem(
                 indication = null,
             ) { onItemClick(item) },
     ) {
+        // Background "Pill" on selected item
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
