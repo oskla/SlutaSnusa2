@@ -2,7 +2,7 @@ package com.antisnusbolaget.slutasnusa2.data
 
 import android.content.Context
 import androidx.datastore.preferences.core.emptyPreferences
-import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.UserData
+import com.antisnusbolaget.slutasnusa2.viewmodel.UserData
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 import java.io.IOException

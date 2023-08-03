@@ -14,8 +14,8 @@ import androidx.navigation.NavController
 import com.antisnusbolaget.slutasnusa2.navigation.Screen
 import com.antisnusbolaget.slutasnusa2.ui.components.TopBar
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.views.BottomNavOnBoarding
+import com.antisnusbolaget.slutasnusa2.viewmodel.LoadingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingEvent
-import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingLoadingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingNavigationView
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingState
 import com.antisnusbolaget.slutasnusa2.viewmodel.onboarding.OnBoardingViewModel
@@ -32,13 +32,13 @@ fun OnBoardingScreen(
     val uiState = viewModel.uiState.collectAsState()
 
     when (uiState.value.loadingState) {
-        OnBoardingLoadingState.Error -> TODO()
-        OnBoardingLoadingState.Loading -> {
+        LoadingState.FAILED -> TODO()
+        LoadingState.LOADING -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()
             }
         }
-        OnBoardingLoadingState.Success -> {
+        LoadingState.SUCCESS -> {
             OnBoardingContent(
                 viewModel = viewModel,
                 uiState = uiState,

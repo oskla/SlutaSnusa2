@@ -14,8 +14,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.antisnusbolaget.slutasnusa2.navigation.Screen
 import com.antisnusbolaget.slutasnusa2.ui.components.TextBold
-import com.antisnusbolaget.slutasnusa2.viewmodel.HomeScreenLoadingState
-import com.antisnusbolaget.slutasnusa2.viewmodel.HomeScreenViewModel
+import com.antisnusbolaget.slutasnusa2.viewmodel.LoadingState
+import com.antisnusbolaget.slutasnusa2.viewmodel.homescreen.HomeScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -29,16 +29,16 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize(),
     ) {
-        when (uiState.value) {
-            HomeScreenLoadingState.Failed -> {
+        when (uiState.value.loadingState) {
+            LoadingState.FAILED -> {
                 LaunchedEffect(uiState.value) {
                     navController.navigate(Screen.OnBoarding.route)
                 }
             }
-            HomeScreenLoadingState.Loading -> {
+            LoadingState.LOADING -> {
                 CircularProgressIndicator()
             }
-            HomeScreenLoadingState.Success -> {
+            LoadingState.SUCCESS -> {
                 TextBold(text = "HAJ HAJ") // TODO HomeContent
             }
         }

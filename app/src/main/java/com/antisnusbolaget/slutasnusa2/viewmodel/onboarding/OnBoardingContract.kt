@@ -1,4 +1,9 @@
-package com.antisnusbolaget.slutasnusa2.viewmodel.onboarding // ktlint-disable package-name
+package com.antisnusbolaget.slutasnusa2.viewmodel.onboarding
+
+import com.antisnusbolaget.slutasnusa2.viewmodel.LoadingState
+import com.antisnusbolaget.slutasnusa2.viewmodel.UserData
+
+// ktlint-disable package-name
 
 sealed interface OnBoardingEvent {
     // Cost view
@@ -21,23 +26,11 @@ data class OnBoardingState(
     val userData: UserData = UserData(0, 0, 0L),
     val isCalenderVisible: Boolean = false,
     val currentView: OnBoardingNavigationView = OnBoardingNavigationView.CostView,
-    val loadingState: OnBoardingLoadingState = OnBoardingLoadingState.Loading,
+    val loadingState: LoadingState = LoadingState.LOADING,
 )
-
-sealed interface OnBoardingLoadingState {
-    object Loading : OnBoardingLoadingState
-    object Error : OnBoardingLoadingState
-    object Success : OnBoardingLoadingState
-}
 
 sealed interface OnBoardingNavigationView {
     object CostView : OnBoardingNavigationView
     object UnitView : OnBoardingNavigationView
     object DateView : OnBoardingNavigationView
 }
-
-data class UserData(
-    val costPerUnit: Int,
-    val units: Int,
-    val dateWhenQuit: Long,
-)
