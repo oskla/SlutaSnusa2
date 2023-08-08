@@ -35,18 +35,18 @@ class HomeScreenViewModel(
 
     private fun setDataToUi() {
         viewModelScope.launch {
-            dataStoreRepo.getUserData().collect { it ->
+            dataStoreRepo.getUserData().collect { dataStoreData ->
                 _uiState.update {
                     uiState.value.copy(
                         userData = UserData(
-                            costPerUnit = it.userData.costPerUnit,
-                            units = it.userData.units,
-                            dateWhenQuit = it.userData.dateWhenQuit,
+                            costPerUnit = dataStoreData.costPerUnit,
+                            units = dataStoreData.units,
+                            dateWhenQuit = dataStoreData.dateWhenQuit,
                         ),
                         loadingState = LoadingState.SUCCESS,
                     )
                 }
-                Timber.d("Osk, ${it.costPerUnit}")
+                Timber.d("Osk, ${dataStoreData.costPerUnit}")
             }
         }
     }
