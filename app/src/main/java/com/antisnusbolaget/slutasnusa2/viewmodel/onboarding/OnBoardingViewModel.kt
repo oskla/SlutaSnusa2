@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antisnusbolaget.slutasnusa2.data.DataStoreRepo
 import com.antisnusbolaget.slutasnusa2.ui.screens.onboardingscreen.OnBoardingHelpers
+import com.antisnusbolaget.slutasnusa2.viewmodel.LoadingState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -56,7 +57,7 @@ class OnBoardingViewModel(
     private fun setUiStateFromDataStore() {
         viewModelScope.launch {
             dataStoreRepo.getUserData().collect {
-                updateLoadingState(loadingState = OnBoardingLoadingState.Loading) // TODO figure out how to make the repo tell us what state to show.
+                updateLoadingState(loadingState = LoadingState.LOADING) // TODO figure out how to make the repo tell us what state to show.
 
                 updateUserData(
                     cost = it.costPerUnit,
@@ -64,35 +65,35 @@ class OnBoardingViewModel(
                     date = it.dateWhenQuit,
                 )
 
-                updateLoadingState(loadingState = OnBoardingLoadingState.Success)
+                updateLoadingState(loadingState = LoadingState.SUCCESS)
             }
         }
     }
 
     private fun storeCostToDataStore() {
-        updateLoadingState(OnBoardingLoadingState.Loading)
+        updateLoadingState(LoadingState.LOADING)
         viewModelScope.launch {
             dataStoreRepo.setCostPerUnit(cost = uiState.value.userData.costPerUnit)
         }
-        updateLoadingState(OnBoardingLoadingState.Success)
+        updateLoadingState(LoadingState.SUCCESS)
     }
 
     private fun storeUnitsToDataStore() {
-        updateLoadingState(OnBoardingLoadingState.Loading)
+        updateLoadingState(LoadingState.LOADING)
 
         viewModelScope.launch {
             dataStoreRepo.setAmountOfUnits(units = uiState.value.userData.units)
         }
-        updateLoadingState(OnBoardingLoadingState.Success)
+        updateLoadingState(LoadingState.SUCCESS)
     }
 
     private fun storeQuitDateToDataStore() {
-        updateLoadingState(OnBoardingLoadingState.Loading)
+        updateLoadingState(LoadingState.LOADING)
 
         viewModelScope.launch {
             dataStoreRepo.setDateWhenQuitInMillis(date = uiState.value.userData.dateWhenQuit)
         }
-        updateLoadingState(OnBoardingLoadingState.Success)
+        updateLoadingState(LoadingState.SUCCESS)
     }
 
     private fun showCalendar(visible: Boolean) {
@@ -146,7 +147,7 @@ class OnBoardingViewModel(
         Timber.d("Days since quit is: $daysSinceQuit")
     }
 
-    private fun updateLoadingState(loadingState: OnBoardingLoadingState) {
+    private fun updateLoadingState(loadingState: LoadingState) {
         _uiState.update { uiState.value.copy(loadingState = loadingState) }
     }
 
@@ -156,7 +157,7 @@ class OnBoardingViewModel(
         units: Int? = null,
         date: Long? = null,
     ) {
-        updateLoadingState(OnBoardingLoadingState.Loading)
+        updateLoadingState(LoadingState.LOADING)
 
         if (cost != null) {
             val updatedCost = uiState.value.userData.copy(costPerUnit = cost)
@@ -166,15 +167,15 @@ class OnBoardingViewModel(
         if (units != null) {
             val updatedUnits = uiState.value.userData.copy(units = units)
             _uiState.update { uiState.value.copy(userData = updatedUnits) }
-            updateLoadingState(OnBoardingLoadingState.Success)
+            updateLoadingState(LoadingState.SUCCESS)
         }
 
         if (date != null) {
             val updatedDate = uiState.value.userData.copy(dateWhenQuit = date)
             _uiState.update { uiState.value.copy(userData = updatedDate) }
-            updateLoadingState(OnBoardingLoadingState.Success)
+            updateLoadingState(LoadingState.SUCCESS)
         }
 
-        updateLoadingState(OnBoardingLoadingState.Success)
+        updateLoadingState(LoadingState.SUCCESS)
     }
 }
