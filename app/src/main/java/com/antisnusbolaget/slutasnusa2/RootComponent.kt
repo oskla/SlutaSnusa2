@@ -33,12 +33,12 @@ fun RootComponent() {
         BottomNavItem(
             name = Screen.Home.title,
             route = Screen.Home.route,
-            icon = R.drawable.ic_home_foreground,
+            icon = R.drawable.ic_home2_foreground,
         ),
         BottomNavItem(
             name = Screen.Achievement.title,
             route = Screen.Achievement.route,
-            icon = R.drawable.ic_achievement,
+            icon = R.drawable.ic_economy_foreground,
         ),
     )
 
